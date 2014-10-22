@@ -1,0 +1,14 @@
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\bin\Debug\FrbaHotel.exe.manifest
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\bin\Debug\FrbaHotel.application
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\bin\Debug\FrbaHotel.exe
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\bin\Debug\FrbaHotel.pdb
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Cliente.Form1.resources
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.index_window.resources
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.Login.login_window.resources
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.Properties.Resources.resources
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.csproj.GenerateResource.Cache
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.exe.manifest
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.application
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.exe
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.pdb

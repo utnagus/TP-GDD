@@ -23,5 +23,7 @@ namespace FrbaHotel
             Form login = new Login.login_window();
             login.Show();
         }
+
+        
     }
 }

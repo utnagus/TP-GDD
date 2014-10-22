@@ -12,3 +12,17 @@ C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\F
 C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Cliente.Form1.resources
 C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.Login.login_window.resources
 C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.index_window.resources
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.exe
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.pdb
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Cliente.Form1.resources
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.index_window.resources
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.Login.login_window.resources
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.Properties.Resources.resources
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.csproj.GenerateResource.Cache
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\bin\Release\FrbaHotel.exe.manifest
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\bin\Release\FrbaHotel.application
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\bin\Release\FrbaHotel.exe
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\bin\Release\FrbaHotel.pdb
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.exe.manifest
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.application

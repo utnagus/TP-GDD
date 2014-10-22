@@ -10,5 +10,7 @@ namespace FrbaHotel.Model
     {
         private String name;
         private String password;
+        private String rol;
+
     }
 }

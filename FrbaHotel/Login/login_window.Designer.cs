@@ -33,7 +33,7 @@
             this.btn_login = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.txt_user = new System.Windows.Forms.TextBox();
-            this.txt_pass = new System.Windows.Forms.TextBox();
+            this.txt_pass = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -86,10 +86,11 @@
             // 
             // txt_pass
             // 
-            this.txt_pass.Location = new System.Drawing.Point(111, 74);
+            this.txt_pass.Location = new System.Drawing.Point(111, 77);
             this.txt_pass.Name = "txt_pass";
+            this.txt_pass.PasswordChar = '*';
             this.txt_pass.Size = new System.Drawing.Size(100, 20);
-            this.txt_pass.TabIndex = 5;
+            this.txt_pass.TabIndex = 6;
             this.txt_pass.Tag = "txt_pass";
             // 
             // login_window
@@ -118,6 +119,6 @@
         private System.Windows.Forms.Button btn_login;
         private System.Windows.Forms.Button btn_cancel;
         private System.Windows.Forms.TextBox txt_user;
-        private System.Windows.Forms.TextBox txt_pass;
+        private System.Windows.Forms.MaskedTextBox txt_pass;
     }
 }

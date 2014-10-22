@@ -5,8 +5,8 @@ using System.Text;
 
 namespace FrbaHotel.Model
 {
-    
-    class Huesped : Rol
+    class User
     {
+
     }
 }

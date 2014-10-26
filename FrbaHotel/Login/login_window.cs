@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FrbaHotel.Home;
+using FrbaHotel.Model;
 
 namespace FrbaHotel.Login
 {
@@ -77,7 +78,14 @@ namespace FrbaHotel.Login
                 fails = 0;
                 MessageBox.Show("Logueo con exito!!","Login",
                     MessageBoxButtons.OK,MessageBoxIcon.Information);
+                //CREAR EL OBJETO SEGUN QUIEN SE LOGUEO
+                //ME TENGO QUE TRAER LOS VALORES DEL USUARI
+
+                User logged_user = new User(); // DEBERIA SER O ADMIN O RECEPCIONISTA
+                
                 //REDIRECT A PAGINA PRINCIPAL
+                index_window index = (index_window)sender;
+                index.setUserLogged(logged_user);
             }
         }
 

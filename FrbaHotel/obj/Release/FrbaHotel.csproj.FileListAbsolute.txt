@@ -26,3 +26,5 @@ C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\bin\Release\
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\bin\Release\FrbaHotel.pdb
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.exe.manifest
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.application
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Usuario.userABM.resources
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Usuario.addNewUser.resources

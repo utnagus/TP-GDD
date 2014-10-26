@@ -44,14 +44,21 @@ namespace FrbaHotel.Home
         private void isUserAvaible(String user){
             String query = "select usuario from gd_esquema.usuarios_inhabilitados where usuario ='"+user.ToString()+"';";
             DataTable dt = db.select_query(query);
-            if (dt.Rows.Count != 0)
-            {
+            if (dt.Rows.Count != 0){
                 throw new Exception("Usuario Inhabilitado");
             }
 
             
         }
+        //Obtengo una lista de todos los usuarios
+        public DataTable getUsersList() {
+            String query = "select usuario from gd_esquema.usuarios_inhabilitados ;";
+            DataTable dt = db.select_query(query);
+            return dt;
+        }
 
+        //Setea a un usuario como inhabilitado
+        //FALTA HACER FUNCIONAR EL INSERT
         public void setUnavaibleUser(String user) {
             DataBase db = new DataBase();
             String query = "insert into gd_esquema.usuarios_inhabilitados values(2,'"+user.ToString()+"');";

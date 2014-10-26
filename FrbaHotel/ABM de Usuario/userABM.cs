@@ -19,12 +19,13 @@ namespace FrbaHotel.ABM_de_Usuario
         public userABM()
         {
             InitializeComponent();
-            fillWindowOnCreate();
+            this.fillWindowOnCreate();
+       
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            //ABRIR LA VENTANA DE EDICION
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -68,6 +69,18 @@ namespace FrbaHotel.ABM_de_Usuario
         public void setLoggedAdmin(User admin) {
             this.logged_admin = admin;
         }
+
+        public void addUsersToGrid(User user) {
+            dgv_users.Rows.Add(user.getName(),user.getLastName(),user.getMail(),user.getHotel());
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+             //ELIMINAR LA ROW DE LA GRIDVIEW 
+             //INSERTAR EN UNA TABLA LOS USUARIOS QUE SE DIERON DE BAJA(BAJA LOGICA) 
+        }
+
+       
 
     }
 }

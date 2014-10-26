@@ -13,17 +13,24 @@ namespace FrbaHotel
 {
     public partial class index_window : Form
     {
+        public static index_window Instance;
+
         private User logged_user = new User();
        
         public index_window()
         {
+            Instance = this;
             InitializeComponent();
+        }
+
+        public static index_window sharedInstance() {
+            return Instance;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            index_window index = (index_window)sender;
-            this.setUserLogged(index.logged_user);
+          //  index_window index = (index_window)sender;
+          //   this.setUserLogged(index.logged_user);
             Form login = new Login.login_window();
             login.Show();
         }
@@ -37,8 +44,13 @@ namespace FrbaHotel
         }
 
         public void setUserLogged(User user) {
-            this.label_logged.Text = user.getNickname().ToString();
+            this.label_logged.Text = user.getUserName();
             this.logged_user = user;
+        }
+
+        private void index_window_Load(object sender, EventArgs e)
+        {
+
         }
         
     }

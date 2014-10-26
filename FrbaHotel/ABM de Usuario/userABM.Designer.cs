@@ -33,18 +33,21 @@
             this.btn_edit = new System.Windows.Forms.Button();
             this.lb_users = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
+            this.dgv_users = new System.Windows.Forms.DataGridView();
+            this.Nick = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.column_email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.column_hotel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_users)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_add
             // 
             this.btn_add.Location = new System.Drawing.Point(201, 246);
             this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(50, 23);
+            this.btn_add.Size = new System.Drawing.Size(59, 23);
             this.btn_add.TabIndex = 0;
             this.btn_add.Text = "Agregar";
             this.btn_add.UseVisualStyleBackColor = true;
@@ -52,16 +55,17 @@
             // 
             // btn_delete
             // 
-            this.btn_delete.Location = new System.Drawing.Point(257, 246);
+            this.btn_delete.Location = new System.Drawing.Point(266, 246);
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(48, 23);
             this.btn_delete.TabIndex = 1;
             this.btn_delete.Text = "Borrar";
             this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
             // btn_edit
             // 
-            this.btn_edit.Location = new System.Drawing.Point(311, 246);
+            this.btn_edit.Location = new System.Drawing.Point(320, 246);
             this.btn_edit.Name = "btn_edit";
             this.btn_edit.Size = new System.Drawing.Size(60, 23);
             this.btn_edit.TabIndex = 2;
@@ -87,26 +91,6 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Lista de usuarios";
             // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel1.Controls.Add(this.splitContainer1);
-            this.panel1.Location = new System.Drawing.Point(201, 21);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(299, 212);
-            this.panel1.TabIndex = 6;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Size = new System.Drawing.Size(299, 212);
-            this.splitContainer1.SplitterDistance = 99;
-            this.splitContainer1.TabIndex = 0;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -116,13 +100,52 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Lista de funcionalidades\r\n";
             // 
+            // dgv_users
+            // 
+            this.dgv_users.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_users.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nick,
+            this.Nombre,
+            this.Apellido,
+            this.column_email,
+            this.column_hotel});
+            this.dgv_users.Location = new System.Drawing.Point(201, 22);
+            this.dgv_users.Name = "dgv_users";
+            this.dgv_users.Size = new System.Drawing.Size(541, 58);
+            this.dgv_users.TabIndex = 8;
+            // 
+            // Nick
+            // 
+            this.Nick.HeaderText = "Nick";
+            this.Nick.Name = "Nick";
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            // 
+            // Apellido
+            // 
+            this.Apellido.HeaderText = "Apellido";
+            this.Apellido.Name = "Apellido";
+            // 
+            // column_email
+            // 
+            this.column_email.HeaderText = "email";
+            this.column_email.Name = "column_email";
+            // 
+            // column_hotel
+            // 
+            this.column_hotel.HeaderText = "Hotel";
+            this.column_hotel.Name = "column_hotel";
+            // 
             // userABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(572, 297);
+            this.ClientSize = new System.Drawing.Size(795, 297);
+            this.Controls.Add(this.dgv_users);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lb_users);
             this.Controls.Add(this.btn_edit);
@@ -130,9 +153,7 @@
             this.Controls.Add(this.btn_add);
             this.Name = "userABM";
             this.Text = "Edicion de Usuarios";
-            //this.Load += new System.EventHandler(this.userABM_Load);
-            this.panel1.ResumeLayout(false);
-            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_users)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,9 +166,13 @@
         private System.Windows.Forms.Button btn_edit;
         private System.Windows.Forms.ListBox lb_users;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.DataGridView dgv_users;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nick;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn column_email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn column_hotel;
 
     }
 }

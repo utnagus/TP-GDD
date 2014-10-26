@@ -62,8 +62,7 @@ namespace FrbaHotel.Login
             }
 
             //SI NO EXISTE EL USUARIO TENGO QUE CONTAR LOS INTENTOS
-            if (!verify)
-            {
+            if (!verify){
                 fails++;
                 if (fails == 3)
                 {
@@ -76,16 +75,19 @@ namespace FrbaHotel.Login
             }
             else {
                 fails = 0;
+            
                 MessageBox.Show("Logueo con exito!!","Login",
                     MessageBoxButtons.OK,MessageBoxIcon.Information);
+               
                 //CREAR EL OBJETO SEGUN QUIEN SE LOGUEO
-                //ME TENGO QUE TRAER LOS VALORES DEL USUARI
+                //ME TENGO QUE TRAER LOS VALORES DEL USUARIo
+                // DEBERIA SER O ADMIN O RECEPCIONISTA
+                User logged_user = new User(user,pass);                
+                logged_user.getYouProperties();               
 
-                User logged_user = new User(); // DEBERIA SER O ADMIN O RECEPCIONISTA
-                
                 //REDIRECT A PAGINA PRINCIPAL
-                index_window index = (index_window)sender;
-                index.setUserLogged(logged_user);
+                index_window.sharedInstance().setUserLogged(logged_user);
+                
             }
         }
 

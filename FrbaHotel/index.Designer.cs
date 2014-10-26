@@ -73,6 +73,7 @@
             this.Location = new System.Drawing.Point(200, 200);
             this.Name = "index_window";
             this.Text = "Index";
+            this.Load += new System.EventHandler(this.index_window_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FrbaHotel.Home;
 
 namespace FrbaHotel.Model
 {
@@ -12,27 +13,42 @@ namespace FrbaHotel.Model
         private String mail = "";
         private String name = "";
         private String lastName = "";
-        private String document = "";
+        private Int64 document = 0;
         private DateTime date = new DateTime();
-        private String hotel = "";
-        private String telephone = "";
-        private String nickname = "";
+        private List<Object> hotel = new List<Object>();
+        private Int64 telephone = 0;
+        private String username = "";
         private String address = "";
 
         public User() { }
 
+        public User(String name, String pass) {
+            this.name = name;
+            this.password = pass;
+        }
+
         public User(Dictionary<String,Object> values) {
+            this.fillProperties(values);
+        }
+
+        private void fillProperties(Dictionary<String,Object> values) { 
+            this.address = (string)values["direccion"];
             this.password = (string)values["password"];
             this.rol.Add((string)values["rol"]);
             this.mail = (string)values["mail"];
-            this.name = (string)values["name"];
-            this.lastName = (string)values["lastName"];
-            this.document = (string)values["document"];
-            this.hotel = (string)values["hotel"];
-            this.date = (DateTime)values["date"];
-            this.nickname = (string)values["nickname"];
-            this.telephone = (string)values["telephone"];
-            this.address = (string)values["address"];
+            this.name = (string)values["nombre"];
+            this.lastName = (string)values["apellido"];
+            this.hotel.Add((string)values["hotel"]);
+            this.username = (string)values["username"];
+            this.telephone= (Int64)values["telefono"];
+            this.document = (Int64)values["dni"];
+            this.date = (DateTime)values["fecha_nacimiento"];
+        }
+
+        public void getYouProperties() {
+            homeDB home = new homeDB();
+            Dictionary<String,Object>values = home.getUserConfig(this.name,this.password);
+            this.fillProperties(values);
         }
 
 
@@ -41,12 +57,12 @@ namespace FrbaHotel.Model
         public String getPassword() { return this.password; }
         public String getLastName() { return this.lastName; }
         public String getMail() { return this.mail; }
-        public String getDocument() { return this.document; }
-        public String getHotel() { return this.hotel; }
+        public Int64 getDocument() { return this.document; }
+        public List<Object> getHotel() { return this.hotel; }
         public DateTime getDate() { return this.date; }
         public List<Object> getRol() { return this.rol; }
-        public String getNickname() { return this.nickname; }
-        public String getTelephone() { return this.telephone; }
+        public String getUserName() { return this.username; }
+        public Int64 getTelephone() { return this.telephone; }
         public String getAddress() { return this.address; }
 
     }

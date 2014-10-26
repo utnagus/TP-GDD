@@ -29,7 +29,9 @@ namespace FrbaHotel.Model
         public void closeConnection() { conexion.Close(); }
         
         public DataTable select_query(String query) {
-           
+
+            try
+            {
                 conexion.Open();
                 SqlCommand queryCommand = new SqlCommand(query, conexion);
                 SqlDataReader queryCommandReader = queryCommand.ExecuteReader();
@@ -37,7 +39,12 @@ namespace FrbaHotel.Model
                 dataTable.Load(queryCommandReader);
                 conexion.Close();
                 return dataTable;
-                  
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Fallo al ejectuar la query : "+ query);
+            }
+
+            return new DataTable();  
         }
 
         public void insert_query(String query) {

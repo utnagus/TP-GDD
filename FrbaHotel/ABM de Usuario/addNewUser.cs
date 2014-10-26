@@ -58,8 +58,8 @@ namespace FrbaHotel.ABM_de_Usuario
                 //GRABO EN TABLA
                 //PASSWORD ENCRIPTADA
                 //
-                //userABM abm = (userABM)sender;
-                //abm.addNewUser(user);
+                userABM abm = (userABM)sender;
+                abm.addUsersToGrid(user);
             }
             catch (Exception ex) {
 

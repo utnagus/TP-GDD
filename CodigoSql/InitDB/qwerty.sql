@@ -129,7 +129,7 @@ CREATE TABLE [QWERTY].[Hotel](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [QWERTY].[Regimen]    Script Date: 10/11/2014 18:49:09 ******/
+/****** Object:  Table [QWERTY].[Regimen]    Script Date: 10/11/2014 18:49:09 MODIFICADO POR FEDE******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -137,7 +137,8 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [QWERTY].[Regimen](
-	[Regimen_ID] [int] NOT NULL,
+	[Regimen_ID][int] IDENTITY(1,1) NOT NULL,
+	[Codigo] [varchar](50) NOT NULL,
 	[Descripcion] [varchar](50) NOT NULL,
 	[Precio] [float] NOT NULL,
 	[Estado] [bit] NOT NULL,
@@ -148,13 +149,6 @@ CREATE TABLE [QWERTY].[Regimen](
 ) ON [PRIMARY]
 GO
 SET ANSI_PADDING OFF
-GO
-/****** Object:  Table [QWERTY].[Personal_hoteles]    Script Date: 10/11/2014 18:49:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-SET ANSI_PADDING ON
 GO
 CREATE TABLE [QWERTY].[Personal_hoteles](
 	[Username] [varchar](50) NOT NULL,

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FrbaHotel.ABM_de_Usuario;
+using FrbaHotel.Login;
 using FrbaHotel.Model;
 
 namespace FrbaHotel
@@ -14,8 +15,8 @@ namespace FrbaHotel
     public partial class index_window : Form
     {
         public static index_window Instance;
-
-        private User logged_user = new User();
+        
+        public  User logged_user = new User();
        
         public index_window()
         {
@@ -29,8 +30,6 @@ namespace FrbaHotel
 
         private void button1_Click(object sender, EventArgs e)
         {
-          //  index_window index = (index_window)sender;
-          //   this.setUserLogged(index.logged_user);
             Form login = new Login.login_window();
             login.Show();
         }
@@ -52,6 +51,17 @@ namespace FrbaHotel
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            List<Object> list = new List<Object>() ;
+            list.Add("Administrador");
+            list.Add("Recepcionista");
+            RolSelector rs = new RolSelector(list);
+            rs.Show();
+        }
+
+       
         
     }
 }

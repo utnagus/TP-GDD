@@ -1,5 +1,5 @@
 /*AGREGO USUARIOS*/
-select * fro qwerty.usuarios;
+select * from qwerty.usuarios;
 insert into qwerty.usuarios
 values
 ('agus','aaa','Agustin','Pace',36990517,'apace@engenus.net',49142134,'emilio mitre','2014-10-12');
@@ -29,5 +29,12 @@ select h.nombre from qwerty.usuarios u, qwerty.personal_hoteles ph, qwerty.hotel
 	
 
 INSERT INTO qwerty.usuarios_inhabilitados values('maru','es hacker');
+drop table qwerty.baja_usuarios
 
-select r.rol as rol from qwerty.usuarios_roles ur,qwerty.roles r where ur.rol_id = r.rol_id and ur.username = 'Agus';
+/*CROE TABLA PARA BAJA LOGICA DE LA ABM DE USUARIOS*/
+create table qwerty.baja_usuarios (username varchar(50), motivo varchar(200))
+insert into qwerty.baja_usuarios values ('Jony','Eliminado por el administrador');
+
+select * from QWERTY.usuarios
+
+select * into qwerty.baja_usuarios from QWERTY.usuarios  

@@ -28,6 +28,10 @@ namespace FrbaHotel.Login
             Boolean verify = false;
             String user = txt_user.Text;
             String pass = txt_pass.Text;
+            User onLogginUser =  new User();
+            onLogginUser.setUsername(user);
+            onLogginUser.setPassword(pass);
+            
             try
             {
                 if (user == "")
@@ -53,7 +57,7 @@ namespace FrbaHotel.Login
             //VERIFICO CONSTRASENIA (FALTA VERIFICAR)
             try
             {
-                home_db.verifyUser(user,pass);
+                home_db.verifyUser(onLogginUser);
                 verify = true;
             }
             catch (Exception ex) {
@@ -69,8 +73,8 @@ namespace FrbaHotel.Login
                     //INHABILITAR USUARIO, GUARDO UNA TABLA CON LOS USUARIOS INHABILITADOS
                     home_db.setUnavaibleUser(user);
                     MessageBox.Show("Usuario inhabilitado por hacer mas de 3 intentos","Bloqueo de usuario",
-                        MessageBoxButtons.OK,MessageBoxIcon.Warning);       
-                       
+                        MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    fails = 0;   
                 }
             }
             else {
@@ -78,16 +82,38 @@ namespace FrbaHotel.Login
             
                 MessageBox.Show("Logueo con exito!!","Login",
                     MessageBoxButtons.OK,MessageBoxIcon.Information);
-               
-                //CREAR EL OBJETO SEGUN QUIEN SE LOGUEO
-                //ME TENGO QUE TRAER LOS VALORES DEL USUARIo
-                // DEBERIA SER O ADMIN O RECEPCIONISTA
-                User logged_user = new User(user,pass);                
-                logged_user.getYouProperties();               
 
+                User logged_user = new User(user, pass);
+                logged_user.getYouProperties();
+                Console.WriteLine("Carge al objeto usuario con sus datos");
+
+                //MOSTRAR CON QUE ROL QUIERE LOGUEARSE
+                int rols = logged_user.getRol().Count();
+                String rol = "";
+                Console.WriteLine("Cantida de roles: "+rols);
+                if (rols > 1)
+                {
+                    RolSelector rolWindows = new RolSelector(logged_user.getRol());
+                    rolWindows.Show();
+                    rol = rolWindows.getSelectedRol();
+                }
+                else {
+                    rol = logged_user.getRol().IndexOf(0).ToString();
+                }
+
+                //CREAR EL OBJETO SEGUN QUIEN SE LOGUEO
+                //ME TENGO QUE TRAER LOS VALORES DEL USUARIO
+                // DEBERIA SER O ADMIN O RECEPCIONISTA
+                if (rol == "Administrador") {
+                    logged_user = new UserAdmin();
+                }
+                if (rol == "Recepcionista") {
+                    logged_user = new UserRecepsionist();
+                }
+                
                 //REDIRECT A PAGINA PRINCIPAL
                 index_window.sharedInstance().setUserLogged(logged_user);
-                
+                this.Close();
             }
         }
 

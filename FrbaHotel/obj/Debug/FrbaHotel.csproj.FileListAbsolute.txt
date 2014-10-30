@@ -14,3 +14,4 @@ C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\Fr
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.pdb
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Usuario.addNewUser.resources
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Usuario.userABM.resources
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.Login.RolSelector.resources

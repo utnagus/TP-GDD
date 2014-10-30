@@ -48,10 +48,16 @@ namespace FrbaHotel.Model
         }
 
         public void insert_query(String query) {
-
-            conexion.Open();
-            SqlCommand queryCommand = new SqlCommand(query, conexion);
-            conexion.Close();
+            try
+            {
+                conexion.Open();
+                SqlCommand queryCommand = new SqlCommand(query, conexion);
+                queryCommand.ExecuteNonQuery();
+                conexion.Close();
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Fallo al ejectuar la query : " + query);
+            }
         }
 
 

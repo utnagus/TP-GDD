@@ -17,8 +17,10 @@ namespace FrbaHotel.Home
         //Verifico que el usuario que se loguea sea Adminn o Receps
         //Verifico que su password sea correcta
         //Verifico que no este inhabilitado
-        public void verifyUser(String user,String password) {
-            
+        public void verifyUser(User logginUser) {
+            String user = logginUser.getUserName();
+            String password = logginUser.getPassword(); 
+
             this.isUserAvaible(user);
 
             String rol ="";
@@ -50,17 +52,34 @@ namespace FrbaHotel.Home
 
             
         }
-        //Obtengo una lista de todos los usuarios
-        public DataTable getUsersList() {
-            String query = "select usuario from gd_esquema.usuarios_inhabilitados ;";
+
+        public void upUser(User user) {
+            DataBase db = new DataBase();
+            String query = "insert into qwerty.usuarios values('" + user.getUserName() + "','"+user.getPassword()+"','"+user.getName()+"','"+user.getLastName()+"',"+user.getDocument()+",'"+user.getMail()+"',"+user.getTelephone()+",'"+user.getAddress()+"','"+user.getDate()+"');";
+            db.insert_query(query);
+        }
+
+        public void downUser(String username) {
+            DataBase db = new DataBase();
+            String query = "insert into qwerty.baja_usuarios values ('"+username+"','Eliminado por el administrador');";
+            db.insert_query(query);
+        }
+
+        //Obtengo una lista de todos los usuarios donde esta logueado el admin
+        public DataTable getUsersList(User admin) {
+            String query = "select * from qwerty.usuarios where hotel='"+admin.getHotel().IndexOf(0).ToString()+"';";
             DataTable dt = db.select_query(query);
             return dt;
         }
         
         //Traigo datos del usuario y los paso de un dataTable a un diccionario
-        public Dictionary<String,Object> getUserConfig(String username, String password){
+        //public Dictionary<String,Object> getUserConfig(String username, String password){
+        public Dictionary<String, Object> getUserConfig(User user)
+        {
+            String username = user.getUserName();
+            String password = user.getPassword();
             String query = "select * from qwerty.usuarios where username ='"+username+"' and password = '"+password+"';";
-            String query_rol = "select r.rol as rol from qwerty.usuarios_roles ur,qwerty.roles r where ur.rol_id = r.rol_id and ur.username = '"+username+"'";
+            String query_rol = "select r.rol as rol from qwerty.usuarios_roles ur,qwerty.roles r where ur.rol_id = r.rol_id and ur.username = '"+username+"';";
             String query_hotel = "select h.nombre as hotel from qwerty.usuarios u, qwerty.personal_hoteles ph, qwerty.hotel h where u.username =ph.username and ph.hotel_id = h.hotel_id and u.username = '"+ username +"';";
             DataTable dt = db.select_query(query);
             DataTable dt_rol = db.select_query(query_rol);
@@ -80,18 +99,18 @@ namespace FrbaHotel.Home
             foreach (DataColumn dc in dt_rol.Columns)
             {
 
-                int rows = dt.Rows.Count;
+                int rows = dt_rol.Rows.Count;
                 for (int i = 0; i < rows; i++)
-                    dic_rol[dc.ToString().ToLower()] = dt_rol.Rows[i][dc];
+                    dic_rol[dc.ToString().ToLower() + "_" + i.ToString()] = dt_rol.Rows[i][dc];
             }
 
             /*cargo dic hotel*/
             foreach (DataColumn dc in dt_hotel.Columns)
             {
 
-                int rows = dt.Rows.Count;
+                int rows = dt_hotel.Rows.Count;
                 for (int i = 0; i < rows; i++)
-                    dic_hotel[dc.ToString().ToLower()] = dt_hotel.Rows[i][dc];
+                    dic_hotel[dc.ToString().ToLower()+"_"+i.ToString()] = dt_hotel.Rows[i][dc];
             }
             Dictionary<String, Object> dic_final = dic.Union(dic_rol).Union(dic_hotel).ToDictionary(key =>key.Key,value=>value.Value);
 
@@ -99,10 +118,9 @@ namespace FrbaHotel.Home
         }
 
         //Setea a un usuario como inhabilitado
-        //FALTA HACER FUNCIONAR EL INSERT
         public void setUnavaibleUser(String user) {
             DataBase db = new DataBase();
-            String query = "insert into gd_esquema.usuarios_inhabilitados values(2,'"+user.ToString()+"');";
+            String query = "insert into qwerty.usuarios_inhabilitados values('"+user.ToString()+"',Intento loguearse 3 veces sin exito);";
             db.insert_query(query);
         }
 

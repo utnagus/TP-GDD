@@ -100,6 +100,12 @@
     <Compile Include="ABM de Usuario\addNewUser.Designer.cs">
       <DependentUpon>addNewUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM de Usuario\editUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Usuario\editUser.Designer.cs">
+      <DependentUpon>editUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM de Usuario\userABM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Home\homeDB.cs" />
+    <Compile Include="Home\homeUser.cs" />
     <Compile Include="index.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,12 +144,19 @@
     <Compile Include="Login\login_window.Designer.cs">
       <DependentUpon>login_window.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Admin.cs" />
+    <Compile Include="Login\RolSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\RolSelector.Designer.cs">
+      <DependentUpon>RolSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\DataBase.cs" />
     <Compile Include="Model\Guest.cs" />
     <Compile Include="Model\Recepsionist.cs" />
     <Compile Include="Model\Rol.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserAdmin.cs" />
+    <Compile Include="Model\UserRecepsionist.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ABM de Cliente\Form1.resx">
@@ -162,6 +176,9 @@
     <EmbeddedResource Include="Login\login_window.resx">
       <DependentUpon>login_window.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\RolSelector.resx">
+      <DependentUpon>RolSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

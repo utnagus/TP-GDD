@@ -11,10 +11,16 @@ namespace FrbaHotel.ABM_de_Usuario
 {
     public partial class addNewUser : Form
     {
+        private userABM parent = null;
+
         public addNewUser()
         {
             InitializeComponent();
             this.fillComboBoxes();
+        }
+
+        public void setParent(userABM parent) {
+            this.Parent = parent;
         }
 
         private void fillComboBoxes() {
@@ -55,11 +61,14 @@ namespace FrbaHotel.ABM_de_Usuario
                 User user = new User(values);
 
                 //LE DIGO A LA AMB USER QUE LO AGREGUE
-                //GRABO EN TABLA
+                
                 //PASSWORD ENCRIPTADA
-                //
-                userABM abm = (userABM)sender;
-                abm.addUsersToGrid(user);
+                Console.WriteLine("Falta encriptar password");
+                //GRABO EN TABLA
+                user.setYouUP();
+
+                //AGREGAR A LA LISTA DE USUARIOS
+                parent.addUsersToGrid(user);
             }
             catch (Exception ex) {
 

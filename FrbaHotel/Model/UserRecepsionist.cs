@@ -5,13 +5,7 @@ using System.Text;
 
 namespace FrbaHotel.Model
 {
-    
-    class Rol
+    class UserRecepsionist : User
     {
-        private String rol;
-
-        public String rol_name() {
-            return this.ToString();
-        }
     }
 }

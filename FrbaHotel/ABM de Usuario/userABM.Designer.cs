@@ -40,6 +40,7 @@
             this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.column_email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.column_hotel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_close = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_users)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +48,7 @@
             // 
             this.btn_add.Location = new System.Drawing.Point(201, 246);
             this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(59, 23);
+            this.btn_add.Size = new System.Drawing.Size(68, 23);
             this.btn_add.TabIndex = 0;
             this.btn_add.Text = "Agregar";
             this.btn_add.UseVisualStyleBackColor = true;
@@ -55,9 +56,10 @@
             // 
             // btn_delete
             // 
-            this.btn_delete.Location = new System.Drawing.Point(266, 246);
+            this.btn_delete.Enabled = false;
+            this.btn_delete.Location = new System.Drawing.Point(287, 246);
             this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(48, 23);
+            this.btn_delete.Size = new System.Drawing.Size(72, 23);
             this.btn_delete.TabIndex = 1;
             this.btn_delete.Text = "Borrar";
             this.btn_delete.UseVisualStyleBackColor = true;
@@ -65,9 +67,10 @@
             // 
             // btn_edit
             // 
-            this.btn_edit.Location = new System.Drawing.Point(320, 246);
+            this.btn_edit.Enabled = false;
+            this.btn_edit.Location = new System.Drawing.Point(383, 246);
             this.btn_edit.Name = "btn_edit";
-            this.btn_edit.Size = new System.Drawing.Size(60, 23);
+            this.btn_edit.Size = new System.Drawing.Size(73, 23);
             this.btn_edit.TabIndex = 2;
             this.btn_edit.Text = "Edit";
             this.btn_edit.UseVisualStyleBackColor = true;
@@ -139,11 +142,22 @@
             this.column_hotel.HeaderText = "Hotel";
             this.column_hotel.Name = "column_hotel";
             // 
+            // btn_close
+            // 
+            this.btn_close.Location = new System.Drawing.Point(667, 246);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(75, 23);
+            this.btn_close.TabIndex = 9;
+            this.btn_close.Text = "Cerrar";
+            this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
+            // 
             // userABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(795, 297);
+            this.Controls.Add(this.btn_close);
             this.Controls.Add(this.dgv_users);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -153,6 +167,7 @@
             this.Controls.Add(this.btn_add);
             this.Name = "userABM";
             this.Text = "Edicion de Usuarios";
+            this.Load += new System.EventHandler(this.userABM_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_users)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -173,6 +188,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
         private System.Windows.Forms.DataGridViewTextBoxColumn column_email;
         private System.Windows.Forms.DataGridViewTextBoxColumn column_hotel;
+        private System.Windows.Forms.Button btn_close;
 
     }
 }

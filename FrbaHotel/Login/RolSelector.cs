@@ -44,22 +44,39 @@ namespace FrbaHotel.Login
 
         private void btn_accept_Click(object sender, EventArgs e)
         {
-            try {
-                int checks = 0;
-                foreach (CheckBox cb in cb_list) {
-                    if (cb.Checked) {
-                        checks++;
-                        this.rol = cb.Text;
-                    }
-                    if(checks > 1)
-                        throw new Exception("Solo puede seleccionar 1 rol");
+         
+                try
+                {
+                    int checks = 0;
+                    foreach (CheckBox cb in cb_list)
+                    {
+                        if (cb.Checked)
+                        {
+                            checks++;
+                            this.rol = cb.Text;
+                        }
+                    }    
+                         
+
+                     if (checks > 1 || checks == 0)
+                     {
+                         throw new Exception("Debe seleccionar 1 rol");
+                     }
+                     else
+                     {
+                        this.Close();
+                     }
+                        
                 }
-            }
-            catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-            }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                
             
-        
+
+            
         }
     }
 }

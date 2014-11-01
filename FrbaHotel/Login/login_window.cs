@@ -15,7 +15,7 @@ namespace FrbaHotel.Login
     {
         private homeDB home_db = new homeDB();
         private int fails = 0;
-
+        
         public login_window()
         {
             InitializeComponent();
@@ -28,10 +28,12 @@ namespace FrbaHotel.Login
             Boolean verify = false;
             String user = txt_user.Text;
             String pass = txt_pass.Text;
-            User onLogginUser =  new User();
+            User logged_user = null; 
+            /*User onLogginUser =  new User();
             onLogginUser.setUsername(user);
             onLogginUser.setPassword(pass);
-            
+            */
+
             try
             {
                 if (user == "")
@@ -57,7 +59,54 @@ namespace FrbaHotel.Login
             //VERIFICO CONSTRASENIA (FALTA VERIFICAR)
             try
             {
-                home_db.verifyUser(onLogginUser);
+                Dictionary<String, Object> user_values = home_db.getUserData(user, pass);
+                
+                logged_user = new UserAdmin(user_values);
+
+
+                MessageBox.Show("Logueo con exito!!", "Login",
+                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                //MOSTRAR CON QUE ROL QUIERE LOGUEARSE
+                int rols = logged_user.getRoles().Count();
+                String rol = "";
+                Console.WriteLine("Cantida de roles: " + rols);
+                if (rols > 1)
+                {
+                    RolSelector rolWindows = new RolSelector(logged_user.getRoles());
+                    rolWindows.ShowDialog();
+                    rol = rolWindows.getSelectedRol();
+                }
+                else
+                {
+                    rol = logged_user.getRoles().IndexOf(0).ToString();
+                }
+                
+                if (rol == "Recepsionista")
+                {
+                    logged_user = new UserAdmin(user_values);
+                    
+                }
+
+
+                //MOSTRAR EN QUE HOTEL QUIERE LOGUEARSE
+                int hotels = logged_user.getHotel().Count();
+                String hotel = "";
+                if (hotels > 1)
+                {
+                    HotelSelector hotelWindows = new HotelSelector(logged_user.getHotel());
+                    hotelWindows.ShowDialog();
+                    hotel = hotelWindows.getSelectedHotel();
+
+                }
+                else
+                {
+                    hotel = logged_user.getHotel().IndexOf(0).ToString();
+                }
+
+                logged_user.setLoggedHotel(hotel);           
+
+                //home_db.verifyUser(user,pass);
                 verify = true;
             }
             catch (Exception ex) {
@@ -80,43 +129,15 @@ namespace FrbaHotel.Login
             else {
                 fails = 0;
             
-                MessageBox.Show("Logueo con exito!!","Login",
-                    MessageBoxButtons.OK,MessageBoxIcon.Information);
-
-                User logged_user = new User(user, pass);
-                logged_user.getYouProperties();
-                Console.WriteLine("Carge al objeto usuario con sus datos");
-
-                //MOSTRAR CON QUE ROL QUIERE LOGUEARSE
-                int rols = logged_user.getRol().Count();
-                String rol = "";
-                Console.WriteLine("Cantida de roles: "+rols);
-                if (rols > 1)
-                {
-                    RolSelector rolWindows = new RolSelector(logged_user.getRol());
-                    rolWindows.Show();
-                    rol = rolWindows.getSelectedRol();
-                }
-                else {
-                    rol = logged_user.getRol().IndexOf(0).ToString();
-                }
-
-                //CREAR EL OBJETO SEGUN QUIEN SE LOGUEO
-                //ME TENGO QUE TRAER LOS VALORES DEL USUARIO
-                // DEBERIA SER O ADMIN O RECEPCIONISTA
-                if (rol == "Administrador") {
-                    logged_user = new UserAdmin();
-                }
-                if (rol == "Recepcionista") {
-                    logged_user = new UserRecepsionist();
-                }
-                
                 //REDIRECT A PAGINA PRINCIPAL
                 index_window.sharedInstance().setUserLogged(logged_user);
                 this.Close();
             }
         }
 
+        private int getRowsCount(Object user) {
+            return 0;
+        }
         /*Constructor vacio*/
         private void login_window_Load(object sender, EventArgs e){}
 

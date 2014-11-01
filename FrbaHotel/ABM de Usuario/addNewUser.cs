@@ -58,7 +58,7 @@ namespace FrbaHotel.ABM_de_Usuario
                 Dictionary<String, Object> values = new Dictionary<String, Object>();
                 values = this.getAllTextBoxsValues();
                 //CREO NUEVO USUARIO
-                User user = new User(values);
+                User user = new UserAdmin(values);
 
                 //LE DIGO A LA AMB USER QUE LO AGREGUE
                 

@@ -14,12 +14,22 @@ namespace FrbaHotel.Home
 
         public homeDB() { }
 
+        public Dictionary<String,Object> getUserData(String user, String pass){
+            Dictionary<String, Object> values =  new Dictionary<String, Object>(); 
+            this.verifyUser(user, pass);
+            values = this.getUserConfig(user,pass);
+            
+            return values;
+        }
+
+
         //Verifico que el usuario que se loguea sea Adminn o Receps
         //Verifico que su password sea correcta
         //Verifico que no este inhabilitado
-        public void verifyUser(User logginUser) {
-            String user = logginUser.getUserName();
-            String password = logginUser.getPassword(); 
+        //public void verifyUser(User logginUser) {
+          private void verifyUser(String user, String password){
+            /*String user = logginUser.getUserName();
+            String password = logginUser.getPassword(); */
 
             this.isUserAvaible(user);
 
@@ -66,19 +76,21 @@ namespace FrbaHotel.Home
         }
 
         //Obtengo una lista de todos los usuarios donde esta logueado el admin
-        public DataTable getUsersList(User admin) {
-            String query = "select * from qwerty.usuarios where hotel='"+admin.getHotel().IndexOf(0).ToString()+"';";
+        public DataTable getUsersList(UserAdmin admin) {
+            String query = "select u.username from qwerty.usuarios u,qwerty.hotel h,qwerty.personal_hoteles ph where u.username = ph.username and ph.hotel_id = h.hotel_id and h.nombre='" + admin.getLoggedHotel() + "';";
             DataTable dt = db.select_query(query);
             return dt;
         }
         
         //Traigo datos del usuario y los paso de un dataTable a un diccionario
         //public Dictionary<String,Object> getUserConfig(String username, String password){
-        public Dictionary<String, Object> getUserConfig(User user)
+        //public Dictionary<String, Object> getUserConfig(User user)
+        public Dictionary<String, Object> getUserConfig(String username,String password)
         {
-            String username = user.getUserName();
-            String password = user.getPassword();
-            String query = "select * from qwerty.usuarios where username ='"+username+"' and password = '"+password+"';";
+            /*String username = user.getUserName();
+            String password = user.getPassword();*/
+            //String query = "select * from qwerty.usuarios where username ='"+username+"' and password = '"+password+"';";
+            String query = "select * from qwerty.usuarios where username ='" + username + "';";
             String query_rol = "select r.rol as rol from qwerty.usuarios_roles ur,qwerty.roles r where ur.rol_id = r.rol_id and ur.username = '"+username+"';";
             String query_hotel = "select h.nombre as hotel from qwerty.usuarios u, qwerty.personal_hoteles ph, qwerty.hotel h where u.username =ph.username and ph.hotel_id = h.hotel_id and u.username = '"+ username +"';";
             DataTable dt = db.select_query(query);

@@ -14,8 +14,8 @@ namespace FrbaHotel.ABM_de_Usuario
     public partial class userABM : Form
     {
         private homeDB home_db = new homeDB();
-        private User logged_admin = new User();
-        private User lb_selected_user = new User();
+        private UserAdmin logged_admin = null;
+        private UserAdmin lb_selected_user = null;
         
         private List<User> listBox_users = new List<User>();
 
@@ -24,6 +24,14 @@ namespace FrbaHotel.ABM_de_Usuario
             InitializeComponent();
             this.fillWindowOnCreate();
        
+        }
+
+        public userABM(User admin)
+        {
+            InitializeComponent();
+            this.logged_admin = admin as UserAdmin;
+            this.fillWindowOnCreate();
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -70,28 +78,29 @@ namespace FrbaHotel.ABM_de_Usuario
         //Obtengo todos los usuarios y los agrego al listBox
         //Los usuarios solo deben ser los que esten en el mismo hotel que
         // el admin que este usando esta abm
-        private void fillWindowOnCreate(){
-            
+        private void fillWindowOnCreate()
+        {
+
             DataTable users_table = home_db.getUsersList(this.logged_admin); //cambie la query username por *
             lb_users.Items.Clear();
-            Dictionary<String, Object> dic = new Dictionary<String, Object>();
-            
+
             foreach (DataColumn dc in users_table.Columns)
             {
-
+                Dictionary<String, Object> dic = new Dictionary<String, Object>();
                 int rows = users_table.Rows.Count;
                 for (int i = 0; i < rows; i++)
                     dic[dc.ToString().ToLower()] = users_table.Rows[i][dc];
-            }
-            lb_users.Items.Add(dic["username"]);
-            
-            //creo el usuario con el diccionario que me traje
-            User user = new User(dic);
-            
-            // lo agrego a un array local asi userABM tiene una array de usuarios
-            listBox_users.Add(user);
-        }
+                 
+                lb_users.Items.Add(dic["username"]);
+                Dictionary<String, Object> values = home_db.getUserConfig((string)dic["username"],"");
 
+                //creo el usuario con el diccionario que me traje
+                User user = new UserAdmin(values);
+
+                // lo agrego a un array local asi userABM tiene una array de usuarios
+                listBox_users.Add(user);
+            }
+        }
         private void btn_add_Click(object sender, EventArgs e)
         {
             ABM_de_Usuario.addNewUser add_form = new ABM_de_Usuario.addNewUser();
@@ -99,10 +108,7 @@ namespace FrbaHotel.ABM_de_Usuario
             add_form.setParent(this);
         }
 
-        public void setLoggedAdmin(User admin) {
-            this.logged_admin = admin;
-        }
-
+       
         public void addUsersToGrid(User user) {
            dgv_users.Rows.Add(user.getName(),user.getLastName(),user.getMail(),user.getHotel());
         }
@@ -118,7 +124,7 @@ namespace FrbaHotel.ABM_de_Usuario
              lb_users.Items.Remove(lb_users.SelectedItem);            
              
              //INSERTAR EN UNA TABLA LOS USUARIOS QUE SE DIERON DE BAJA(BAJA LOGICA) 
-             User user = new User();
+             User user = new UserAdmin();
              user.setUsername(selected_user);
              user.setYouDown();
         

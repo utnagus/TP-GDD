@@ -29,3 +29,4 @@ C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Usuario.userABM.resources
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Usuario.addNewUser.resources
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.Login.RolSelector.resources
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.Login.HotelSelector.resources

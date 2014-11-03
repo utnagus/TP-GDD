@@ -35,6 +35,17 @@ namespace FrbaHotel.Model
             this.fillProperties(values);
         }
 
+
+        private bool EqualsTo(String username)
+        {
+            bool result = false;
+            if (this.username.Equals(username))
+                result = true;
+            return result;
+        }
+
+
+
         public void fillProperties(Dictionary<String,Object> values) {
             Boolean exists_rol = true;
             int i = 0;
@@ -43,6 +54,16 @@ namespace FrbaHotel.Model
             while(exists_rol){
                 String hotel = "" ;
                 String rol = "";
+                if (values.ContainsKey("rol")) { 
+                    this.rol = (string)values["rol"];
+                    this.roles.Add(values["rol"]);
+                }
+                if (values.ContainsKey("hotel")) {
+                    String new_hotel = (string)values["hotel"];
+                    Hotel hot = new Hotel(new_hotel);
+                    this.logged_hotel = hot.getName();
+                    this.hotel.Add(hot);
+                }
                 if (values.ContainsKey("rol" + "_" + i.ToString())) {
                     rol = (string)values["rol" + "_" + i.ToString()];
                     this.roles.Add(rol);
@@ -64,16 +85,12 @@ namespace FrbaHotel.Model
             this.name = (string)values["nombre"];
             this.lastName = (string)values["apellido"];
             this.username = (string)values["username"];
+            var type = values["telefono"];
             this.telephone= (Int64)values["telefono"];
             this.document = (Int64)values["dni"];
             this.date = (DateTime)values["fecha_nacimiento"];
         }
 
-        /*public void getYouProperties() {
-            homeDB home = new homeDB();
-            Dictionary<String, Object> values = home.getUserConfig(this);
-            this.fillProperties(values);
-        }*/
 
         public void setYouDown() {
             homeDB home = new homeDB();

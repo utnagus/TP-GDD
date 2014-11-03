@@ -14,8 +14,8 @@ namespace FrbaHotel.ABM_de_Usuario
     public partial class userABM : Form
     {
         private homeDB home_db = new homeDB();
-        private UserAdmin logged_admin = null;
-        private UserAdmin lb_selected_user = null;
+        private UserAdmin logged_admin = new UserAdmin();
+        private UserAdmin lb_selected_user = new UserAdmin();
         
         private List<User> listBox_users = new List<User>();
 
@@ -32,6 +32,11 @@ namespace FrbaHotel.ABM_de_Usuario
             this.logged_admin = admin as UserAdmin;
             this.fillWindowOnCreate();
 
+        }
+
+        private void refreshWindow()
+        {
+            this.fillWindowOnCreate();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -56,8 +61,8 @@ namespace FrbaHotel.ABM_de_Usuario
             {
 
                 Console.WriteLine("tocas en " + selected_name);
-
-                this.fillGridView(lb_selected_user);
+                User new_user = listBox_users.Find(user => user.getUserName().Equals(selected_name));
+                this.addUsersToGrid(new_user);
                 btn_delete.Enabled = true;
                 btn_edit.Enabled = true;
                 
@@ -70,10 +75,6 @@ namespace FrbaHotel.ABM_de_Usuario
             }
         }
 
-        private void fillGridView(User selected_user) { 
-            //BUSCAR LOS DATOS DEL USUARIO Y AGREGARO A LA GRIDVIEW
-        }
-
 
         //Obtengo todos los usuarios y los agrego al listBox
         //Los usuarios solo deben ser los que esten en el mismo hotel que
@@ -81,7 +82,7 @@ namespace FrbaHotel.ABM_de_Usuario
         private void fillWindowOnCreate()
         {
 
-            DataTable users_table = home_db.getUsersList(this.logged_admin); //cambie la query username por *
+            DataTable users_table = home_db.getUsersList(this.logged_admin); 
             lb_users.Items.Clear();
 
             foreach (DataColumn dc in users_table.Columns)
@@ -89,16 +90,18 @@ namespace FrbaHotel.ABM_de_Usuario
                 Dictionary<String, Object> dic = new Dictionary<String, Object>();
                 int rows = users_table.Rows.Count;
                 for (int i = 0; i < rows; i++)
+                {
                     dic[dc.ToString().ToLower()] = users_table.Rows[i][dc];
-                 
-                lb_users.Items.Add(dic["username"]);
-                Dictionary<String, Object> values = home_db.getUserConfig((string)dic["username"],"");
 
-                //creo el usuario con el diccionario que me traje
-                User user = new UserAdmin(values);
+                    lb_users.Items.Add(dic["username"]);
+                    Dictionary<String, Object> values = home_db.getUserConfig((string)dic["username"], "");
 
-                // lo agrego a un array local asi userABM tiene una array de usuarios
-                listBox_users.Add(user);
+                    //creo el usuario con el diccionario que me traje
+                    User user = new UserAdmin(values);
+
+                    // lo agrego a un array local asi userABM tiene una array de usuarios
+                    listBox_users.Add(user);
+                }
             }
         }
         private void btn_add_Click(object sender, EventArgs e)
@@ -110,12 +113,19 @@ namespace FrbaHotel.ABM_de_Usuario
 
        
         public void addUsersToGrid(User user) {
-           dgv_users.Rows.Add(user.getName(),user.getLastName(),user.getMail(),user.getHotel());
+            dgv_users.Rows.Clear();
+            dgv_users.Rows.Add(user.getUserName(),user.getName(),user.getLastName(),user.getMail(),user.getLoggedHotel());
         }
 
         public void addUser_to_listBox(User user) {
-            lb_users.Items.Add(user.getUserName());
+             //  lb_users.Items.Add(user.getUserName());
+             //INSERTAR EN LA BASE Y HACER UN REFRESH
+            user.setYouUP();
+            this.refreshWindow();
+            
         }
+
+        
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
@@ -123,10 +133,11 @@ namespace FrbaHotel.ABM_de_Usuario
              String selected_user = lb_users.GetItemText(lb_users.SelectedItem);
              lb_users.Items.Remove(lb_users.SelectedItem);            
              
-             //INSERTAR EN UNA TABLA LOS USUARIOS QUE SE DIERON DE BAJA(BAJA LOGICA) 
+             //INSERTAR EN UNA TABLA LOS USUARIOS QUE SE DIERON DE BAJA(BAJA LOGICA)
+             //Elimina de la tabla usuarios y deberia eliminar en las asociadas 
              User user = new UserAdmin();
              user.setUsername(selected_user);
-             user.setYouDown();
+             user.setYouDown(); 
         
              //ELIMINAR DE LA TABLA DE USUARIOS
              //tener una tabla de historia de usuarios para cuando los demos de baja

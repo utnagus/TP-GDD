@@ -11,7 +11,7 @@ namespace FrbaHotel.ABM_de_Usuario
 {
     public partial class addNewUser : Form
     {
-        private userABM parent = null;
+        private userABM parent = new userABM();
 
         public addNewUser()
         {
@@ -20,7 +20,7 @@ namespace FrbaHotel.ABM_de_Usuario
         }
 
         public void setParent(userABM parent) {
-            this.Parent = parent;
+            this.parent = parent;
         }
 
         private void fillComboBoxes() {
@@ -65,10 +65,12 @@ namespace FrbaHotel.ABM_de_Usuario
                 //PASSWORD ENCRIPTADA
                 Console.WriteLine("Falta encriptar password");
                 //GRABO EN TABLA
-                user.setYouUP();
+                //user.setYouUP();
 
                 //AGREGAR A LA LISTA DE USUARIOS
-                parent.addUsersToGrid(user);
+                parent.addUser_to_listBox(user);
+
+                this.Close();
             }
             catch (Exception ex) {
 
@@ -80,16 +82,16 @@ namespace FrbaHotel.ABM_de_Usuario
         private Dictionary<String,Object> getAllTextBoxsValues() {
 
             Dictionary<String, Object> values = new Dictionary<String, Object>();
-            values["nickname"] = txt_nickname.Text;
-            values["telephone"] = txt_telephone.Text;
-            values["name"] = txt_name.Text;
-            values["lastname"] = txt_lastname.Text;
-            values["address"] = txt_dir.Text;
+            values["username"] = txt_nickname.Text;
+            values["telefono"] = txt_telephone.Text;
+            values["nombre"] = txt_name.Text;
+            values["apellido"] = txt_lastname.Text;
+            values["direccion"] = txt_dir.Text;
             values["rol"] = cb_rol.SelectedItem.ToString();
             values["password"] = txt_pass.Text;
             values["hotel"] = cb_hotel.SelectedItem.ToString();
-            //values["date"] = (DateTime)txt_date.Text.;
-            values["document"] = txt_doc.Text;
+            values["fecha_nacimiento"] = txt_date.Text;
+            values["dni"] = txt_doc.Text;
             values["mail"] = txt_mail.Text;
             
             foreach (var key in values.Keys) {
@@ -99,7 +101,7 @@ namespace FrbaHotel.ABM_de_Usuario
                 }
             } 
            
-            return new Dictionary<String, Object>();
+            return values;
         }
 
         private void btn_close_Click(object sender, EventArgs e)

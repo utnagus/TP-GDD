@@ -114,7 +114,7 @@ namespace FrbaHotel.ABM_de_Usuario
        
         public void addUsersToGrid(User user) {
             dgv_users.Rows.Clear();
-            dgv_users.Rows.Add(user.getUserName(),user.getName(),user.getLastName(),user.getMail(),user.getLoggedHotel());
+            dgv_users.Rows.Add(user.getUserName(),user.getName(),user.getLastName(),user.getMail(),user.getLoggedHotel().getName());
         }
 
         public void addUser_to_listBox(User user) {

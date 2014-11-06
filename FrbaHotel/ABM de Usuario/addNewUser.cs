@@ -60,13 +60,13 @@ namespace FrbaHotel.ABM_de_Usuario
                 //CREO NUEVO USUARIO
                 User user = new UserAdmin(values);
 
-                //LE DIGO A LA AMB USER QUE LO AGREGUE
                 
                 //PASSWORD ENCRIPTADA
                 Console.WriteLine("Falta encriptar password");
                 //GRABO EN TABLA
                 //user.setYouUP();
 
+                //LE DIGO A LA AMB USER QUE LO AGREGUE        
                 //AGREGAR A LA LISTA DE USUARIOS
                 parent.addUser_to_listBox(user);
 
@@ -83,15 +83,15 @@ namespace FrbaHotel.ABM_de_Usuario
 
             Dictionary<String, Object> values = new Dictionary<String, Object>();
             values["username"] = txt_nickname.Text;
-            values["telefono"] = txt_telephone.Text;
+            values["telefono"] = int.Parse(txt_telephone.Text);
             values["nombre"] = txt_name.Text;
             values["apellido"] = txt_lastname.Text;
             values["direccion"] = txt_dir.Text;
             values["rol"] = cb_rol.SelectedItem.ToString();
             values["password"] = txt_pass.Text;
             values["hotel"] = cb_hotel.SelectedItem.ToString();
-            values["fecha_nacimiento"] = txt_date.Text;
-            values["dni"] = txt_doc.Text;
+            values["fecha_nacimiento"] = DateTime.Parse(txt_date.Text);
+            values["dni"] = int.Parse(txt_doc.Text);
             values["mail"] = txt_mail.Text;
             
             foreach (var key in values.Keys) {

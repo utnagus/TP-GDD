@@ -11,6 +11,7 @@ namespace FrbaHotel.Home
     class homeDB
     {
         private DataBase db = new DataBase();
+        private Dictionary<String, Object> hotels = new Dictionary<String, Object>();
 
         public homeDB() { }
 
@@ -65,8 +66,13 @@ namespace FrbaHotel.Home
 
         public void upUser(User user) {
             DataBase db = new DataBase();
-            String query = "insert into qwerty.usuarios values('" + user.getUserName() + "','"+user.getPassword()+"','"+user.getName()+"','"+user.getLastName()+"',"+user.getDocument()+",'"+user.getMail()+"',"+user.getTelephone()+",'"+user.getAddress()+"','"+user.getDate()+"');";
-            db.insert_query(query);
+            String user_query = "insert into qwerty.usuarios values('" + user.getUserName() + "','" + user.getPassword() + "','" + user.getName() + "','" + user.getLastName() + "','" + user.getMail() + "','" + user.getAddress() + "','" + user.getDate() + "','" + user.getDocument() + "','" + user.getTelephone() + "');";
+            String select_user_hotel = "select hotel_id from qwerty.hotel where nombre ='"+user.getLoggedHotel().getName()+"';";
+            DataTable dt = db.select_query(select_user_hotel);
+            int id = (int)dt.Rows[0]["hotel_id"]; //obtengo el ID del hotel
+             String personal_hotel_query = "insert into qwerty.personal_hoteles values('" + user.getUserName() +"','"+ id +"')";           
+            db.insert_query(user_query);
+            db.insert_query(personal_hotel_query);
         }
 
         public void downUser(String username) {
@@ -77,7 +83,7 @@ namespace FrbaHotel.Home
 
         //Obtengo una lista de todos los usuarios donde esta logueado el admin
         public DataTable getUsersList(UserAdmin admin) {
-            String query = "select u.username from qwerty.usuarios u,qwerty.hotel h,qwerty.personal_hoteles ph where u.username = ph.username and ph.hotel_id = h.hotel_id and h.nombre='" + admin.getLoggedHotel() + "';";
+            String query = "select u.username from qwerty.usuarios u,qwerty.hotel h,qwerty.personal_hoteles ph where u.username = ph.username and ph.hotel_id = h.hotel_id and h.nombre='" + admin.getLoggedHotel().getName() + "';";
             DataTable dt = db.select_query(query);
             return dt;
         }

@@ -16,13 +16,13 @@ namespace FrbaHotel.Model
         public String mail = "";
         public String name = "";
         public String lastName = "";
-        public Int64 document = 0;
+        public int document = 0;
         public DateTime date = new DateTime();
         public List<Object> hotel = new List<Object>();
-        public Int64 telephone = 0;
+        public int telephone = 0;
         public String username = "";
         public String address = "";
-        public String logged_hotel = "";
+        public Hotel logged_hotel = new Hotel();
 
         public User() { }
 
@@ -61,7 +61,7 @@ namespace FrbaHotel.Model
                 if (values.ContainsKey("hotel")) {
                     String new_hotel = (string)values["hotel"];
                     Hotel hot = new Hotel(new_hotel);
-                    this.logged_hotel = hot.getName();
+                    this.logged_hotel.setName(hot.getName());
                     this.hotel.Add(hot);
                 }
                 if (values.ContainsKey("rol" + "_" + i.ToString())) {
@@ -85,9 +85,9 @@ namespace FrbaHotel.Model
             this.name = (string)values["nombre"];
             this.lastName = (string)values["apellido"];
             this.username = (string)values["username"];
-            var type = values["telefono"];
-            this.telephone= (Int64)values["telefono"];
-            this.document = (Int64)values["dni"];
+            this.document = (int)values["dni"];
+            this.telephone= (int)values["telefono"];
+            
             this.date = (DateTime)values["fecha_nacimiento"];
         }
 
@@ -107,19 +107,19 @@ namespace FrbaHotel.Model
         public String getPassword() { return this.password; }
         public String getLastName() { return this.lastName; }
         public String getMail() { return this.mail; }
-        public Int64 getDocument() { return this.document; }
+        public int getDocument() { return this.document; }
         public List<Object> getHotel() { return this.hotel; }
         public DateTime getDate() { return this.date; }
         public List<Object> getRoles() { return this.roles; }
         public String getRol() { return this.rol; }
         public String getUserName() { return this.username; }
-        public Int64 getTelephone() { return this.telephone; }
+        public int getTelephone() { return this.telephone; }
         public String getAddress() { return this.address; }
-        public String getLoggedHotel() { return this.logged_hotel; }
+        public Hotel getLoggedHotel() { return this.logged_hotel; }
 
         public void setUsername(String username) { this.username = username;}
         public void setPassword(String password) { this.password = password; }
-        public void setLoggedHotel(String hotel) { this.logged_hotel = hotel;}
+        public void setLoggedHotel(Hotel hotel) { this.logged_hotel = hotel;}
         public void setRol(String rol) { this.rol = rol; }
     }
 }

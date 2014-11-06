@@ -104,7 +104,7 @@ namespace FrbaHotel.Login
                     hotel = logged_user.getHotel().IndexOf(0).ToString();
                 }
 
-                logged_user.setLoggedHotel(hotel);           
+                logged_user.setLoggedHotel(new Hotel(hotel));           
 
                 //home_db.verifyUser(user,pass);
                 verify = true;

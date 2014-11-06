@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FrbaHotel.Model
 {
-    class Hotel
+    public class Hotel
     {
         private String name = "";
         private String email = "";
@@ -13,7 +13,7 @@ namespace FrbaHotel.Model
         int stars= 0;
         private String city="";
         private String country = "";
-        private DateTime creation_date;
+        private DateTime creation_date = new DateTime();
         private List<String> regimenes = new List<String>();
  
 

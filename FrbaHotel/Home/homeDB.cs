@@ -77,13 +77,15 @@ namespace FrbaHotel.Home
 
         public void downUser(String username) {
             DataBase db = new DataBase();
-            String query = "insert into qwerty.baja_usuarios values ('"+username+"','Eliminado por el administrador');";
+            String query =  "insert into qwerty.baja_usuarios values ('"+username+"','Eliminado por el administrador');";
+            String update = "update qwerty.usuarios set status= 'B' where username ='" + username +"';";
             db.insert_query(query);
+            db.update_query(update);
         }
 
         //Obtengo una lista de todos los usuarios donde esta logueado el admin
         public DataTable getUsersList(UserAdmin admin) {
-            String query = "select u.username from qwerty.usuarios u,qwerty.hotel h,qwerty.personal_hoteles ph where u.username = ph.username and ph.hotel_id = h.hotel_id and h.nombre='" + admin.getLoggedHotel().getName() + "';";
+            String query = "select u.username from qwerty.usuarios u,qwerty.hotel h,qwerty.personal_hoteles ph where u.username = ph.username and ph.hotel_id = h.hotel_id and status ='A' and h.nombre='" + admin.getLoggedHotel().getName() + "';";
             DataTable dt = db.select_query(query);
             return dt;
         }

@@ -11,5 +11,7 @@ namespace FrbaHotel.Model
             this.fillProperties(values);
             this.rol = "Recepsionista";
         }
+
+        public UserRecepsionist() { }
     }
 }

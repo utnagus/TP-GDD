@@ -9,11 +9,11 @@ using System.Windows.Forms;
 using FrbaHotel.Model;
 namespace FrbaHotel.ABM_de_Usuario
 {
-    public partial class addNewUser : Form
+    public partial class edition_window : Form
     {
         private userABM parent = new userABM();
 
-        public addNewUser()
+        public edition_window()
         {
             InitializeComponent();
             this.fillComboBoxes();

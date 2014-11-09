@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using FrbaHotel.ABM_de_Usuario;
 using FrbaHotel.Login;
 using FrbaHotel.Model;
-
+using FrbaHotel.ABM_de_Cliente;
 namespace FrbaHotel
 {
     public partial class index_window : Form
@@ -68,6 +68,12 @@ namespace FrbaHotel
             list.Add("Recepcionista");
             RolSelector rs = new RolSelector(list);
             rs.Show();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+           guestABM abm = new guestABM(this.logged_user as UserRecepsionist);
+           abm.Show();
         }
 
        

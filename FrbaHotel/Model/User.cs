@@ -87,7 +87,6 @@ namespace FrbaHotel.Model
             this.username = (string)values["username"];
             this.document = (int)values["dni"];
             this.telephone= (int)values["telefono"];
-            
             this.date = (DateTime)values["fecha_nacimiento"];
         }
 
@@ -121,5 +120,12 @@ namespace FrbaHotel.Model
         public void setPassword(String password) { this.password = password; }
         public void setLoggedHotel(Hotel hotel) { this.logged_hotel = hotel;}
         public void setRol(String rol) { this.rol = rol; }
+        public void setName(String name){this.name = name;}
+        public void setAddress(String address) { this.address = address; }
+        public void setDate(DateTime date) { this.date = date; }
+        public void setLastName(String lastname) { this.lastName = lastname; }
+        public void setDocument(int doc) { this.document = doc; }
+        public void setMail(String mail) { this.mail = mail; }
+        public void setTelephone(int tel) { this.telephone = tel; }
     }
 }

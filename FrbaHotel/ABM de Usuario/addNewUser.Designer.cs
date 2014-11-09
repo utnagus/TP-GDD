@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.ABM_de_Usuario
 {
-    partial class addNewUser
+    partial class edition_window
     {
         /// <summary>
         /// Required designer variable.

@@ -91,8 +91,6 @@ namespace FrbaHotel.Home
         }
         
         //Traigo datos del usuario y los paso de un dataTable a un diccionario
-        //public Dictionary<String,Object> getUserConfig(String username, String password){
-        //public Dictionary<String, Object> getUserConfig(User user)
         public Dictionary<String, Object> getUserConfig(String username,String password)
         {
             /*String username = user.getUserName();
@@ -142,6 +140,17 @@ namespace FrbaHotel.Home
             DataBase db = new DataBase();
             String query = "insert into qwerty.usuarios_inhabilitados values('"+user.ToString()+"',Intento loguearse 3 veces sin exito);";
             db.insert_query(query);
+        }
+
+        public void update_user(User user) {
+            DataBase db = new DataBase();
+            String query_user = "update qwerty.usuarios set username ='"+user.getUserName()+"',password='"+user.getPassword()+"',nombre='"+user.getName()+"',apellido='"+user.getPassword()+"',mail='"+user.getMail()+"',direccion='"+user.getAddress()+"',dni="+user.getDocument()+",telefono="+user.getTelephone()+" where username = '"+user.getUserName()+"';";
+            String query_hotel = "update qwerty.hotel set nombre = '" + user.getLoggedHotel().getName() + "' where nombre=" + user.getLoggedHotel().getName() + ";";
+            String query_employees_hotel = "update qwerty.personal_hoteles set username = '"+user.getUserName()+"' where username='"+user.getUserName()+"';";
+            db.update_query(query_user);
+            db.update_query(query_hotel);
+            db.update_query(query_employees_hotel);
+    
         }
 
         

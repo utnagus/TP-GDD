@@ -16,7 +16,8 @@ namespace FrbaHotel.ABM_de_Usuario
         private homeDB home_db = new homeDB();
         private UserAdmin logged_admin = new UserAdmin();
         private UserAdmin lb_selected_user = new UserAdmin();
-        
+        private String _selected_name = "";
+        private User _selected_user = null;
         private List<User> listBox_users = new List<User>();
 
         public userABM()
@@ -42,7 +43,7 @@ namespace FrbaHotel.ABM_de_Usuario
         private void button3_Click(object sender, EventArgs e)
         {
             //ABRIR LA VENTANA DE EDICION
-            editUser edition = new editUser();
+            edit_window edition = new edit_window(_selected_user);
             edition.Show();
         }
 
@@ -55,14 +56,15 @@ namespace FrbaHotel.ABM_de_Usuario
         private void lb_users_SelectedIndexChanged(object sender, EventArgs e)
         {
             lb_selected_user.setUsername(lb_users.GetItemText(lb_users.SelectedItem));
-            String selected_name = lb_selected_user.getUserName();
+             _selected_name = lb_selected_user.getUserName();
 
-            if (selected_name != null && !selected_name.Equals(""))
+            if (_selected_name != null && !_selected_name.Equals(""))
             {
 
-                Console.WriteLine("tocas en " + selected_name);
-                User new_user = listBox_users.Find(user => user.getUserName().Equals(selected_name));
+                Console.WriteLine("tocas en " + _selected_name);
+                User new_user = listBox_users.Find(user => user.getUserName().Equals(_selected_name));
                 this.addUsersToGrid(new_user);
+                _selected_user = new_user;
                 btn_delete.Enabled = true;
                 btn_edit.Enabled = true;
                 
@@ -106,7 +108,7 @@ namespace FrbaHotel.ABM_de_Usuario
         }
         private void btn_add_Click(object sender, EventArgs e)
         {
-            ABM_de_Usuario.addNewUser add_form = new ABM_de_Usuario.addNewUser();
+            ABM_de_Usuario.edition_window add_form = new ABM_de_Usuario.edition_window();
             add_form.Show();
             add_form.setParent(this);
         }

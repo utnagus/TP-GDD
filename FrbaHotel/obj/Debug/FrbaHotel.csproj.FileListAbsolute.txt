@@ -12,7 +12,9 @@ C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\Fr
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.application
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.exe
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.pdb
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Usuario.addNewUser.resources
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Usuario.userABM.resources
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.Login.RolSelector.resources
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.Login.HotelSelector.resources
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Usuario.edition_window.resources
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Usuario.edit_window.resources
+C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Usuario.confirmUpdateWindow.resources

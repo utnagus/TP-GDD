@@ -65,13 +65,13 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(174, 143);
+            this.button2.Location = new System.Drawing.Point(174, 155);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(140, 23);
             this.button2.TabIndex = 3;
-            this.button2.Text = "Rol selector";
+            this.button2.Text = "ABM Cliente";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // index_window
             // 

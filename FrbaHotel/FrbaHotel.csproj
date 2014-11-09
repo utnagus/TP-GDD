@@ -70,11 +70,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ABM de Cliente\Form1.cs">
+    <Compile Include="ABM de Cliente\AddClient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM de Cliente\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ABM de Cliente\AddClient.Designer.cs">
+      <DependentUpon>AddClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Cliente\guestABM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Cliente\guestABM.Designer.cs">
+      <DependentUpon>guestABM.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM de Habitacion\Form1.cs">
       <SubType>Form</SubType>
@@ -99,6 +105,12 @@
     </Compile>
     <Compile Include="ABM de Usuario\addNewUser.Designer.cs">
       <DependentUpon>addNewUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Usuario\confirmUpdateWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Usuario\confirmUpdateWindow.Designer.cs">
+      <DependentUpon>confirmUpdateWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM de Usuario\editUser.cs">
       <SubType>Form</SubType>
@@ -159,19 +171,26 @@
     <Compile Include="Model\DataBase.cs" />
     <Compile Include="Model\Guest.cs" />
     <Compile Include="Model\Hotel.cs" />
-    <Compile Include="Model\Recepsionist.cs" />
     <Compile Include="Model\Rol.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserAdmin.cs" />
     <Compile Include="Model\UserRecepsionist.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ABM de Cliente\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="ABM de Cliente\AddClient.resx">
+      <DependentUpon>AddClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Cliente\guestABM.resx">
+      <DependentUpon>guestABM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM de Usuario\addNewUser.resx">
       <DependentUpon>addNewUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Usuario\confirmUpdateWindow.resx">
+      <DependentUpon>confirmUpdateWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Usuario\editUser.resx">
+      <DependentUpon>editUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM de Usuario\userABM.resx">
       <DependentUpon>userABM.cs</DependentUpon>

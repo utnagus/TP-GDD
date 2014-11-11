@@ -1,15 +1,16 @@
 select distinct 
-M.Reserva_Codigo, 
 M.Reserva_Fecha_Inicio, 
 dateadd(day,M.Reserva_Cant_Noches,M.Reserva_Fecha_Inicio) as fin,
-M.Cliente_Pasaporte_Nro, /*select Cliente_ID from Qwerty.Clientes where Pasaporte = M.Cliente_Pasaporte_Nro*/
-'Cargada por migracion',
-M.Regimen_Descripcion, /*select Regimen_ID from qwerty.Regimen where descripcion like M.Regimen_descripcion and Precio = M.Regimen_Precio*/
-'2014-01-01' as fecha /* fecha actual*/
-from gd_esquema.Maestra M;
+1 as estado,
+(select Cliente_ID from Qwerty.Clientes where Pasaporte = M.Cliente_Pasaporte_Nro AND Nombre like M.Cliente_Nombre AND Apellido like M.Cliente_Apellido and Mail like Mail.Cliente_Mail),
+1 as descripcion,
+(select Regimen_ID from QWERTY.Regimen R where R.Codigo = M.Codigo_regimen and R.Descripcion like M.Regimen_descripcion) as regimen,
+(SELECT CONVERT(DATE,GETDATE())) as fecha,
+M.Reserva_Codigo
 
-/*select distinct 
+from gd_esquema.Maestra M;
+/*
+select distinct 
 (select Reserva_ID from QWERTY.Reservas R where R.codigo (hay que guardarlo) = M.Reserva_codigo)
 (select Habitacion_ID from QWERTY.Habitaciones where ............... ) as habitacion
-
 from gd_esquema.Maestra M;*/

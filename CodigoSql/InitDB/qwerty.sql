@@ -1,3 +1,4 @@
+CREATE DATABASE [GD2C2014];
 USE [GD2C2014]
 GO
 /****** Object:  Schema [QWERTY]    Script Date: 10/11/2014 18:49:09 ******/
@@ -359,6 +360,24 @@ CREATE TABLE [QWERTY].[Hotel_Habitaciones](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+/****** Object:  Table [QWERTY].[Reservas_Habitaciones]    */
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [QWERTY].[Reservas_Habitaciones](
+	[Reserva_ID] [int] NOT NULL,
+	[Habitacion_ID] [int] NOT NULL,
+ CONSTRAINT [PK_Reservas_Habitaciones] PRIMARY KEY CLUSTERED 
+(
+	[Reserva_ID] ASC,
+	[Habitacion_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
 /****** Object:  ForeignKey [FK_ConsumicionesPorReserva_Consumibles]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[ConsumicionesPorReserva]  WITH CHECK ADD  CONSTRAINT [FK_ConsumicionesPorReserva_Consumibles] FOREIGN KEY([Consumible_ID])
 REFERENCES [QWERTY].[Consumibles] ([Consumible_ID])
@@ -473,3 +492,16 @@ REFERENCES [QWERTY].[Usuarios] ([Username])
 GO
 ALTER TABLE [QWERTY].[Usuarios_Roles] CHECK CONSTRAINT [FK_Usuarios_Roles_Usuarios]
 GO
+/* Alter reserva regimenYfecha */
+alter table GD2C2014.QWERTY.Reservas add CodRegimen varchar(50);
+
+alter table GD2C2014.QWERTY.Reservas add Fecha_Reserva date;
+ /* alter hab rev, rev-hab */
+ 
+ ALTER TABLE GD2C2014.QWERTY.Reservas_Habitaciones add Tipo_Cod numeric(18);
+
+ALTER TABLE GD2C2014.QWERTY.Habitaciones add Tipo_Cod numeric(18);
+
+ALTER TABLE GD2C2014.QWERTY.Reservas drop column Habitacion_ID;
+
+alter table GD2C2014.QWERTY.Reservas add Codigo varchar(50);

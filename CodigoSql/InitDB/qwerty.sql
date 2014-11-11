@@ -1,3 +1,4 @@
+
 CREATE DATABASE [GD2C2014];
 USE [GD2C2014]
 GO
@@ -71,18 +72,19 @@ GO
 SET ANSI_PADDING ON
 GO
 CREATE TABLE [QWERTY].[Clientes](
-	[Cliente_ID] [int] NOT NULL,
+	[Cliente_ID] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [varchar](50) NOT NULL,
 	[Apellido] [varchar](50) NOT NULL,
-	[Pasaporte] [bigint] NOT NULL,
 	[Mail] [varchar](50) NOT NULL,
-	[Telefono] [bigint] NOT NULL,
+	[Telefono] [bigint] NULL,
 	[Calle] [varchar](50) NOT NULL,
 	[Nro] [int] NOT NULL,
 	[Piso] [int] NOT NULL,
-	[Depto] [int] NOT NULL,
+	[Depto] [varchar](20) NOT NULL,
 	[Nacionalidad] [varchar](50) NOT NULL,
 	[Fecha_nacimiento] [date] NOT NULL,
+	Tipo_Doc [int],
+	Nro_Doc [varchar](100)
  CONSTRAINT [PK_Clientes] PRIMARY KEY CLUSTERED 
 (
 	[Cliente_ID] ASC
@@ -91,6 +93,7 @@ CREATE TABLE [QWERTY].[Clientes](
 GO
 SET ANSI_PADDING OFF
 GO
+
 /****** Object:  Table [QWERTY].[Funcionalidades]    Script Date: 10/11/2014 18:49:09 ******/
 SET ANSI_NULLS ON
 GO
@@ -217,13 +220,15 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [QWERTY].[Reservas](
-	[Reserva_ID] [int] NOT NULL,
+	[Reserva_ID] [int] IDENTITY(1,1) NOT NULL,
 	[Fecha_inicio] [date] NOT NULL,
 	[Fecha_fin] [date] NOT NULL,
-	[Habitacion_ID] [int] NOT NULL,
 	[Estado] [bit] NOT NULL,
 	[Cliente_ID] [int] NOT NULL,
 	[Descripcion_ID] [int] NOT NULL,
+	[CodRegimen] [varchar](50),
+	[Codigo] [varchar](50),
+	[Fecha_Reserva] [date],
  CONSTRAINT [PK_Reservas] PRIMARY KEY CLUSTERED 
 (
 	[Reserva_ID] ASC
@@ -238,6 +243,7 @@ GO
 CREATE TABLE [QWERTY].[Reservas_Habitaciones](
 	[Reserva_ID] [int] NOT NULL,
 	[Habitacion_ID] [int] NOT NULL,
+	[Tipo_Cod] [numeric](18),
  CONSTRAINT [PK_Reservas_Habitaciones] PRIMARY KEY CLUSTERED 
 (
 	[Reserva_ID] ASC,
@@ -335,8 +341,9 @@ CREATE TABLE [QWERTY].[Habitaciones](
 	[Ubicacion] [varchar](250) ,
 	[Tipo] [varchar](20) ,
 	[Descripcion] [varchar](255) ,
-	Tipo_porcentual_ExtraData [varchar](255),
-	 Tipo_codigo_ExtraData [varchar](255),
+	[Tipo_porcentual_ExtraData] [varchar](255),
+	 [Tipo_codigo_ExtraData] [varchar](255),
+	 [Tipo_Cod] [numeric](18)
  CONSTRAINT [PK_Habitaciones] PRIMARY KEY CLUSTERED 
 (
 	[Habitacion_ID] ASC
@@ -345,6 +352,7 @@ CREATE TABLE [QWERTY].[Habitaciones](
 GO
 SET ANSI_PADDING OFF
 GO
+
 /****** Object:  Table [QWERTY].[Hotel_Habitaciones]    Script Date: 10/11/2014 18:49:09 ******/
 SET ANSI_NULLS ON
 GO
@@ -492,16 +500,11 @@ REFERENCES [QWERTY].[Usuarios] ([Username])
 GO
 ALTER TABLE [QWERTY].[Usuarios_Roles] CHECK CONSTRAINT [FK_Usuarios_Roles_Usuarios]
 GO
-/* Alter reserva regimenYfecha */
-alter table GD2C2014.QWERTY.Reservas add CodRegimen varchar(50);
 
-alter table GD2C2014.QWERTY.Reservas add Fecha_Reserva date;
- /* alter hab rev, rev-hab */
- 
- ALTER TABLE GD2C2014.QWERTY.Reservas_Habitaciones add Tipo_Cod numeric(18);
 
-ALTER TABLE GD2C2014.QWERTY.Habitaciones add Tipo_Cod numeric(18);
+/* INDICES */
+CREATE INDEX indexMaestra
+    ON gd_esquema.Maestra(Cliente_Pasaporte_Nro);
 
-ALTER TABLE GD2C2014.QWERTY.Reservas drop column Habitacion_ID;
-
-alter table GD2C2014.QWERTY.Reservas add Codigo varchar(50);
+CREATE INDEX indexDocCliente
+    ON QWERTY.Clientes5(Nro_Doc);

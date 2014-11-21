@@ -1,13 +1,15 @@
 USE [GD2C2014]
 GO
 /****** Object:  Schema [QWERTY]    Script Date: 10/11/2014 18:49:09 ******/
-CREATE SCHEMA [QWERTY] AUTHORIZATION [dbo]
+--CREATE SCHEMA [QWERTY] AUTHORIZATION [dbo]
 GO
 /****** Object:  Table [QWERTY].[Roles]    Script Date: 10/11/2014 18:49:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+IF OBJECT_ID(N'qwerty.roles', N'U') IS NOT NULL
+	DROP TABLE qwerty.roles;
 CREATE TABLE [QWERTY].[Roles](
 	[Rol_ID] [int] NOT NULL,
 	[Rol] [nvarchar](50) NOT NULL,
@@ -25,6 +27,9 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+IF OBJECT_ID(N'qwerty.usuarios', N'U') IS NOT NULL
+	DROP TABLE qwerty.usuarios;
 CREATE TABLE [QWERTY].[Usuarios](
 	[Username] [varchar](50) NOT NULL,
 	[Password] [varchar](50) NOT NULL,
@@ -50,6 +55,9 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+IF OBJECT_ID(N'qwerty.consumibles', N'U') IS NOT NULL
+	DROP TABLE qwerty.consumibles;
 CREATE TABLE [QWERTY].[Consumibles](
 	[Consumible_ID] [int] NOT NULL,
 	[Producto] [varchar](50) NOT NULL,
@@ -69,6 +77,8 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+IF OBJECT_ID(N'qwerty.clientes', N'U') IS NOT NULL
+	DROP TABLE qwerty.clientes;
 CREATE TABLE [QWERTY].[Clientes](
 	[Cliente_ID] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [varchar](50) NOT NULL,
@@ -97,6 +107,8 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+IF OBJECT_ID(N'qwerty.funcionalidades', N'U') IS NOT NULL
+	DROP TABLE qwerty.funcionalidades;
 CREATE TABLE [QWERTY].[Funcionalidades](
 	[Funcionalidad_ID] [int] NOT NULL,
 	[Nombre] [nvarchar](50) NULL,
@@ -113,6 +125,8 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+IF OBJECT_ID(N'qwerty.hotel', N'U') IS NOT NULL
+	DROP TABLE qwerty.hotel;
 CREATE TABLE [QWERTY].[Hotel](
 	[Hotel_ID] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [nvarchar](50) ,
@@ -138,6 +152,8 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+IF OBJECT_ID(N'qwerty.regimen', N'U') IS NOT NULL
+	DROP TABLE qwerty.regimen;
 CREATE TABLE [QWERTY].[Regimen](
 	[Regimen_ID][int] IDENTITY(1,1) NOT NULL,
 	[Codigo] [varchar](50) NOT NULL,
@@ -152,6 +168,8 @@ CREATE TABLE [QWERTY].[Regimen](
 GO
 SET ANSI_PADDING OFF
 GO
+IF OBJECT_ID(N'qwerty.personal_hoteles', N'U') IS NOT NULL
+	DROP TABLE qwerty.personal_hoteles;
 CREATE TABLE [QWERTY].[Personal_hoteles](
 	[Username] [varchar](50) NOT NULL,
 	[Hotel_ID] [int] NOT NULL,
@@ -169,6 +187,8 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+IF OBJECT_ID(N'qwerty.hotel_regimenes', N'U') IS NOT NULL
+	DROP TABLE qwerty.hotel_regimenes;
 CREATE TABLE [QWERTY].[Hotel_Regimenes](
 	[Hotel_ID] [int] NOT NULL,
 	[Regimen_ID] [int] NOT NULL,
@@ -186,6 +206,8 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+IF OBJECT_ID(N'qwerty.usuarios_roles', N'U') IS NOT NULL
+	DROP TABLE qwerty.usuarios_roles;
 CREATE TABLE [QWERTY].[Usuarios_Roles](
 	[Username] [varchar](50) NOT NULL,
 	[Rol_ID] [int] NOT NULL,
@@ -203,6 +225,8 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+IF OBJECT_ID(N'qwerty.Roles_Funcionalidades', N'U') IS NOT NULL
+	DROP TABLE qwerty.Roles_Funcionalidades;
 CREATE TABLE [QWERTY].[Roles_Funcionalidades](
 	[Rol_ID] [int] NOT NULL,
 	[Funcionalidad_ID] [int] NOT NULL,
@@ -217,6 +241,8 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+IF OBJECT_ID(N'qwerty.reservas', N'U') IS NOT NULL
+	DROP TABLE qwerty.reservas;
 CREATE TABLE [QWERTY].[Reservas](
 	[Reserva_ID] [int] IDENTITY(1,1) NOT NULL,
 	[Fecha_inicio] [date] NOT NULL,
@@ -238,6 +264,8 @@ GO
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+IF OBJECT_ID(N'qwerty.reserva_habitaciones', N'U') IS NOT NULL
+	DROP TABLE qwerty.Reserva_habitaciones;
 CREATE TABLE [QWERTY].[Reservas_Habitaciones](
 	[Reserva_ID] [int] NOT NULL,
 	[Habitacion_ID] [int] NOT NULL,
@@ -257,6 +285,8 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+IF OBJECT_ID(N'qwerty.reservas_canceladas', N'U') IS NOT NULL
+	DROP TABLE qwerty.reservas_canceladas;
 CREATE TABLE [QWERTY].[Reservas_canceladas](
 	[Reserva_ID] [int] NOT NULL,
 	[Cliente_ID] [int] NOT NULL,
@@ -277,6 +307,8 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+IF OBJECT_ID(N'qwerty.facturacion', N'U') IS NOT NULL
+	DROP TABLE qwerty.facturacion;
 CREATE TABLE [QWERTY].[Facturacion](
 	[Nro_Factura] [int] NOT NULL,
 	[Reserva_ID] [int] NOT NULL,
@@ -297,6 +329,8 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+IF OBJECT_ID(N'qwerty.descripcion_reservas', N'U') IS NOT NULL
+	DROP TABLE qwerty.descripcion_reservas;
 CREATE TABLE [QWERTY].[Descripcion_reservas](
 	[Descripcion_ID] [int] NOT NULL,
 	[Tipo] [varchar](50) NOT NULL,
@@ -314,6 +348,8 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+IF OBJECT_ID(N'qwerty.consumicionesPorReserva', N'U') IS NOT NULL
+	DROP TABLE qwerty.consumicionesPorReserva;
 CREATE TABLE [QWERTY].[ConsumicionesPorReserva](
 	[Consumicion_ID] [int] NOT NULL,
 	[Consumible_ID] [int] NOT NULL,
@@ -332,6 +368,9 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
+
+IF OBJECT_ID(N'qwerty.habitaciones', N'U') IS NOT NULL
+	DROP TABLE qwerty.habitaciones;
 CREATE TABLE [QWERTY].[Habitaciones](
 	[Habitacion_ID] [int] IDENTITY(1,1) NOT NULL,
 	[Numero] [nvarchar](10) ,
@@ -356,6 +395,9 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+IF OBJECT_ID(N'qwerty.hotel_habitaciones', N'U') IS NOT NULL
+	DROP TABLE qwerty.hotel_habitaciones;
 CREATE TABLE [QWERTY].[Hotel_Habitaciones](
 	[Hotel_ID] [int] NOT NULL,
 	[Habitacion_ID] [int] NOT NULL,
@@ -371,6 +413,9 @@ GO
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+
+IF OBJECT_ID(N'qwerty.reservas_habitaciones', N'U') IS NOT NULL
+	DROP TABLE qwerty.reservas_habitaciones;
 CREATE TABLE [QWERTY].[Reservas_Habitaciones](
 	[Reserva_ID] [int] NOT NULL,
 	[Habitacion_ID] [int] NOT NULL,

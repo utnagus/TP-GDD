@@ -10,6 +10,7 @@ using FrbaHotel.ABM_de_Usuario;
 using FrbaHotel.Login;
 using FrbaHotel.Model;
 using FrbaHotel.ABM_de_Cliente;
+using FrbaHotel.ABM_de_Hotel;
 namespace FrbaHotel
 {
     public partial class index_window : Form
@@ -63,6 +64,12 @@ namespace FrbaHotel
         private void button2_Click_1(object sender, EventArgs e){
            guestABM abm = new guestABM(this.logged_user as UserRecepsionist);
            abm.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ABMHotel abm = new ABMHotel();
+            abm.Show();
         }
 
        

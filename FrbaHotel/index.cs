@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
 using FrbaHotel.ABM_de_Usuario;
 using FrbaHotel.Login;
 using FrbaHotel.Model;
@@ -41,9 +40,7 @@ namespace FrbaHotel
             {
                 userABM abm = new userABM(this.logged_user as UserAdmin);
                //abm.setLoggedAdmin(this.logged_user as UserAdmin);
-                abm.Show();
-              
-               
+                abm.Show();      
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
@@ -54,16 +51,9 @@ namespace FrbaHotel
             this.label_logged.Text = user.getUserName();
             this.logged_user = user;
         }
+        private void index_window_Load(object sender, EventArgs e){}
 
-       
-
-        private void index_window_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
+        private void button2_Click(object sender, EventArgs e){
             List<Object> list = new List<Object>() ;
             list.Add("Administrador");
             list.Add("Recepcionista");
@@ -71,8 +61,7 @@ namespace FrbaHotel
             rs.Show();
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
-        {
+        private void button2_Click_1(object sender, EventArgs e){
            guestABM abm = new guestABM(this.logged_user as UserRecepsionist);
            abm.Show();
         }

@@ -65,7 +65,7 @@
             this.cb_rol.Name = "cb_rol";
             this.cb_rol.Size = new System.Drawing.Size(121, 21);
             this.cb_rol.TabIndex = 0;
-            //this.cb_rol.SelectedIndexChanged += new System.EventHandler(this.cb_rol_SelectedIndexChanged);
+            this.cb_rol.SelectedIndexChanged += new System.EventHandler(this.cb_rol_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -293,7 +293,7 @@
             this.label14.TabIndex = 28;
             this.label14.Text = "Apellido";
             // 
-            // addNewUser
+            // edition_window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -326,7 +326,7 @@
             this.Controls.Add(this.btn_accept);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cb_rol);
-            this.Name = "addNewUser";
+            this.Name = "edition_window";
             this.Text = "Agregar nuevo usuario";
             this.Load += new System.EventHandler(this.addNewUser_Load);
             this.ResumeLayout(false);

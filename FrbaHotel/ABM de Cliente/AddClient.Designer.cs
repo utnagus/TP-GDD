@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.txt_nickname = new System.Windows.Forms.TextBox();
-            this.txt_name = new System.Windows.Forms.TextBox();
-            this.txt_doc = new System.Windows.Forms.TextBox();
+            this.txt_nombre = new System.Windows.Forms.TextBox();
+            this.txt_nacionalidad = new System.Windows.Forms.TextBox();
+            this.txt_dni = new System.Windows.Forms.TextBox();
             this.txt_mail = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cb_docs = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txt_date = new System.Windows.Forms.TextBox();
+            this.txt_fech_nacimiento = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.txt_telephone = new System.Windows.Forms.TextBox();
-            this.txt_dir = new System.Windows.Forms.TextBox();
+            this.txt_telefono = new System.Windows.Forms.TextBox();
+            this.txt_direccion = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.txt_lastname = new System.Windows.Forms.TextBox();
+            this.txt_apellido = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_accept = new System.Windows.Forms.Button();
@@ -60,26 +60,26 @@
             this.label1.TabIndex = 30;
             this.label1.Text = "Nombre de cliente";
             // 
-            // txt_nickname
+            // txt_nombre
             // 
-            this.txt_nickname.Location = new System.Drawing.Point(88, 31);
-            this.txt_nickname.Name = "txt_nickname";
-            this.txt_nickname.Size = new System.Drawing.Size(100, 20);
-            this.txt_nickname.TabIndex = 31;
+            this.txt_nombre.Location = new System.Drawing.Point(88, 31);
+            this.txt_nombre.Name = "txt_nombre";
+            this.txt_nombre.Size = new System.Drawing.Size(100, 20);
+            this.txt_nombre.TabIndex = 31;
             // 
-            // txt_name
+            // txt_nacionalidad
             // 
-            this.txt_name.Location = new System.Drawing.Point(473, 81);
-            this.txt_name.Name = "txt_name";
-            this.txt_name.Size = new System.Drawing.Size(100, 20);
-            this.txt_name.TabIndex = 36;
+            this.txt_nacionalidad.Location = new System.Drawing.Point(473, 81);
+            this.txt_nacionalidad.Name = "txt_nacionalidad";
+            this.txt_nacionalidad.Size = new System.Drawing.Size(100, 20);
+            this.txt_nacionalidad.TabIndex = 36;
             // 
-            // txt_doc
+            // txt_dni
             // 
-            this.txt_doc.Location = new System.Drawing.Point(473, 31);
-            this.txt_doc.Name = "txt_doc";
-            this.txt_doc.Size = new System.Drawing.Size(100, 20);
-            this.txt_doc.TabIndex = 37;
+            this.txt_dni.Location = new System.Drawing.Point(473, 31);
+            this.txt_dni.Name = "txt_dni";
+            this.txt_dni.Size = new System.Drawing.Size(100, 20);
+            this.txt_dni.TabIndex = 37;
             // 
             // txt_mail
             // 
@@ -123,12 +123,12 @@
             this.label8.TabIndex = 42;
             this.label8.Text = "Tipo de Dcoumento";
             // 
-            // txt_date
+            // txt_fech_nacimiento
             // 
-            this.txt_date.Location = new System.Drawing.Point(87, 145);
-            this.txt_date.Name = "txt_date";
-            this.txt_date.Size = new System.Drawing.Size(100, 20);
-            this.txt_date.TabIndex = 43;
+            this.txt_fech_nacimiento.Location = new System.Drawing.Point(87, 145);
+            this.txt_fech_nacimiento.Name = "txt_fech_nacimiento";
+            this.txt_fech_nacimiento.Size = new System.Drawing.Size(100, 20);
+            this.txt_fech_nacimiento.TabIndex = 43;
             // 
             // label9
             // 
@@ -157,19 +157,19 @@
             this.label11.TabIndex = 46;
             this.label11.Text = "Direccion";
             // 
-            // txt_telephone
+            // txt_telefono
             // 
-            this.txt_telephone.Location = new System.Drawing.Point(212, 81);
-            this.txt_telephone.Name = "txt_telephone";
-            this.txt_telephone.Size = new System.Drawing.Size(100, 20);
-            this.txt_telephone.TabIndex = 47;
+            this.txt_telefono.Location = new System.Drawing.Point(212, 81);
+            this.txt_telefono.Name = "txt_telefono";
+            this.txt_telefono.Size = new System.Drawing.Size(100, 20);
+            this.txt_telefono.TabIndex = 47;
             // 
-            // txt_dir
+            // txt_direccion
             // 
-            this.txt_dir.Location = new System.Drawing.Point(333, 81);
-            this.txt_dir.Name = "txt_dir";
-            this.txt_dir.Size = new System.Drawing.Size(123, 20);
-            this.txt_dir.TabIndex = 48;
+            this.txt_direccion.Location = new System.Drawing.Point(333, 81);
+            this.txt_direccion.Name = "txt_direccion";
+            this.txt_direccion.Size = new System.Drawing.Size(123, 20);
+            this.txt_direccion.TabIndex = 48;
             // 
             // label12
             // 
@@ -180,12 +180,12 @@
             this.label12.TabIndex = 49;
             this.label12.Text = "Mail";
             // 
-            // txt_lastname
+            // txt_apellido
             // 
-            this.txt_lastname.Location = new System.Drawing.Point(212, 31);
-            this.txt_lastname.Name = "txt_lastname";
-            this.txt_lastname.Size = new System.Drawing.Size(100, 20);
-            this.txt_lastname.TabIndex = 52;
+            this.txt_apellido.Location = new System.Drawing.Point(212, 31);
+            this.txt_apellido.Name = "txt_apellido";
+            this.txt_apellido.Size = new System.Drawing.Size(100, 20);
+            this.txt_apellido.TabIndex = 52;
             // 
             // label14
             // 
@@ -234,22 +234,22 @@
             this.Controls.Add(this.btn_accept);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.txt_lastname);
+            this.Controls.Add(this.txt_apellido);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.txt_dir);
-            this.Controls.Add(this.txt_telephone);
+            this.Controls.Add(this.txt_direccion);
+            this.Controls.Add(this.txt_telefono);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.txt_date);
+            this.Controls.Add(this.txt_fech_nacimiento);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cb_docs);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txt_mail);
-            this.Controls.Add(this.txt_doc);
-            this.Controls.Add(this.txt_name);
-            this.Controls.Add(this.txt_nickname);
+            this.Controls.Add(this.txt_dni);
+            this.Controls.Add(this.txt_nacionalidad);
+            this.Controls.Add(this.txt_nombre);
             this.Controls.Add(this.label1);
             this.Name = "AddClient";
             this.Text = "Agregar cliente";
@@ -261,22 +261,22 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txt_nickname;
-        private System.Windows.Forms.TextBox txt_name;
-        private System.Windows.Forms.TextBox txt_doc;
+        private System.Windows.Forms.TextBox txt_nombre;
+        private System.Windows.Forms.TextBox txt_nacionalidad;
+        private System.Windows.Forms.TextBox txt_dni;
         private System.Windows.Forms.TextBox txt_mail;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cb_docs;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txt_date;
+        private System.Windows.Forms.TextBox txt_fech_nacimiento;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txt_telephone;
-        private System.Windows.Forms.TextBox txt_dir;
+        private System.Windows.Forms.TextBox txt_telefono;
+        private System.Windows.Forms.TextBox txt_direccion;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txt_lastname;
+        private System.Windows.Forms.TextBox txt_apellido;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_accept;

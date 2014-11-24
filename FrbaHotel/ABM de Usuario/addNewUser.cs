@@ -109,5 +109,10 @@ namespace FrbaHotel.ABM_de_Usuario
             this.Close();
         }
 
+        private void cb_rol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

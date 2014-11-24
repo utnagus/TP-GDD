@@ -30,16 +30,51 @@ namespace FrbaHotel.ABM_de_Cliente
 
         private void btn_accept_Click(object sender, EventArgs e)
         {
-            //ALTA LOGICA (si es que no existe aun)
-            Dictionary<String, Object> values = this.getFildsValues();
-            UserRecepsionist new_client = new UserRecepsionist(values);
+            try
+            {
+                //ALTA LOGICA (si es que no existe aun)
+                Dictionary<String, Object> values = this.getFildsValues();
+                UserRecepsionist new_client = new UserRecepsionist(values);
 
-            this.Close();
+                this.Close();
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message, "Campo incompleto",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
-        private Dictionary<String, Object> getFildsValues()
-        {
-            return new Dictionary<String, Object>;
+        private Dictionary<String, Object> getFildsValues(){
+            
+            Dictionary<String, Object> values = new Dictionary<String, Object>();
+          
+                foreach (Control tb in this.Controls)
+                {
+                    String control = tb.GetType().Name;
+                    
+                    if (control.Contains("TextBox") || control.Contains("ComboBox"))
+                    {
+                        if (tb.Text == "")
+                            throw new Exception("Todos los campos deben estar llenos, porfavor completelos");
+                        
+                        /*Obtengo los valores de los textbox*/
+                        if (tb.Name.Contains("txt_")) { 
+                            String name = tb.Name;
+                            String key = tb.Name.Substring(4, name.Length - 4); // el textbox tiene que llamarse igual que el atributo
+                            String value = tb.Text;
+
+                            values[key.ToLower()] = value;
+                        }    
+                    }
+
+
+                }
+            
+             
+            return values;
+        
+        
+            
         }
 
         private void btn_close_Click(object sender, EventArgs e)

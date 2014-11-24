@@ -3,11 +3,18 @@ GO
 /****** Object:  Schema [QWERTY]    Script Date: 10/11/2014 18:49:09 ******/
 --CREATE SCHEMA [QWERTY] AUTHORIZATION [dbo]
 GO
+
+/**** DROP DE LAS FOREIGNS KEYS **/
+ALTER TABLE qwerty.usuarios_roles DROP CONSTRAINT [FK_Usuarios_Roles_Roles];
+ALTER TABLE qwerty.usuarios_roles DROP CONSTRAINT [FK_Usuarios_Roles_Usuarios];
+
+
 /****** Object:  Table [QWERTY].[Roles]    Script Date: 10/11/2014 18:49:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+ALTER TABLE qwerty.roles DROP CONSTRAINT FK__cities__state__6442E2C9;
 IF OBJECT_ID(N'qwerty.roles', N'U') IS NOT NULL
 	DROP TABLE qwerty.roles;
 CREATE TABLE [QWERTY].[Roles](
@@ -27,27 +34,48 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-
 IF OBJECT_ID(N'qwerty.usuarios', N'U') IS NOT NULL
 	DROP TABLE qwerty.usuarios;
 CREATE TABLE [QWERTY].[Usuarios](
-	[Username] [varchar](50) NOT NULL,
+	[Username] [varchar](50) UNIQUE NOT NULL,
 	[Password] [varchar](50) NOT NULL,
 	[Nombre] [nvarchar](50) NOT NULL,
 	[Apellido] [nvarchar](50) NOT NULL,
-	[DNI] [bigint] NOT NULL,
+	[DNI] [int] NOT NULL,
 	[Mail] [nvarchar](50) NOT NULL,
-	[Telefono] [bigint] NOT NULL,
+	[Telefono] [int] NOT NULL,
 	[Direccion] [varchar](50) NOT NULL,
 	[Fecha_nacimiento] [date] NOT NULL,
+	[status][char] NOT NULL,
  CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED 
+(
+	[Username] ASC	
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [QWERTY].[Historia_Usuarios]    Script Date: 10/11/2014 18:49:09 ******/
+SET ANSI_PADDING OFF
+GO
+IF OBJECT_ID(N'qwerty.historia_usuarios', N'U') IS NOT NULL
+	DROP TABLE qwerty.historia_usuarios;
+CREATE TABLE [QWERTY].[historia_Usuarios](
+	[Username] [varchar](50) UNIQUE NOT NULL,
+	[Password] [varchar](50) NOT NULL,
+	[Nombre] [nvarchar](50) NOT NULL,
+	[Apellido] [nvarchar](50) NOT NULL,
+	[DNI] [int] NOT NULL,
+	[Mail] [nvarchar](50) NOT NULL,
+	[Telefono] [int] NOT NULL,
+	[Direccion] [varchar](50) NOT NULL,
+	[Fecha_nacimiento] [date] NOT NULL,
+	[status][char] NOT NULL,
+ CONSTRAINT [PK_hist_usuarios] PRIMARY KEY CLUSTERED 
 (
 	[Username] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
 SET ANSI_PADDING OFF
-GO
 /****** Object:  Table [QWERTY].[Consumibles]    Script Date: 10/11/2014 18:49:09 ******/
 SET ANSI_NULLS ON
 GO
@@ -55,7 +83,6 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-
 IF OBJECT_ID(N'qwerty.consumibles', N'U') IS NOT NULL
 	DROP TABLE qwerty.consumibles;
 CREATE TABLE [QWERTY].[Consumibles](
@@ -534,12 +561,14 @@ GO
 /****** Object:  ForeignKey [FK_Usuarios_Roles_Roles]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Usuarios_Roles]  WITH CHECK ADD  CONSTRAINT [FK_Usuarios_Roles_Roles] FOREIGN KEY([Rol_ID])
 REFERENCES [QWERTY].[Roles] ([Rol_ID])
+ON DELETE CASCADE
 GO
 ALTER TABLE [QWERTY].[Usuarios_Roles] CHECK CONSTRAINT [FK_Usuarios_Roles_Roles]
 GO
 /****** Object:  ForeignKey [FK_Usuarios_Roles_Usuarios]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Usuarios_Roles]  WITH CHECK ADD  CONSTRAINT [FK_Usuarios_Roles_Usuarios] FOREIGN KEY([Username])
 REFERENCES [QWERTY].[Usuarios] ([Username])
+ON DELETE CASCADE
 GO
 ALTER TABLE [QWERTY].[Usuarios_Roles] CHECK CONSTRAINT [FK_Usuarios_Roles_Usuarios]
 GO
@@ -554,6 +583,30 @@ CREATE INDEX indexDocCliente
 
 CREATE INDEX indexReserva
     ON Qwerty.Reservas(Codigo);
+    
+    
+-- /* CREACION DE TRIGGERS*/
+-- INSERTA UN USUARIO EN LA TABLA HISTORICA UNA UNICA VEZ EN LA VIDA DEL SISTEMA
+CREATE TRIGGER qwerty.insert_hist_user
+ON qwerty.usuarios
+after insert as
+begin
+	insert into qwerty.historia_usuarios
+	select 
+		a.* 
+	from 
+		qwerty.usuarios a
+	left join 
+		qwerty.historia_usuarios b
+	on
+		a.username = b.username
+	where
+		b.nombre is null
+	;
+end
+;
+
+    
     
     
 /*inserto hoteles*/
@@ -612,7 +665,7 @@ from gd_esquema.Maestra m where m.Consumible_Codigo is not null
 
 
 /*creo y cargo tabla Tipo_Doc*/
-create table Tipo_Doc(
+create table qwerty.Tipo_Doc(
 Tipo_Doc_ID int NOT NULL IDENTITY(1,1),
 Descripcion nvarchar(50) NOT NULL,
 Primary key (Tipo_Doc_ID)

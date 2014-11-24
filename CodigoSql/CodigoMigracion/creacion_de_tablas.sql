@@ -585,6 +585,30 @@ CREATE INDEX indexReserva
     ON Qwerty.Reservas(Codigo);
     
     
+-- /* CREACION DE TRIGGERS*/
+-- INSERTA UN USUARIO EN LA TABLA HISTORICA UNA UNICA VEZ EN LA VIDA DEL SISTEMA
+CREATE TRIGGER qwerty.insert_hist_user
+ON qwerty.usuarios
+after insert as
+begin
+	insert into qwerty.historia_usuarios
+	select 
+		a.* 
+	from 
+		qwerty.usuarios a
+	left join 
+		qwerty.historia_usuarios b
+	on
+		a.username = b.username
+	where
+		b.nombre is null
+	;
+end
+;
+
+    
+    
+    
 /*inserto hoteles*/
 insert into QWERTY.Hotel (Nombre,Mail,Telefono,Direccion,Estrellas,Ciudad,Pais,Fecha_creacion)
 select distinct

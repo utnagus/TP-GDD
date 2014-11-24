@@ -79,7 +79,7 @@ namespace FrbaHotel
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ABMHotel abm = new ABMHotel();
+            ABMHotel_Menu abm = new ABMHotel_Menu();
             abm.Show();
         }
 

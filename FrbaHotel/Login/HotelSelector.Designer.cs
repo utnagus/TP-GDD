@@ -45,7 +45,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(216, 229);
+            this.ClientSize = new System.Drawing.Size(185, 276);
             this.Controls.Add(this.btn_accept);
             this.Name = "HotelSelector";
             this.Text = "Seleccione hotel";

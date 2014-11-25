@@ -142,8 +142,9 @@ namespace FrbaHotel.ABM_de_Usuario
              user.setYouDown(); 
         
              //ELIMINAR DE LA TABLA DE USUARIOS
-             //tener una tabla de historia de usuarios para cuando los demos de baja
-             Console.WriteLine("Falta eliminar usuario de la tabla usuarios, queda en la tabla historica");   
+             //tener una tabla de historia de usuari    os para cuando los demos de baja
+             home_db.downUser(user.getUserName());   
+
         }
 
         private void btn_close_Click(object sender, EventArgs e)

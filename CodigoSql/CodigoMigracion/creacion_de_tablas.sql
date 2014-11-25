@@ -5,10 +5,30 @@ GO
 GO
 
 /**** DROP DE LAS FOREIGNS KEYS **/
+IF OBJECT_ID('[FK_Usuarios_Roles_Roles]','C') IS NOT NULL
 ALTER TABLE qwerty.usuarios_roles DROP CONSTRAINT [FK_Usuarios_Roles_Roles];
+IF OBJECT_ID('FK_Usuarios_Roles_Usuarios','C') IS NOT NULL
 ALTER TABLE qwerty.usuarios_roles DROP CONSTRAINT [FK_Usuarios_Roles_Usuarios];
+IF OBJECT_ID('FK_Personal_hoteles_Hotel','C') IS NOT NULL
+ALTER TABLE qwerty.personal_hoteles DROP CONSTRAINT [FK_Personal_hoteles_Hotel];
+IF OBJECT_ID('FK_Personal_hotel','C') IS NOT NULL
+ALTER TABLE qwerty.personal_hoteles DROP CONSTRAINT [FK_Personal_hotel];
+IF OBJECT_ID('FK_Reservas_canceladas_Usuarios','C') IS NOT NULL
+ALTER TABLE [QWERTY].[Reservas_canceladas] DROP CONSTRAINT [FK_Reservas_canceladas_Usuarios];
+IF OBJECT_ID('FK_Personal_hoteles_usuarios','C') IS NOT NULL
+ALTER TABLE qwerty.personal_hoteles DROP CONSTRAINT [FK_Personal_hoteles_usuarios];
 
-
+/****** Object:  Table [QWERTY].[Domicilio]    Script Date: 10/11/2014 18:49:09 ******/
+IF OBJECT_ID(N'qwerty.domicilio', N'U') IS NOT NULL
+	DROP TABLE qwerty.domicilio;
+CREATE TABLE  qwerty.domicilio (
+id_domicilio int identity(1,1) primary key not null ,
+calle varchar(50) not null,
+altura int not null,
+piso int ,
+dpto char
+);
+GO
 /****** Object:  Table [QWERTY].[Roles]    Script Date: 10/11/2014 18:49:09 ******/
 SET ANSI_NULLS ON
 GO
@@ -42,11 +62,11 @@ CREATE TABLE [QWERTY].[Usuarios](
 	[Nombre] [nvarchar](50) NOT NULL,
 	[Apellido] [nvarchar](50) NOT NULL,
 	[DNI] [int] NOT NULL,
-	[Mail] [nvarchar](50) NOT NULL,
+	[Mail] [varchar](50) NOT NULL,
 	[Telefono] [int] NOT NULL,
-	[Direccion] [varchar](50) NOT NULL,
+	[id_direccion] [int] NOT NULL,
 	[Fecha_nacimiento] [date] NOT NULL,
-	[status][char] NOT NULL,
+--	[status][char] NOT NULL,
  CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED 
 (
 	[Username] ASC	
@@ -68,7 +88,7 @@ CREATE TABLE [QWERTY].[historia_Usuarios](
 	[Telefono] [int] NOT NULL,
 	[Direccion] [varchar](50) NOT NULL,
 	[Fecha_nacimiento] [date] NOT NULL,
-	[status][char] NOT NULL,
+--	[status][char] NOT NULL,
  CONSTRAINT [PK_hist_usuarios] PRIMARY KEY CLUSTERED 
 (
 	[Username] ASC
@@ -513,12 +533,14 @@ GO
 /****** Object:  ForeignKey [FK_Personal_hoteles_Hotel]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Personal_hoteles]  WITH CHECK ADD  CONSTRAINT [FK_Personal_hoteles_Hotel] FOREIGN KEY([Hotel_ID])
 REFERENCES [QWERTY].[Hotel] ([Hotel_ID])
+ON DELETE CASCADE
 GO
 ALTER TABLE [QWERTY].[Personal_hoteles] CHECK CONSTRAINT [FK_Personal_hoteles_Hotel]
 GO
 /****** Object:  ForeignKey [FK_Personal_hoteles_Usuarios]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Personal_hoteles]  WITH CHECK ADD  CONSTRAINT [FK_Personal_hoteles_Usuarios] FOREIGN KEY([Username])
 REFERENCES [QWERTY].[Usuarios] ([Username])
+ON DELETE CASCADE
 GO
 ALTER TABLE [QWERTY].[Personal_hoteles] CHECK CONSTRAINT [FK_Personal_hoteles_Usuarios]
 GO
@@ -587,8 +609,8 @@ CREATE INDEX indexReserva
     
 -- /* CREACION DE TRIGGERS*/
 -- INSERTA UN USUARIO EN LA TABLA HISTORICA UNA UNICA VEZ EN LA VIDA DEL SISTEMA
-CREATE TRIGGER qwerty.insert_hist_user
-ON qwerty.usuarios
+GO
+CREATE TRIGGER qwerty.insert_hist_user ON qwerty.usuarios
 after insert as
 begin
 	insert into qwerty.historia_usuarios
@@ -604,10 +626,7 @@ begin
 		b.nombre is null
 	;
 end
-;
-
-    
-    
+;  
     
 /*inserto hoteles*/
 insert into QWERTY.Hotel (Nombre,Mail,Telefono,Direccion,Estrellas,Ciudad,Pais,Fecha_creacion)

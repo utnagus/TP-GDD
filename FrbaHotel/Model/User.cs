@@ -21,12 +21,13 @@ namespace FrbaHotel.Model
         public List<Object> hotel = new List<Object>();
         public int telephone = 0;
         public String username = "";
-        public String address = "";
+        public address address = new address();
         public Hotel logged_hotel = new Hotel();
 
         public User() { }
 
-        public User(String name, String pass) {
+        public User(String name, String pass) 
+        {
             this.username = name;
             this.password = pass;
         }
@@ -49,7 +50,8 @@ namespace FrbaHotel.Model
         public void fillProperties(Dictionary<String,Object> values) {
             Boolean exists_rol = true;
             int i = 0;
-            this.address = (string)values["direccion"];
+            address new_address = new address(values);
+            this.address = new_address;
             this.password = (string)values["password"];
             while(exists_rol){
                 String hotel = "" ;
@@ -113,7 +115,7 @@ namespace FrbaHotel.Model
         public String getRol() { return this.rol; }
         public String getUserName() { return this.username; }
         public int getTelephone() { return this.telephone; }
-        public String getAddress() { return this.address; }
+        public address getAddress() { return this.address; }
         public Hotel getLoggedHotel() { return this.logged_hotel; }
 
         public void setUsername(String username) { this.username = username;}
@@ -121,7 +123,7 @@ namespace FrbaHotel.Model
         public void setLoggedHotel(Hotel hotel) { this.logged_hotel = hotel;}
         public void setRol(String rol) { this.rol = rol; }
         public void setName(String name){this.name = name;}
-        public void setAddress(String address) { this.address = address; }
+        public void setAddress(address address) { this.address = address; }
         public void setDate(DateTime date) { this.date = date; }
         public void setLastName(String lastname) { this.lastName = lastname; }
         public void setDocument(int doc) { this.document = doc; }

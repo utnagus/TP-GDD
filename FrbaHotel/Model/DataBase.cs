@@ -61,6 +61,7 @@ namespace FrbaHotel.Model
         }
 
         public void update_query(String query) { this.insert_query(query); }
+        public void delete_query(String query) { this.insert_query(query); }
 
 
         public void connect(){

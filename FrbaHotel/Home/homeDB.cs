@@ -66,6 +66,7 @@ namespace FrbaHotel.Home
 
         public void upUser(User user) {
             DataBase db = new DataBase();
+            //String insert_address = "insert into qwerty.domicilio values ("++")";
             String user_query = "insert into qwerty.usuarios values('" + user.getUserName() + "','" + user.getPassword() + "','" + user.getName() + "','" + user.getLastName() + "','" + user.getMail() + "','" + user.getAddress() + "','" + user.getDate() + "','" + user.getDocument() + "','" + user.getTelephone() + "');";
             String select_user_hotel = "select hotel_id from qwerty.hotel where nombre ='"+user.getLoggedHotel().getName()+"';";
             DataTable dt = db.select_query(select_user_hotel);
@@ -78,14 +79,16 @@ namespace FrbaHotel.Home
         public void downUser(String username) {
             DataBase db = new DataBase();
             String query =  "insert into qwerty.baja_usuarios values ('"+username+"','Eliminado por el administrador');";
-            String update = "update qwerty.usuarios set status= 'B' where username ='" + username +"';";
+           // String update = "update qwerty.usuarios set status= 'B' where username ='" + username +"';";
+            String delete = "delete from qwerty.usuarios where username ='" + username + "';";
             db.insert_query(query);
-            db.update_query(update);
+           // db.update_query(update);
+            db.delete_query(delete);
         }
 
         //Obtengo una lista de todos los usuarios donde esta logueado el admin
         public DataTable getUsersList(UserAdmin admin) {
-            String query = "select u.username from qwerty.usuarios u,qwerty.hotel h,qwerty.personal_hoteles ph where u.username = ph.username and ph.hotel_id = h.hotel_id and status ='A' and h.nombre='" + admin.getLoggedHotel().getName() + "';";
+            String query = "select u.username from qwerty.usuarios u,qwerty.hotel h,qwerty.personal_hoteles ph where u.username = ph.username and ph.hotel_id = h.hotel_id and h.nombre='" + admin.getLoggedHotel().getName() + "';";
             DataTable dt = db.select_query(query);
             return dt;
         }
@@ -99,13 +102,16 @@ namespace FrbaHotel.Home
             String query = "select * from qwerty.usuarios where username ='" + username + "';";
             String query_rol = "select r.rol as rol from qwerty.usuarios_roles ur,qwerty.roles r where ur.rol_id = r.rol_id and ur.username = '"+username+"';";
             String query_hotel = "select h.nombre as hotel from qwerty.usuarios u, qwerty.personal_hoteles ph, qwerty.hotel h where u.username =ph.username and ph.hotel_id = h.hotel_id and u.username = '"+ username +"';";
+            String query_address = "select calle,altura,piso,dpto from qwerty.domicilio a, QWERTY.Usuarios b where a.id_domicilio = b.id_direccion and b.username = '"+username+"';";
             DataTable dt = db.select_query(query);
             DataTable dt_rol = db.select_query(query_rol);
             DataTable dt_hotel = db.select_query(query_hotel);
+            DataTable dt_address = db.select_query(query_address);
             Dictionary<String, Object> dic = new Dictionary<String, Object>();
             Dictionary<String, Object> dic_rol = new Dictionary<String, Object>();
             Dictionary<String, Object> dic_hotel = new Dictionary<String, Object>();
-            
+            Dictionary<String, Object> dic_address = new Dictionary<String, Object>();
+
             /*CARGO DIC*/
             foreach (DataColumn dc in dt.Columns) {
 
@@ -125,12 +131,19 @@ namespace FrbaHotel.Home
             /*cargo dic hotel*/
             foreach (DataColumn dc in dt_hotel.Columns)
             {
-
                 int rows = dt_hotel.Rows.Count;
                 for (int i = 0; i < rows; i++)
                     dic_hotel[dc.ToString().ToLower()+"_"+i.ToString()] = dt_hotel.Rows[i][dc];
             }
-            Dictionary<String, Object> dic_final = dic.Union(dic_rol).Union(dic_hotel).ToDictionary(key =>key.Key,value=>value.Value);
+
+            /*cargo dic address*/
+            foreach (DataColumn dc in dt_address.Columns)
+            {
+                int rows = dt_address.Rows.Count;
+                for (int i = 0; i < rows; i++)
+                    dic_address[dc.ToString().ToLower()] = dt_address.Rows[i][dc];
+            }
+            Dictionary<String, Object> dic_final = dic.Union(dic_rol).Union(dic_hotel).Union(dic_address).ToDictionary(key =>key.Key,value=>value.Value);
 
             return dic_final;
         }

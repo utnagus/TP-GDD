@@ -8,6 +8,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
+ALTER TABLE qwerty.roles DROP CONSTRAINT FK__cities__state__6442E2C9;
 IF OBJECT_ID(N'qwerty.roles', N'U') IS NOT NULL
 	DROP TABLE qwerty.roles;
 CREATE TABLE [QWERTY].[Roles](
@@ -40,6 +41,7 @@ CREATE TABLE [QWERTY].[Usuarios](
 	[Telefono] [bigint] NOT NULL,
 	[Direccion] [varchar](50) NOT NULL,
 	[Fecha_nacimiento] [date] NOT NULL,
+	[status][char] NOT NULL,
  CONSTRAINT [PK_Usuarios] PRIMARY KEY CLUSTERED 
 (
 	[Username] ASC
@@ -48,6 +50,26 @@ CREATE TABLE [QWERTY].[Usuarios](
 GO
 SET ANSI_PADDING OFF
 GO
+IF OBJECT_ID(N'qwerty.historia_usuarios', N'U') IS NOT NULL
+	DROP TABLE qwerty.historia_usuarios;
+CREATE TABLE [QWERTY].[historia_Usuarios](
+	[Username] [varchar](50) UNIQUE NOT NULL,
+	[Password] [varchar](50) NOT NULL,
+	[Nombre] [nvarchar](50) NOT NULL,
+	[Apellido] [nvarchar](50) NOT NULL,
+	[DNI] [bigint] NOT NULL,
+	[Mail] [nvarchar](50) NOT NULL,
+	[Telefono] [bigint] NOT NULL,
+	[Direccion] [varchar](50) NOT NULL,
+	[Fecha_nacimiento] [date] NOT NULL,
+	[status][char] NOT NULL,
+ CONSTRAINT [PK_hist_usuarios] PRIMARY KEY CLUSTERED 
+(
+	[Username] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
 /****** Object:  Table [QWERTY].[Consumibles]    Script Date: 10/11/2014 18:49:09 ******/
 SET ANSI_NULLS ON
 GO
@@ -612,7 +634,7 @@ from gd_esquema.Maestra m where m.Consumible_Codigo is not null
 
 
 /*creo y cargo tabla Tipo_Doc*/
-create table Tipo_Doc(
+create table qwerty.Tipo_Doc(
 Tipo_Doc_ID int NOT NULL IDENTITY(1,1),
 Descripcion nvarchar(50) NOT NULL,
 Primary key (Tipo_Doc_ID)

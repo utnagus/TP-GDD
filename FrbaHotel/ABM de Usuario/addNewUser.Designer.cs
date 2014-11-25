@@ -56,6 +56,12 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txt_lastname = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txt_department = new System.Windows.Forms.TextBox();
+            this.txt_floor = new System.Windows.Forms.TextBox();
+            this.txt_direction = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cb_rol
@@ -293,11 +299,65 @@
             this.label14.TabIndex = 28;
             this.label14.Text = "Apellido";
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(394, 173);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(34, 13);
+            this.label15.TabIndex = 29;
+            this.label15.Text = "Altura";
+            // 
+            // txt_department
+            // 
+            this.txt_department.Location = new System.Drawing.Point(512, 190);
+            this.txt_department.Name = "txt_department";
+            this.txt_department.Size = new System.Drawing.Size(100, 20);
+            this.txt_department.TabIndex = 30;
+            // 
+            // txt_floor
+            // 
+            this.txt_floor.Location = new System.Drawing.Point(512, 132);
+            this.txt_floor.Name = "txt_floor";
+            this.txt_floor.Size = new System.Drawing.Size(100, 20);
+            this.txt_floor.TabIndex = 31;
+            // 
+            // txt_direction
+            // 
+            this.txt_direction.Location = new System.Drawing.Point(397, 189);
+            this.txt_direction.Name = "txt_direction";
+            this.txt_direction.Size = new System.Drawing.Size(100, 20);
+            this.txt_direction.TabIndex = 32;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(509, 116);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(27, 13);
+            this.label16.TabIndex = 33;
+            this.label16.Text = "Piso";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(509, 173);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(74, 13);
+            this.label17.TabIndex = 34;
+            this.label17.Text = "Departamento";
+            // 
             // edition_window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(509, 377);
+            this.ClientSize = new System.Drawing.Size(760, 377);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.txt_direction);
+            this.Controls.Add(this.txt_floor);
+            this.Controls.Add(this.txt_department);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.txt_lastname);
             this.Controls.Add(this.label13);
@@ -364,5 +424,11 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txt_lastname;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txt_department;
+        private System.Windows.Forms.TextBox txt_floor;
+        private System.Windows.Forms.TextBox txt_direction;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
     }
 }

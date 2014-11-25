@@ -21,8 +21,8 @@ namespace FrbaHotel.ABM_de_Usuario
         public edit_window(User user)
         {
             InitializeComponent();
-            this.fillFildsOnCreate(user);
             this._user = user;
+            this.fillFildsOnCreate(user);
         }
 
         private void fillFildsOnCreate(User user) {
@@ -36,6 +36,10 @@ namespace FrbaHotel.ABM_de_Usuario
             txt_pass.Text = user.getPassword().ToString();
             txt_telephone.Text = user.getTelephone().ToString();
             txt_mail.Text = user.getMail().ToString();
+            txt_dir.Text = user.getAddress().getName().ToString();
+            txt_direction.Text = user.getAddress().getDirection().ToString();
+            txt_floor.Text = user.getAddress().getFloor().ToString();
+            txt_department.Text = user.getAddress().getDepartment().ToString();
             cb_docs.Text = "DNI";
             cb_hotel.Text = user.getLoggedHotel().getName();
             cb_rol.Text = user.getRol().ToString();
@@ -46,7 +50,14 @@ namespace FrbaHotel.ABM_de_Usuario
             _user.setRol(cb_rol.Text);
             _user.setUsername(txt_name.Text);
             _user.setPassword(txt_pass.Text);
-            _user.setAddress(txt_dir.Text);
+            address user_address = new address();
+            if(txt_department != null)
+                user_address.setDepartment(txt_department.Text);
+            user_address.setDirection(int.Parse(txt_direction.Text));
+            user_address.setName(txt_dir.Text);
+            if (txt_floor != null)
+                user_address.setFloor(int.Parse(txt_floor.Text));
+            _user.setAddress(user_address);
             _user.setDate(DateTime.Parse(txt_date.Text));
             _user.setDocument(int.Parse(txt_doc.Text));
             _user.setMail(txt_mail.Text);

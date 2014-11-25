@@ -1,13 +1,15 @@
-	
-/*CREACION USUARIOS*/
+
+/*INSERTO USUARIOS*/
 select * from QWERTY.Usuarios;
 insert into QWERTY.Usuarios 
 values
-('user','user','Hernan','Gonzales','user@gmail.com','Rivadavia 243','1988-09-01',21324213,42314423,'A'),
-('admin','w23','Pedro','Gonzales','administrator@gmail.com','Rivadavia 2132','1983-10-12',259321231,42214123,'A'),
-('recep','recep','Angie','Guma','recepcionista@gmail.com','Inclan 555','1990-03-04',32908434,43312132,'A');
+('user','user','Hernan','Gonzales',21324213,'user@gmail.com',42314423,123,'1988-09-01'),
+('admin','w23','Pedro','Gonzales',259321231,'administrator@gmail.com',42214123,456,'1983-10-12'),
+('agus','aaa','Agustin','Pace',36990517,'apace@gmail.com',43218745,444,'1992-09-09'),
+('maru','bbb','Marina','Pross',25895764,'mpross@gmail.com',49025434,302,'1900-04-04'),
+('recep','recep','Angie','Guma',32908434,'recepcionista@gmail.com',43312132,5,'1990-03-04');
 
-/*CREACION ROLES DE USUARIOS*/
+/*INSERTO ROLES DE USUARIOS*/
 select * from QWERTY.Usuarios_Roles;
 insert into QWERTY.Usuarios_Roles
 values
@@ -18,7 +20,7 @@ values
 ('maru',3),
 ('agus',2);
 
-/*CREACION USUARIOS DE HOTEL*/
+/*INSERTO USUARIOS DE HOTEL*/
 select * from qwerty.Personal_hoteles;
 insert into qwerty.Personal_hoteles
 values
@@ -39,6 +41,27 @@ values
 ('recep',6),
 ('recep',7);
 
+
+/*INSERTO DOMICILIOS */
+insert into QWERTY.domicilio
+select distinct
+	cliente_dom_calle,
+	cliente_nro_calle,
+	cliente_piso,
+	cliente_depto
+from 
+	gd_esquema.Maestra
+;
+
+/*select * from gd_esquema.Maestra
+insert into QWERTY.Clientes
+select
+cliente_nombre,
+cliente_apellido,
+cliente_fecha_nac,
+cliente_mail,
+cliente_dom_calle
+;*/
 /*CREACION CLIENTES INVALIDOS*/
 --select * from QWERTY.Clientes C
 --join

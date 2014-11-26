@@ -31,6 +31,7 @@
             this.btn_add = new System.Windows.Forms.Button();
             this.btn_delete = new System.Windows.Forms.Button();
             this.btn_edit = new System.Windows.Forms.Button();
+            this.lb_clients = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // btn_add
@@ -61,11 +62,20 @@
             this.btn_edit.Text = "Editar";
             this.btn_edit.UseVisualStyleBackColor = true;
             // 
+            // lb_clients
+            // 
+            this.lb_clients.FormattingEnabled = true;
+            this.lb_clients.Location = new System.Drawing.Point(45, 22);
+            this.lb_clients.Name = "lb_clients";
+            this.lb_clients.Size = new System.Drawing.Size(608, 95);
+            this.lb_clients.TabIndex = 3;
+            // 
             // guestABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(710, 266);
+            this.Controls.Add(this.lb_clients);
             this.Controls.Add(this.btn_edit);
             this.Controls.Add(this.btn_delete);
             this.Controls.Add(this.btn_add);
@@ -81,5 +91,6 @@
         private System.Windows.Forms.Button btn_add;
         private System.Windows.Forms.Button btn_delete;
         private System.Windows.Forms.Button btn_edit;
+        private System.Windows.Forms.ListBox lb_clients;
     }
 }

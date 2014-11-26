@@ -6,17 +6,23 @@ GO
 
 /**** DROP DE LAS FOREIGNS KEYS **/
 IF OBJECT_ID('[FK_Usuarios_Roles_Roles]','C') IS NOT NULL
-ALTER TABLE qwerty.usuarios_roles DROP CONSTRAINT [FK_Usuarios_Roles_Roles];
+	ALTER TABLE qwerty.usuarios_roles DROP CONSTRAINT [FK_Usuarios_Roles_Roles];
 IF OBJECT_ID('FK_Usuarios_Roles_Usuarios','C') IS NOT NULL
-ALTER TABLE qwerty.usuarios_roles DROP CONSTRAINT [FK_Usuarios_Roles_Usuarios];
+	ALTER TABLE qwerty.usuarios_roles DROP CONSTRAINT [FK_Usuarios_Roles_Usuarios];
 IF OBJECT_ID('FK_Personal_hoteles_Hotel','C') IS NOT NULL
-ALTER TABLE qwerty.personal_hoteles DROP CONSTRAINT [FK_Personal_hoteles_Hotel];
+	ALTER TABLE qwerty.personal_hoteles DROP CONSTRAINT [FK_Personal_hoteles_Hotel];
 IF OBJECT_ID('FK_Personal_hotel','C') IS NOT NULL
-ALTER TABLE qwerty.personal_hoteles DROP CONSTRAINT [FK_Personal_hotel];
+	ALTER TABLE qwerty.personal_hoteles DROP CONSTRAINT [FK_Personal_hotel];
 IF OBJECT_ID('FK_Reservas_canceladas_Usuarios','C') IS NOT NULL
-ALTER TABLE [QWERTY].[Reservas_canceladas] DROP CONSTRAINT [FK_Reservas_canceladas_Usuarios];
+	ALTER TABLE [QWERTY].[Reservas_canceladas] DROP CONSTRAINT [FK_Reservas_canceladas_Usuarios];
 IF OBJECT_ID('FK_Personal_hoteles_usuarios','C') IS NOT NULL
-ALTER TABLE qwerty.personal_hoteles DROP CONSTRAINT [FK_Personal_hoteles_usuarios];
+	ALTER TABLE qwerty.personal_hoteles DROP CONSTRAINT [FK_Personal_hoteles_usuarios];
+IF OBJECT_ID('FK_Reservas_canceladas_Clientes','C') IS NOT NULL
+	ALTER TABLE qwerty.Reservas_canceladas DROP CONSTRAINT [FK_Reservas_canceladas_Clientes];
+IF OBJECT_ID('FK_Reservas_Clientes','C') IS NOT NULL
+	ALTER TABLE qwerty.reservas DROP CONSTRAINT [FK_Reservas_Clientes];
+
+
 
 /****** Object:  Table [QWERTY].[Domicilio]    Script Date: 10/11/2014 18:49:09 ******/
 IF OBJECT_ID(N'qwerty.domicilio', N'U') IS NOT NULL
@@ -131,15 +137,12 @@ CREATE TABLE [QWERTY].[Clientes](
 	[Nombre] [varchar](50) NOT NULL,
 	[Apellido] [varchar](50) NOT NULL,
 	[Mail] [varchar](50) NOT NULL,
-	[Telefono] [bigint] NULL,
-	[Calle] [varchar](50) NOT NULL,
-	[Nro] [int] NOT NULL,
-	[Piso] [int] NOT NULL,
-	[Depto] [varchar](20) NOT NULL,
+	[Telefono] [int] NULL,
+	[id_domicilio] [int] NOT NULL,
 	[Nacionalidad] [varchar](50) NOT NULL,
 	[Fecha_nacimiento] [date] NOT NULL,
-	Tipo_Doc [int],
-	Nro_Doc [varchar](100)
+	[Tipo_Doc] [int],
+	[Nro_Doc] [int],
  CONSTRAINT [PK_Clientes] PRIMARY KEY CLUSTERED 
 (
 	[Cliente_ID] ASC
@@ -628,6 +631,24 @@ begin
 end
 ;  
     
+GO
+CREATE TRIGGER qwerty.insert_hist_client ON qwerty.clientes
+after insert as
+begin
+	select 
+		* 
+	from 
+		QWERTY.Clientes a 
+	left join 
+		QWERTY.historia_clientes b 
+	on 
+		a.Cliente_id = b.cliente_id 
+	where 
+		b.nacionalidad is  null
+	;
+end
+;
+    
 /*inserto hoteles*/
 insert into QWERTY.Hotel (Nombre,Mail,Telefono,Direccion,Estrellas,Ciudad,Pais,Fecha_creacion)
 select distinct
@@ -757,3 +778,16 @@ UPDATE F
 	on R.Codigo = F.Reserva_ID
  
 GO
+
+/*CHEQUEAR FOREIGN KEYS*/
+
+SELECT f.name AS ForeignKey, 
+   OBJECT_NAME(f.parent_object_id) AS TableName, 
+   COL_NAME(fc.parent_object_id, fc.parent_column_id) AS ColumnName, 
+   OBJECT_NAME (f.referenced_object_id) AS ReferenceTableName, 
+   COL_NAME(fc.referenced_object_id, fc.referenced_column_id) AS ReferenceColumnName 
+FROM sys.foreign_keys AS f 
+INNER JOIN sys.foreign_key_columns AS fc 
+   ON f.OBJECT_ID = fc.constraint_object_id
+WHERE
+f.name like '%Clientes%'

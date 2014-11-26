@@ -53,15 +53,33 @@ from
 	gd_esquema.Maestra
 ;
 
-/*select * from gd_esquema.Maestra
+/*INSERTO DISTINTOS TIPOS DE CLIENTES (CHEQUEAR LOS TIPOS DE DOCUMENTOS)*/
+select * from qwerty.clientes;
+select * from QWERTY.Tipo_Doc;
 insert into QWERTY.Clientes
 select
-cliente_nombre,
-cliente_apellido,
-cliente_fecha_nac,
-cliente_mail,
-cliente_dom_calle
-;*/
+	a.cliente_nombre,
+	a.cliente_apellido,
+	a.cliente_mail,
+	null as telefono,
+	b.id_domicilio,
+	a.cliente_nacionalidad, 
+	a.cliente_fecha_nac,
+	3 as tipo_doc,
+	a.cliente_pasaporte_nro
+from
+	gd_esquema.maestra a
+inner join	
+	 qwerty.domicilio b
+on
+	a.cliente_dom_calle = b.calle and
+	a.cliente_nro_calle = b.altura
+;
+
+select 1
+		
+
+
 /*CREACION CLIENTES INVALIDOS*/
 --select * from QWERTY.Clientes C
 --join

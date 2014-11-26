@@ -130,6 +130,7 @@
     <Compile Include="Cancelar Reserva\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Home\homeClient.cs" />
     <Compile Include="Home\homeDB.cs" />
     <Compile Include="Home\homeUser.cs" />
     <Compile Include="index.cs">
@@ -169,6 +170,7 @@
       <DependentUpon>RolSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\address.cs" />
+    <Compile Include="Model\Client.cs" />
     <Compile Include="Model\DataBase.cs" />
     <Compile Include="Model\Guest.cs" />
     <Compile Include="Model\Hotel.cs" />

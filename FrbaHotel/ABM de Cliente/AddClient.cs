@@ -11,7 +11,8 @@ using FrbaHotel.Home;
 namespace FrbaHotel.ABM_de_Cliente
 {
     public partial class AddClient : Form
-    {        
+    {
+        homeClient home_client = new homeClient();
         public AddClient()
         {
             InitializeComponent();
@@ -35,6 +36,7 @@ namespace FrbaHotel.ABM_de_Cliente
                 //ALTA LOGICA (si es que no existe aun)
                 Dictionary<String, Object> values = this.getFildsValues();
                 UserRecepsionist new_client = new UserRecepsionist(values);
+                new_client.setYouUP();
 
                 this.Close();
             }

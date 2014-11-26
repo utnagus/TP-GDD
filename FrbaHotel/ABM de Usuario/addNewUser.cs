@@ -63,11 +63,10 @@ namespace FrbaHotel.ABM_de_Usuario
                 
                 //PASSWORD ENCRIPTADA
                 Console.WriteLine("Falta encriptar password");
-                //GRABO EN TABLA
-                //user.setYouUP();
-
+                
                 //LE DIGO A LA AMB USER QUE LO AGREGUE        
                 //AGREGAR A LA LISTA DE USUARIOS
+                //GRABO EN TABLA
                 parent.addUser_to_listBox(user);
 
                 this.Close();
@@ -87,6 +86,9 @@ namespace FrbaHotel.ABM_de_Usuario
             values["nombre"] = txt_name.Text;
             values["apellido"] = txt_lastname.Text;
             values["direccion"] = txt_dir.Text;
+            values["altura"] = txt_direction.Text;
+            values["piso"] = txt_floor.Text;
+            values["departamento"] = txt_department.Text;
             values["rol"] = cb_rol.SelectedItem.ToString();
             values["password"] = txt_pass.Text;
             values["hotel"] = cb_hotel.SelectedItem.ToString();
@@ -95,9 +97,13 @@ namespace FrbaHotel.ABM_de_Usuario
             values["mail"] = txt_mail.Text;
             
             foreach (var key in values.Keys) {
-                var value = values[key];
-                if (value.Equals("") || value == null) {
-                    throw new Exception("El campo " + "'" + key +"'"+ " no puede estar vacio");
+                if (key != "piso" & key != "departamento")
+                {
+                    var value = values[key];
+                    if (value.Equals("") || value == null)
+                    {
+                        throw new Exception("El campo " + "'" + key + "'" + " no puede estar vacio");
+                    }
                 }
             } 
            
@@ -107,6 +113,11 @@ namespace FrbaHotel.ABM_de_Usuario
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void cb_rol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

@@ -56,6 +56,12 @@
             this.btn_accept = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cb_rol = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txt_floor = new System.Windows.Forms.TextBox();
+            this.txt_department = new System.Windows.Forms.TextBox();
+            this.txt_direction = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label14
@@ -292,11 +298,65 @@
             this.cb_rol.Size = new System.Drawing.Size(121, 21);
             this.cb_rol.TabIndex = 29;
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(513, 171);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(74, 13);
+            this.label17.TabIndex = 60;
+            this.label17.Text = "Departamento";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(513, 114);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(27, 13);
+            this.label16.TabIndex = 59;
+            this.label16.Text = "Piso";
+            // 
+            // txt_floor
+            // 
+            this.txt_floor.Location = new System.Drawing.Point(516, 130);
+            this.txt_floor.Name = "txt_floor";
+            this.txt_floor.Size = new System.Drawing.Size(100, 20);
+            this.txt_floor.TabIndex = 58;
+            // 
+            // txt_department
+            // 
+            this.txt_department.Location = new System.Drawing.Point(516, 188);
+            this.txt_department.Name = "txt_department";
+            this.txt_department.Size = new System.Drawing.Size(100, 20);
+            this.txt_department.TabIndex = 57;
+            // 
+            // txt_direction
+            // 
+            this.txt_direction.Location = new System.Drawing.Point(397, 188);
+            this.txt_direction.Name = "txt_direction";
+            this.txt_direction.Size = new System.Drawing.Size(100, 20);
+            this.txt_direction.TabIndex = 62;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(394, 172);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(34, 13);
+            this.label15.TabIndex = 61;
+            this.label15.Text = "Altura";
+            // 
             // edit_window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(513, 371);
+            this.ClientSize = new System.Drawing.Size(734, 371);
+            this.Controls.Add(this.txt_direction);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.txt_floor);
+            this.Controls.Add(this.txt_department);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.txt_lastname);
             this.Controls.Add(this.label13);
@@ -363,5 +423,11 @@
         private System.Windows.Forms.Button btn_accept;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cb_rol;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txt_floor;
+        private System.Windows.Forms.TextBox txt_department;
+        private System.Windows.Forms.TextBox txt_direction;
+        private System.Windows.Forms.Label label15;
     }
 }

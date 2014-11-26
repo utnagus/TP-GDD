@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace FrbaHotel.Model
 {
@@ -22,5 +23,14 @@ namespace FrbaHotel.Model
     
         public String getName(){return this.name;}
         public void setName(String name) { this.name = name; }
+        
+        private DataBase db = new DataBase();
+
+        public DataTable dameListadoHoteles()
+        {
+            String query = "select * from QWERTY.Hotel";
+            DataTable dt = db.select_query(query);
+            return dt;
+        }
     }
 }

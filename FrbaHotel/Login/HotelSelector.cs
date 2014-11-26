@@ -33,7 +33,10 @@ namespace FrbaHotel.Login
                 pos += 30;
             }
             InitializeComponent();
-        
+            if (pos != 0)
+            {
+                this.btn_accept.Location = new System.Drawing.Point(btn_accept.Location.X, pos + 20);
+            }
         }
         private void HotelSelector_Load(object sender, EventArgs e)
         {

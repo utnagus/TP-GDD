@@ -104,7 +104,7 @@ GO
 IF OBJECT_ID(N'qwerty.clientes', N'U') IS NOT NULL
 	DROP TABLE qwerty.clientes;
 CREATE TABLE [QWERTY].[Clientes](
-	[Cliente_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Cliente_ID] [int] IDENTITY(1,1)NOT NULL,
 	[Nombre] [varchar](50) NOT NULL,
 	[Apellido] [varchar](50) NOT NULL,
 	[Mail] [varchar](50) NOT NULL,
@@ -332,6 +332,30 @@ CREATE TABLE [QWERTY].[Facturacion](
 GO
 SET ANSI_PADDING OFF
 GO
+
+/****** Object:  Table [QWERTY].[Items_Facturacion]    Script Date: 10/11/2014 18:49:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+IF OBJECT_ID(N'qwerty.items_facturacion', N'U') IS NOT NULL
+	DROP TABLE qwerty.items_facturacion;
+CREATE TABLE [QWERTY].[Items_Facturacion](
+	[Nro_Item] [int] IDENTITY(1,1) NOT NULL ,
+	[Nro_Factura] [int] NOT NULL,
+	cantidad int,
+	valor numeric(18,2)
+ CONSTRAINT [PK_Nro_Item] PRIMARY KEY CLUSTERED 
+(
+	[Nro_Item] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+
 /****** Object:  Table [QWERTY].[Descripcion_reservas]    Script Date: 10/11/2014 18:49:09 ******/
 SET ANSI_NULLS ON
 GO
@@ -406,8 +430,6 @@ CREATE TABLE [QWERTY].[Estadia](
 	[Reserva_ID] [int] not null,
 	[Fecha_Inicio] [datetime],
 	[Fecha_Fin] [datetime],
-	 [Usuario_Registra_Entrada] int,
-	 [Usuario_Registra_Salida] int,
 	 [CodReserva] numeric(18),
  CONSTRAINT [PK_Estadia] PRIMARY KEY CLUSTERED 
 (
@@ -622,14 +644,23 @@ GO
 ALTER TABLE [QWERTY].[Facturacion] CHECK CONSTRAINT [FK_Facturacion_Estadia]
 GO
 
+/*reserva habitaciones fk*/
+ALTER TABLE [QWERTY].[Reservas_Habitaciones]  WITH CHECK ADD  CONSTRAINT [FK_Reserva_Habitacion_1] FOREIGN KEY([Reserva_ID])
+REFERENCES [QWERTY].[Reservas] ([Reserva_ID]);
+ALTER TABLE [QWERTY].[Reservas_Habitaciones] CHECK CONSTRAINT [FK_Reserva_Habitacion_1];
+
+ALTER TABLE [QWERTY].[Reservas_Habitaciones]  WITH CHECK ADD  CONSTRAINT [FK_Reserva_Habitacion_2] FOREIGN KEY([Habitacion_ID])
+REFERENCES [QWERTY].[Habitaciones] ([Habitacion_ID]);
+ALTER TABLE [QWERTY].[Reservas_Habitaciones] CHECK CONSTRAINT [FK_Reserva_Habitacion_2];
+
 
 /* INDICES */
-CREATE INDEX indexMaestra
+/*CREATE INDEX indexMaestra
     ON gd_esquema.Maestra(Cliente_Pasaporte_Nro);
     
 CREATE INDEX indexHabitaciones
     ON gd_esquema.Maestra(Habitacion_Numero);
-
+*/
 
 CREATE INDEX indexDocCliente
     ON QWERTY.Clientes(Nro_Doc);
@@ -758,19 +789,17 @@ alter table Qwerty.Reservas drop column mail;
 alter table Qwerty.Reservas drop column pasaporte;
 
 /*inserto relacion reserva y habitaciones*/
-insert into QWERTY.Reservas_Habitaciones (Reserva_ID, Habitacion_ID, Tipo_Cod)
-select R.Reserva_ID, R.habitacion, 0 from QWERTY.Reservas R;
+insert into QWERTY.Reservas_Habitaciones (Reserva_ID, Habitacion_ID)
+select R.Reserva_ID, R.habitacion from QWERTY.Reservas R;
 alter table Qwerty.Reservas drop column habitacion;
 
 
 /*inserto estadia */
-insert into QWERTY.Estadia (Reserva_ID, Fecha_Inicio, Fecha_Fin,Usuario_Registra_Entrada,Usuario_Registra_Salida, CodReserva)
+insert into QWERTY.Estadia (Reserva_ID, Fecha_Inicio, Fecha_Fin,CodReserva)
 select distinct
 M.Reserva_Codigo,
 M.Estadia_Fecha_Inicio,
 dateadd(day,M.Estadia_Cant_Noches,M.Estadia_Fecha_Inicio) as fin,
-0,
-0, 
 M.Reserva_Codigo
  from gd_esquema.Maestra M
  
@@ -792,9 +821,7 @@ Factura_Fecha,
 Factura_Total 
 from gd_esquema.Maestra M
 
-where M.Factura_Nro is not null
-
-;
+where M.Factura_Nro is not null;
 
 UPDATE E
    SET E.Reserva_ID = R.Reserva_ID
@@ -804,9 +831,22 @@ UPDATE E
 	on R.Codigo = E.CodReserva;
 	
 
+
+/*items facturas*/
+
+insert into QWERTY.Items_Facturacion (Nro_Factura, cantidad,valor ) 
+select 
+distinct
+M.Factura_Nro,
+M.Item_Factura_Cantidad,
+M.Item_Factura_Monto
+
+from gd_esquema.Maestra M
+
+where M.Factura_Nro is not null;
+
+
 /****** Object:  ForeignKey [FK_Estadia_Reserva]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE QWERTY.Estadia  WITH CHECK ADD  CONSTRAINT [FK_Estadia_Reservas] FOREIGN KEY([Reserva_ID])
-REFERENCES [QWERTY].[Reservas] ([Reserva_ID])
-GO
-ALTER TABLE [QWERTY].[Estadia] CHECK CONSTRAINT [FK_Estadia_Reservas]
-GO
+REFERENCES [QWERTY].[Reservas] ([Reserva_ID]);
+ALTER TABLE [QWERTY].[Estadia] CHECK CONSTRAINT [FK_Estadia_Reservas];

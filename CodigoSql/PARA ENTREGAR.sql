@@ -345,6 +345,7 @@ IF OBJECT_ID(N'qwerty.items_facturacion', N'U') IS NOT NULL
 CREATE TABLE [QWERTY].[Items_Facturacion](
 	[Nro_Item] [int] IDENTITY(1,1) NOT NULL ,
 	[Nro_Factura] [int] NOT NULL,
+	Consumible_ID int,
 	cantidad int,
 	valor numeric(18,2)
  CONSTRAINT [PK_Nro_Item] PRIMARY KEY CLUSTERED 
@@ -376,24 +377,6 @@ CREATE TABLE [QWERTY].[Descripcion_reservas](
 ) ON [PRIMARY]
 GO
 SET ANSI_PADDING OFF
-GO
-/****** Object:  Table [QWERTY].[ConsumicionesPorReserva]    Script Date: 10/11/2014 18:49:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-IF OBJECT_ID(N'qwerty.consumicionesPorReserva', N'U') IS NOT NULL
-	DROP TABLE qwerty.consumicionesPorReserva;
-CREATE TABLE [QWERTY].[ConsumicionesPorReserva](
-	[Consumicion_ID] [int] NOT NULL,
-	[Consumible_ID] [int] NOT NULL,
-	[Cantidad] [int] NOT NULL,
-	[Reserva_ID] [int] NOT NULL,
- CONSTRAINT [PK_ConsumicionesPorReserva] PRIMARY KEY CLUSTERED 
-(
-	[Consumicion_ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
 GO
 /*tipo habitacion*/
 SET ANSI_NULLS ON
@@ -517,19 +500,6 @@ CREATE TABLE [QWERTY].[Reservas_Habitaciones](
 ) ON [PRIMARY]
 GO
 
-
-/****** Object:  ForeignKey [FK_ConsumicionesPorReserva_Consumibles]    Script Date: 10/11/2014 18:49:09 ******/
-ALTER TABLE [QWERTY].[ConsumicionesPorReserva]  WITH CHECK ADD  CONSTRAINT [FK_ConsumicionesPorReserva_Consumibles] FOREIGN KEY([Consumible_ID])
-REFERENCES [QWERTY].[Consumibles] ([Consumible_ID])
-GO
-ALTER TABLE [QWERTY].[ConsumicionesPorReserva] CHECK CONSTRAINT [FK_ConsumicionesPorReserva_Consumibles]
-GO
-/****** Object:  ForeignKey [FK_ConsumicionesPorReserva_Reservas]    Script Date: 10/11/2014 18:49:09 ******/
-ALTER TABLE [QWERTY].[ConsumicionesPorReserva]  WITH CHECK ADD  CONSTRAINT [FK_ConsumicionesPorReserva_Reservas] FOREIGN KEY([Reserva_ID])
-REFERENCES [QWERTY].[Reservas] ([Reserva_ID])
-GO
-ALTER TABLE [QWERTY].[ConsumicionesPorReserva] CHECK CONSTRAINT [FK_ConsumicionesPorReserva_Reservas]
-GO
 
 /************************************************************************/
 
@@ -806,19 +776,34 @@ M.Reserva_Codigo
  where M.Estadia_Fecha_Inicio is not null;
  
 
-/*inserto facturas*/
 
+
+/*items facturas*/
+
+insert into QWERTY.Items_Facturacion (Nro_Factura, Consumible_ID, cantidad,valor ) 
+select 
+M.Factura_Nro,
+M.Consumible_Codigo,
+M.Item_Factura_Cantidad,
+M.Item_Factura_Monto
+
+from gd_esquema.Maestra M
+
+where M.Factura_Nro is not null;
+
+/*facturas*/
 INSERT INTO [GD2C2014].[QWERTY].[Facturacion]
            ([Nro_Factura]
            ,[Estadia_ID]
            ,[Fecha]
            ,[Total])
   
-Select distinct 
+Select distinct
 M.Factura_Nro,
-(select top 1 Estadia_ID from QWERTY.Estadia E where E.Reserva_ID = M.Reserva_Codigo),
+(select top 1 Estadia_ID from QWERTY.Estadia E where E.CodReserva = M.Reserva_Codigo),
 Factura_Fecha, 
-Factura_Total 
+(select SUM(I.valor) from QWERTY.Items_Facturacion I where I.Nro_Factura = M.Factura_Nro group by I.Nro_Factura ) as total
+
 from gd_esquema.Maestra M
 
 where M.Factura_Nro is not null;
@@ -830,21 +815,6 @@ UPDATE E
 	inner join [GD2C2014].[QWERTY].[Reservas] R
 	on R.Codigo = E.CodReserva;
 	
-
-
-/*items facturas*/
-
-insert into QWERTY.Items_Facturacion (Nro_Factura, cantidad,valor ) 
-select 
-distinct
-M.Factura_Nro,
-M.Item_Factura_Cantidad,
-M.Item_Factura_Monto
-
-from gd_esquema.Maestra M
-
-where M.Factura_Nro is not null;
-
 
 /****** Object:  ForeignKey [FK_Estadia_Reserva]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE QWERTY.Estadia  WITH CHECK ADD  CONSTRAINT [FK_Estadia_Reservas] FOREIGN KEY([Reserva_ID])

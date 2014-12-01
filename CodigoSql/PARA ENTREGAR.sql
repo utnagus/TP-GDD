@@ -703,23 +703,6 @@ insert into QWERTY.Consumibles (Consumible_ID,Producto,Precio)
 select distinct m.Consumible_Codigo, m.Consumible_Descripcion,m.Consumible_Precio 
 from gd_esquema.Maestra m where m.Consumible_Codigo is not null
 
-
-
-
-/*creo y cargo tabla Tipo_Doc*/
-/*create table qwerty.Tipo_Doc(
-Tipo_Doc_ID int NOT NULL IDENTITY(1,1),
-Descripcion nvarchar(50) NOT NULL,
-Primary key (Tipo_Doc_ID)
-);
-insert into QWERTY.Tipo_Doc(Descripcion) values ('Pasaporte')
-insert into QWERTY.Tipo_Doc(Descripcion) values ('LE')
-insert into QWERTY.Tipo_Doc(Descripcion) values ('DNI')
-insert into QWERTY.Tipo_Doc(Descripcion) values ('LC')
-insert into QWERTY.Tipo_Doc(Descripcion) values ('CI')
-*/
-
-
 /*cargo reservas*/
 
 insert into QWERTY.Reservas (Fecha_inicio, 
@@ -763,6 +746,14 @@ insert into QWERTY.Reservas_Habitaciones (Reserva_ID, Habitacion_ID)
 select R.Reserva_ID, R.habitacion from QWERTY.Reservas R;
 alter table Qwerty.Reservas drop column habitacion;
 
+/*inserto una descripcion de reservas*/
+INSERT INTO [GD2C2014].[QWERTY].[Descripcion_reservas]
+           ([Descripcion_ID]
+           ,[Tipo]
+           ,[Descripcion])
+     VALUES
+           (1,'Migracion','Migracion');
+
 
 /*inserto estadia */
 insert into QWERTY.Estadia (Reserva_ID, Fecha_Inicio, Fecha_Fin,CodReserva)
@@ -775,8 +766,6 @@ M.Reserva_Codigo
  
  where M.Estadia_Fecha_Inicio is not null;
  
-
-
 
 /*items facturas*/
 
@@ -820,3 +809,11 @@ UPDATE E
 ALTER TABLE QWERTY.Estadia  WITH CHECK ADD  CONSTRAINT [FK_Estadia_Reservas] FOREIGN KEY([Reserva_ID])
 REFERENCES [QWERTY].[Reservas] ([Reserva_ID]);
 ALTER TABLE [QWERTY].[Estadia] CHECK CONSTRAINT [FK_Estadia_Reservas];
+
+/****** Object:  ForeignKey [FK_Reservas_descripcionReservas]    Script Date: 10/11/2014 18:49:09 ******/
+ALTER TABLE QWERTY.Reservas WITH CHECK ADD  CONSTRAINT [FK_Reservas_Descripcion_reservas] FOREIGN KEY([Descripcion_ID])
+REFERENCES [QWERTY].[Descripcion_reservas] ([Descripcion_ID]);
+ALTER TABLE [QWERTY].[Reservas] CHECK CONSTRAINT [FK_Reservas_Descripcion_reservas];
+
+
+/*FALTA TRATAMIENTO CON LOS CLIENTES QUE TIENEN MAIL REPETIDO*/

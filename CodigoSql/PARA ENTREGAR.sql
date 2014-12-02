@@ -815,5 +815,19 @@ ALTER TABLE QWERTY.Reservas WITH CHECK ADD  CONSTRAINT [FK_Reservas_Descripcion_
 REFERENCES [QWERTY].[Descripcion_reservas] ([Descripcion_ID]);
 ALTER TABLE [QWERTY].[Reservas] CHECK CONSTRAINT [FK_Reservas_Descripcion_reservas];
 
+/****** Object:  ForeignKey [FK_Estadia_Reserva]    Script Date: 10/11/2014 18:49:09 ******/
+ALTER TABLE QWERTY.Items_Facturacion  WITH CHECK ADD  CONSTRAINT [FK_Items_Facturas] FOREIGN KEY([Nro_Factura])
+REFERENCES [QWERTY].[Facturacion] ([Nro_Factura]);
+ALTER TABLE [QWERTY].Items_Facturacion CHECK CONSTRAINT [FK_Items_Facturas];
+
+
 
 /*FALTA TRATAMIENTO CON LOS CLIENTES QUE TIENEN MAIL REPETIDO*/
+select * from QWERTY.Clientes C
+ join
+(SELECT  top 11782 C.Mail as mail, count(*) as cantidad 
+from QWERTY.Clientes C
+group by C.Mail
+order by cantidad desc)  clientesInvalidos
+on clientesInvalidos.mail = C.Mail 
+

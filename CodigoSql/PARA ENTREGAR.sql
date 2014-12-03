@@ -104,7 +104,7 @@ GO
 IF OBJECT_ID(N'qwerty.clientes', N'U') IS NOT NULL
 	DROP TABLE qwerty.clientes;
 CREATE TABLE [QWERTY].[Clientes](
-	[Cliente_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Cliente_ID] [int] IDENTITY(1,1)NOT NULL,
 	[Nombre] [varchar](50) NOT NULL,
 	[Apellido] [varchar](50) NOT NULL,
 	[Mail] [varchar](50) NOT NULL,
@@ -332,6 +332,31 @@ CREATE TABLE [QWERTY].[Facturacion](
 GO
 SET ANSI_PADDING OFF
 GO
+
+/****** Object:  Table [QWERTY].[Items_Facturacion]    Script Date: 10/11/2014 18:49:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+IF OBJECT_ID(N'qwerty.items_facturacion', N'U') IS NOT NULL
+	DROP TABLE qwerty.items_facturacion;
+CREATE TABLE [QWERTY].[Items_Facturacion](
+	[Nro_Item] [int] IDENTITY(1,1) NOT NULL ,
+	[Nro_Factura] [int] NOT NULL,
+	Consumible_ID int,
+	cantidad int,
+	valor numeric(18,2)
+ CONSTRAINT [PK_Nro_Item] PRIMARY KEY CLUSTERED 
+(
+	[Nro_Item] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+
 /****** Object:  Table [QWERTY].[Descripcion_reservas]    Script Date: 10/11/2014 18:49:09 ******/
 SET ANSI_NULLS ON
 GO
@@ -352,24 +377,6 @@ CREATE TABLE [QWERTY].[Descripcion_reservas](
 ) ON [PRIMARY]
 GO
 SET ANSI_PADDING OFF
-GO
-/****** Object:  Table [QWERTY].[ConsumicionesPorReserva]    Script Date: 10/11/2014 18:49:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-IF OBJECT_ID(N'qwerty.consumicionesPorReserva', N'U') IS NOT NULL
-	DROP TABLE qwerty.consumicionesPorReserva;
-CREATE TABLE [QWERTY].[ConsumicionesPorReserva](
-	[Consumicion_ID] [int] NOT NULL,
-	[Consumible_ID] [int] NOT NULL,
-	[Cantidad] [int] NOT NULL,
-	[Reserva_ID] [int] NOT NULL,
- CONSTRAINT [PK_ConsumicionesPorReserva] PRIMARY KEY CLUSTERED 
-(
-	[Consumicion_ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
 GO
 /*tipo habitacion*/
 SET ANSI_NULLS ON
@@ -406,8 +413,6 @@ CREATE TABLE [QWERTY].[Estadia](
 	[Reserva_ID] [int] not null,
 	[Fecha_Inicio] [datetime],
 	[Fecha_Fin] [datetime],
-	 [Usuario_Registra_Entrada] int,
-	 [Usuario_Registra_Salida] int,
 	 [CodReserva] numeric(18),
  CONSTRAINT [PK_Estadia] PRIMARY KEY CLUSTERED 
 (
@@ -495,19 +500,6 @@ CREATE TABLE [QWERTY].[Reservas_Habitaciones](
 ) ON [PRIMARY]
 GO
 
-
-/****** Object:  ForeignKey [FK_ConsumicionesPorReserva_Consumibles]    Script Date: 10/11/2014 18:49:09 ******/
-ALTER TABLE [QWERTY].[ConsumicionesPorReserva]  WITH CHECK ADD  CONSTRAINT [FK_ConsumicionesPorReserva_Consumibles] FOREIGN KEY([Consumible_ID])
-REFERENCES [QWERTY].[Consumibles] ([Consumible_ID])
-GO
-ALTER TABLE [QWERTY].[ConsumicionesPorReserva] CHECK CONSTRAINT [FK_ConsumicionesPorReserva_Consumibles]
-GO
-/****** Object:  ForeignKey [FK_ConsumicionesPorReserva_Reservas]    Script Date: 10/11/2014 18:49:09 ******/
-ALTER TABLE [QWERTY].[ConsumicionesPorReserva]  WITH CHECK ADD  CONSTRAINT [FK_ConsumicionesPorReserva_Reservas] FOREIGN KEY([Reserva_ID])
-REFERENCES [QWERTY].[Reservas] ([Reserva_ID])
-GO
-ALTER TABLE [QWERTY].[ConsumicionesPorReserva] CHECK CONSTRAINT [FK_ConsumicionesPorReserva_Reservas]
-GO
 
 /************************************************************************/
 
@@ -622,14 +614,23 @@ GO
 ALTER TABLE [QWERTY].[Facturacion] CHECK CONSTRAINT [FK_Facturacion_Estadia]
 GO
 
+/*reserva habitaciones fk*/
+ALTER TABLE [QWERTY].[Reservas_Habitaciones]  WITH CHECK ADD  CONSTRAINT [FK_Reserva_Habitacion_1] FOREIGN KEY([Reserva_ID])
+REFERENCES [QWERTY].[Reservas] ([Reserva_ID]);
+ALTER TABLE [QWERTY].[Reservas_Habitaciones] CHECK CONSTRAINT [FK_Reserva_Habitacion_1];
+
+ALTER TABLE [QWERTY].[Reservas_Habitaciones]  WITH CHECK ADD  CONSTRAINT [FK_Reserva_Habitacion_2] FOREIGN KEY([Habitacion_ID])
+REFERENCES [QWERTY].[Habitaciones] ([Habitacion_ID]);
+ALTER TABLE [QWERTY].[Reservas_Habitaciones] CHECK CONSTRAINT [FK_Reserva_Habitacion_2];
+
 
 /* INDICES */
-CREATE INDEX indexMaestra
+/*CREATE INDEX indexMaestra
     ON gd_esquema.Maestra(Cliente_Pasaporte_Nro);
     
 CREATE INDEX indexHabitaciones
     ON gd_esquema.Maestra(Habitacion_Numero);
-
+*/
 
 CREATE INDEX indexDocCliente
     ON QWERTY.Clientes(Nro_Doc);
@@ -702,23 +703,6 @@ insert into QWERTY.Consumibles (Consumible_ID,Producto,Precio)
 select distinct m.Consumible_Codigo, m.Consumible_Descripcion,m.Consumible_Precio 
 from gd_esquema.Maestra m where m.Consumible_Codigo is not null
 
-
-
-
-/*creo y cargo tabla Tipo_Doc*/
-/*create table qwerty.Tipo_Doc(
-Tipo_Doc_ID int NOT NULL IDENTITY(1,1),
-Descripcion nvarchar(50) NOT NULL,
-Primary key (Tipo_Doc_ID)
-);
-insert into QWERTY.Tipo_Doc(Descripcion) values ('Pasaporte')
-insert into QWERTY.Tipo_Doc(Descripcion) values ('LE')
-insert into QWERTY.Tipo_Doc(Descripcion) values ('DNI')
-insert into QWERTY.Tipo_Doc(Descripcion) values ('LC')
-insert into QWERTY.Tipo_Doc(Descripcion) values ('CI')
-*/
-
-
 /*cargo reservas*/
 
 insert into QWERTY.Reservas (Fecha_inicio, 
@@ -758,43 +742,60 @@ alter table Qwerty.Reservas drop column mail;
 alter table Qwerty.Reservas drop column pasaporte;
 
 /*inserto relacion reserva y habitaciones*/
-insert into QWERTY.Reservas_Habitaciones (Reserva_ID, Habitacion_ID, Tipo_Cod)
-select R.Reserva_ID, R.habitacion, 0 from QWERTY.Reservas R;
+insert into QWERTY.Reservas_Habitaciones (Reserva_ID, Habitacion_ID)
+select R.Reserva_ID, R.habitacion from QWERTY.Reservas R;
 alter table Qwerty.Reservas drop column habitacion;
+
+/*inserto una descripcion de reservas*/
+INSERT INTO [GD2C2014].[QWERTY].[Descripcion_reservas]
+           ([Descripcion_ID]
+           ,[Tipo]
+           ,[Descripcion])
+     VALUES
+           (1,'Migracion','Migracion');
 
 
 /*inserto estadia */
-insert into QWERTY.Estadia (Reserva_ID, Fecha_Inicio, Fecha_Fin,Usuario_Registra_Entrada,Usuario_Registra_Salida, CodReserva)
+insert into QWERTY.Estadia (Reserva_ID, Fecha_Inicio, Fecha_Fin,CodReserva)
 select distinct
 M.Reserva_Codigo,
 M.Estadia_Fecha_Inicio,
 dateadd(day,M.Estadia_Cant_Noches,M.Estadia_Fecha_Inicio) as fin,
-0,
-0, 
 M.Reserva_Codigo
  from gd_esquema.Maestra M
  
  where M.Estadia_Fecha_Inicio is not null;
  
 
-/*inserto facturas*/
+/*items facturas*/
 
+insert into QWERTY.Items_Facturacion (Nro_Factura, Consumible_ID, cantidad,valor ) 
+select 
+M.Factura_Nro,
+M.Consumible_Codigo,
+M.Item_Factura_Cantidad,
+M.Item_Factura_Monto
+
+from gd_esquema.Maestra M
+
+where M.Factura_Nro is not null;
+
+/*facturas*/
 INSERT INTO [GD2C2014].[QWERTY].[Facturacion]
            ([Nro_Factura]
            ,[Estadia_ID]
            ,[Fecha]
            ,[Total])
   
-Select distinct 
+Select distinct
 M.Factura_Nro,
-(select top 1 Estadia_ID from QWERTY.Estadia E where E.Reserva_ID = M.Reserva_Codigo),
+(select top 1 Estadia_ID from QWERTY.Estadia E where E.CodReserva = M.Reserva_Codigo),
 Factura_Fecha, 
-Factura_Total 
+(select SUM(I.valor) from QWERTY.Items_Facturacion I where I.Nro_Factura = M.Factura_Nro group by I.Nro_Factura ) as total
+
 from gd_esquema.Maestra M
 
-where M.Factura_Nro is not null
-
-;
+where M.Factura_Nro is not null;
 
 UPDATE E
    SET E.Reserva_ID = R.Reserva_ID
@@ -806,7 +807,27 @@ UPDATE E
 
 /****** Object:  ForeignKey [FK_Estadia_Reserva]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE QWERTY.Estadia  WITH CHECK ADD  CONSTRAINT [FK_Estadia_Reservas] FOREIGN KEY([Reserva_ID])
-REFERENCES [QWERTY].[Reservas] ([Reserva_ID])
-GO
-ALTER TABLE [QWERTY].[Estadia] CHECK CONSTRAINT [FK_Estadia_Reservas]
-GO
+REFERENCES [QWERTY].[Reservas] ([Reserva_ID]);
+ALTER TABLE [QWERTY].[Estadia] CHECK CONSTRAINT [FK_Estadia_Reservas];
+
+/****** Object:  ForeignKey [FK_Reservas_descripcionReservas]    Script Date: 10/11/2014 18:49:09 ******/
+ALTER TABLE QWERTY.Reservas WITH CHECK ADD  CONSTRAINT [FK_Reservas_Descripcion_reservas] FOREIGN KEY([Descripcion_ID])
+REFERENCES [QWERTY].[Descripcion_reservas] ([Descripcion_ID]);
+ALTER TABLE [QWERTY].[Reservas] CHECK CONSTRAINT [FK_Reservas_Descripcion_reservas];
+
+/****** Object:  ForeignKey [FK_Estadia_Reserva]    Script Date: 10/11/2014 18:49:09 ******/
+ALTER TABLE QWERTY.Items_Facturacion  WITH CHECK ADD  CONSTRAINT [FK_Items_Facturas] FOREIGN KEY([Nro_Factura])
+REFERENCES [QWERTY].[Facturacion] ([Nro_Factura]);
+ALTER TABLE [QWERTY].Items_Facturacion CHECK CONSTRAINT [FK_Items_Facturas];
+
+
+
+/*FALTA TRATAMIENTO CON LOS CLIENTES QUE TIENEN MAIL REPETIDO*/
+select * from QWERTY.Clientes C
+ join
+(SELECT  top 11782 C.Mail as mail, count(*) as cantidad 
+from QWERTY.Clientes C
+group by C.Mail
+order by cantidad desc)  clientesInvalidos
+on clientesInvalidos.mail = C.Mail 
+

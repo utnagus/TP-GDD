@@ -1,35 +1,25 @@
-C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\FrbaHotel\bin\Release\FrbaHotel.exe
-C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\FrbaHotel\bin\Release\FrbaHotel.pdb
-C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\FrbaHotel\obj\Release\ResolveAssemblyReference.cache
-C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.Properties.Resources.resources
-C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.csproj.GenerateResource.Cache
-C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.exe
-C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.pdb
-C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\FrbaHotel\bin\Release\FrbaHotel.exe.manifest
-C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\FrbaHotel\bin\Release\FrbaHotel.application
-C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.exe.manifest
-C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.application
-C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Cliente.Form1.resources
-C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.Login.login_window.resources
-C:\Users\amd\Desktop\Agustin\UTN\Gestion de Datos\Aplicacion Desktop\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.index_window.resources
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.exe
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.pdb
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\ResolveAssemblyReference.cache
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.index_window.resources
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.Login.login_window.resources
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.Properties.Resources.resources
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.csproj.GenerateResource.Cache
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\bin\Release\FrbaHotel.exe.manifest
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\bin\Release\FrbaHotel.application
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\bin\Release\FrbaHotel.exe
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\bin\Release\FrbaHotel.pdb
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.exe.manifest
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.application
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Usuario.userABM.resources
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.Login.RolSelector.resources
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.Login.HotelSelector.resources
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Usuario.edition_window.resources
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Usuario.edit_window.resources
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Usuario.confirmUpdateWindow.resources
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Cliente.guestABM.resources
-C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Cliente.AddClient.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Cliente.AddClient.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Cliente.guestABM.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Hotel.ABMHotel.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Hotel.ABMHotel_Alta.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Hotel.ABMHotel_Listado.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Hotel.ABMHotel_Menu.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Usuario.edition_window.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Usuario.confirmUpdateWindow.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Usuario.edit_window.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Usuario.userABM.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.index_window.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.Login.HotelSelector.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.Login.login_window.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.Login.RolSelector.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.Properties.Resources.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.csproj.GenerateResource.Cache
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\bin\Release\FrbaHotel.exe.manifest
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\bin\Release\FrbaHotel.application
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\bin\Release\FrbaHotel.exe
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\bin\Release\FrbaHotel.pdb
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.exe.manifest
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.application
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.exe
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Release\FrbaHotel.pdb

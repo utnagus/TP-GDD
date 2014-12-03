@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xrml="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <assemblyIdentity name="FrbaHotel.application" version="1.0.0.73" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" xmlns="urn:schemas-microsoft-com:asm.v1" />
-  <description asmv2:publisher="Unknown Organization" asmv2:product="FrbaHotel" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <description asmv2:publisher="FrbaHotel" asmv2:product="FrbaHotel" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true">
-    <deploymentProvider codebase="http://wxppx86be-0208/FrbaHotel/FrbaHotel.application" />
+    <deploymentProvider codebase="http://usuario-pc/FrbaHotel/FrbaHotel.application" />
   </deployment>
   <dependency>
     <dependentAssembly dependencyType="install" codebase="FrbaHotel.exe.manifest" size="3584">
@@ -13,7 +13,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>smur8xONgMKhZATGMn0crZu9p8o=</dsig:DigestValue>
+        <dsig:DigestValue>z44fEVPZbr6K7ZlzXfqjvTFnKIY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

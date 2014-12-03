@@ -88,6 +88,30 @@
     <Compile Include="ABM de Habitacion\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM de Hotel\ABMHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Hotel\ABMHotel.Designer.cs">
+      <DependentUpon>ABMHotel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Hotel\ABMHotel_Alta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Hotel\ABMHotel_Alta.Designer.cs">
+      <DependentUpon>ABMHotel_Alta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Hotel\ABMHotel_Listado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Hotel\ABMHotel_Listado.Designer.cs">
+      <DependentUpon>ABMHotel_Listado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Hotel\ABMHotel_Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Hotel\ABMHotel_Menu.Designer.cs">
+      <DependentUpon>ABMHotel_Menu.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM de Regimen\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +209,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM de Cliente\guestABM.resx">
       <DependentUpon>guestABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Hotel\ABMHotel.resx">
+      <DependentUpon>ABMHotel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Hotel\ABMHotel_Alta.resx">
+      <DependentUpon>ABMHotel_Alta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Hotel\ABMHotel_Listado.resx">
+      <DependentUpon>ABMHotel_Listado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Hotel\ABMHotel_Menu.resx">
+      <DependentUpon>ABMHotel_Menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM de Usuario\addNewUser.resx">
       <DependentUpon>addNewUser.cs</DependentUpon>

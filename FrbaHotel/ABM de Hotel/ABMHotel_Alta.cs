@@ -29,12 +29,27 @@ namespace FrbaHotel.ABM_de_Hotel
             hotel.setDireccion(textBox_direccion.Text);
             /*hotel.setRegimenes(textBox_regimenes.Text);
             hotel.setCreation_date(textBox_fecha.Text);*/
-            
+
             /* aca tengo qe agregar la logica para cheqear que los campos sean cargados con
              los tipo de datos qe tienen qe ser*/
 
             /*hotel.inserta_Hotel(hotel.getName, hotel.getEmail, hotel.getTel, hotel.getDir, hotel.getStars, hotel.getCity, hotel.getCountry, hotel.getCreation_date);*/
-            hotel.inserta_Hotel(textBox_nombre.Text, textBox_mail.Text,Convert.ToInt64(textBox_telefono.Text), textBox_direccion.Text, Convert.ToInt32(textBox_estrellas.Text), textBox_ciudad.Text, textBox_pais.Text, Convert.ToDateTime(textBox_fecha.Text));
+            hotel.inserta_Hotel(textBox_nombre.Text, textBox_mail.Text, Convert.ToInt64(textBox_telefono.Text), textBox_direccion.Text, Convert.ToInt32(textBox_estrellas.Text), textBox_ciudad.Text, textBox_pais.Text, Convert.ToDateTime(textBox_fecha.Text));
+
+
+
         }
+
+        private void textBox_telefono_TextChanged(object sender,  KeyPressEventArgs  e)
+        {
+            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        
     }
 }

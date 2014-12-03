@@ -4,11 +4,45 @@ GO
 CREATE SCHEMA [QWERTY] AUTHORIZATION [dbo]
 GO
 /****** Object:  Table [QWERTY].[Roles]    Script Date: 10/11/2014 18:49:09 ******/
+
+/*ALTER TABLE qwerty.items_facturacion DROP CONSTRAINT [FK_Items_Facturas];*/
+
+/*IF OBJECT_ID('[FK_Reservas_Descripcion_reservas]','C') IS NOT NULL
+ALTER TABLE qwerty.reservas DROP CONSTRAINT [FK_Reservas_Descripcion_reservas];
+IF OBJECT_ID('[FK_Estadia_Reservas]','C') IS NOT NULL
+ALTER TABLE qwerty.estadia DROP CONSTRAINT [FK_Estadia_Reservas];
+IF OBJECT_ID('[FK_Reserva_Habitacion_2]','C') IS NOT NULL
+ALTER TABLE qwerty.rerserva_habitacion DROP CONSTRAINT [FK_Reserva_Habitacion_2];
+IF OBJECT_ID('[FK_Reserva_Habitacion_1]','C') IS NOT NULL
+ALTER TABLE qwerty.reserva_habitacion DROP CONSTRAINT [FK_Reserva_Habitacion_1];
+IF OBJECT_ID('[FK_Facturacion_Estadia]','C') IS NOT NULL
+ALTER TABLE qwerty.facturacion DROP CONSTRAINT [FK_Facturacion_Estadia];
+IF OBJECT_ID('[FK_Usuarios_Roles_Usuarios]','C') IS NOT NULL
+ALTER TABLE qwerty.usuarios_roles DROP CONSTRAINT [FK_Usuarios_Roles_Usuarios];
+IF OBJECT_ID('FK_Personal_hoteles_Hotel','C') IS NOT NULL
+	ALTER TABLE qwerty.personal_hoteles DROP CONSTRAINT [FK_Personal_hoteles_Hotel];
+IF OBJECT_ID('FK_Personal_hotel','C') IS NOT NULL
+	ALTER TABLE qwerty.personal_hoteles DROP CONSTRAINT [FK_Personal_hotel];
+IF OBJECT_ID('FK_Reservas_canceladas_Usuarios','C') IS NOT NULL
+	ALTER TABLE [QWERTY].[Reservas_canceladas] DROP CONSTRAINT [FK_Reservas_canceladas_Usuarios];
+IF OBJECT_ID('FK_Personal_hoteles_usuarios','C') IS NOT NULL
+	ALTER TABLE qwerty.personal_hoteles DROP CONSTRAINT [FK_Personal_hoteles_usuarios];
+IF OBJECT_ID('FK_Reservas_canceladas_Clientes','C') IS NOT NULL
+	ALTER TABLE qwerty.Reservas_canceladas DROP CONSTRAINT [FK_Reservas_canceladas_Clientes];
+IF OBJECT_ID('FK_Reservas_Clientes','C') IS NOT NULL
+	ALTER TABLE qwerty.reservas DROP CONSTRAINT [FK_Reservas_Clientes];
+	
+IF OBJECT_ID('[FK_Roles_Funcionalidades_Roles]','C') IS NOT NULL
+	ALTER TABLE qwerty.[Roles_Funcionalidades] DROP CONSTRAINT [FK_Roles_Funcionalidades_Roles];
+IF OBJECT_ID('[FK_Usuarios_Roles_Roles]','C') IS NOT NULL
+	ALTER TABLE qwerty.usuarios_roles DROP CONSTRAINT [FK_Usuarios_Roles_Roles];
+IF OBJECT_ID('FK_Usuarios_Roles_Usuarios','C') IS NOT NULL
+	ALTER TABLE qwerty.usuarios_roles DROP CONSTRAINT [FK_Usuarios_Roles_Usuarios];
+*/	
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
-GO
-/*ALTER TABLE qwerty.roles DROP CONSTRAINT FK__cities__state__6442E2C9;*/
 IF OBJECT_ID(N'qwerty.roles', N'U') IS NOT NULL
 	DROP TABLE qwerty.roles;
 CREATE TABLE [QWERTY].[Roles](
@@ -116,7 +150,8 @@ CREATE TABLE [QWERTY].[Clientes](
 	[Nacionalidad] [varchar](50) NOT NULL,
 	[Fecha_nacimiento] [date] NOT NULL,
 	[Tipo_Doc_ID] [int],
-	[Nro_Doc] [varchar](100)
+	[Nro_Doc] [varchar](100),
+	Repetidos int default 0,
  CONSTRAINT [PK_Clientes] PRIMARY KEY CLUSTERED 
 (
 	[Cliente_ID] ASC
@@ -388,7 +423,7 @@ GO
 CREATE TABLE [QWERTY].[Tipo_Habitacion](
 	[Tipo_Habitacion_ID] [int] IDENTITY(1,1) NOT NULL,
 	[Descripcion] [varchar](255),
-	 [Codigo] [numeric](18),
+	 [Codigo] int,
 	 [Porcentual] [numeric](18,2),
  CONSTRAINT [PK_Tipo_Habitacion] PRIMARY KEY CLUSTERED 
 (
@@ -505,27 +540,27 @@ GO
 
 /****** Object:  ForeignKey [FK_Habitaciones_Hotel]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Habitaciones]  WITH CHECK ADD  CONSTRAINT [FK_Habitaciones_Hotel] FOREIGN KEY([Hotel_ID])
-REFERENCES [QWERTY].[Hotel] ([Hotel_ID])
+REFERENCES [QWERTY].[Hotel] ([Hotel_ID]) /* ON DELETE CASCADE */
 GO
 ALTER TABLE [QWERTY].[Habitaciones] CHECK CONSTRAINT [FK_Habitaciones_Hotel]
 GO
 
 /****** Object:  ForeignKey [FK_Habitaciones_Tipo]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Habitaciones]  WITH CHECK ADD  CONSTRAINT [FK_Tipo_Habitacion] FOREIGN KEY([Tipo_ID])
-REFERENCES [QWERTY].[Tipo_Habitacion] ([Tipo_Habitacion_ID])
+REFERENCES [QWERTY].[Tipo_Habitacion] ([Tipo_Habitacion_ID]) /* ON DELETE CASCADE */
 GO
 ALTER TABLE [QWERTY].[Habitaciones] CHECK CONSTRAINT [FK_Tipo_Habitacion]
 GO
 
 /****** Object:  ForeignKey [FK_Descripcion_reservas_Reservas]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Descripcion_reservas]  WITH CHECK ADD  CONSTRAINT [FK_Descripcion_reservas_Reservas] FOREIGN KEY([Descripcion_ID])
-REFERENCES [QWERTY].[Reservas] ([Reserva_ID])
+REFERENCES [QWERTY].[Reservas] ([Reserva_ID]) /* ON DELETE CASCADE */
 GO
 ALTER TABLE [QWERTY].[Descripcion_reservas] CHECK CONSTRAINT [FK_Descripcion_reservas_Reservas]
 GO
 /* constraint tipo doc*/
 ALTER TABLE [QWERTY].[Clientes]  WITH CHECK ADD  CONSTRAINT [FK_Clientes_Tipo_Doc] FOREIGN KEY([Tipo_Doc_ID])
-REFERENCES [QWERTY].[Tipo_Doc] ([Tipo_Doc_ID])
+REFERENCES [QWERTY].[Tipo_Doc] ([Tipo_Doc_ID]) /* ON DELETE CASCADE */
 GO
 ALTER TABLE [QWERTY].[Clientes] CHECK CONSTRAINT [FK_Clientes_Tipo_Doc]
 GO
@@ -533,31 +568,31 @@ GO
 
 /****** Object:  ForeignKey [FK_Hotel_Regimenes_Hotel]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Hotel_Regimenes]  WITH CHECK ADD  CONSTRAINT [FK_Hotel_Regimenes_Hotel] FOREIGN KEY([Hotel_ID])
-REFERENCES [QWERTY].[Hotel] ([Hotel_ID])
+REFERENCES [QWERTY].[Hotel] ([Hotel_ID]) /* ON DELETE CASCADE */
 GO
 ALTER TABLE [QWERTY].[Hotel_Regimenes] CHECK CONSTRAINT [FK_Hotel_Regimenes_Hotel]
 GO
 /****** Object:  ForeignKey [FK_Hotel_Regimenes_Regimen]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Hotel_Regimenes]  WITH CHECK ADD  CONSTRAINT [FK_Hotel_Regimenes_Regimen] FOREIGN KEY([Regimen_ID])
-REFERENCES [QWERTY].[Regimen] ([Regimen_ID])
+REFERENCES [QWERTY].[Regimen] ([Regimen_ID]) /* ON DELETE CASCADE */
 GO
 ALTER TABLE [QWERTY].[Hotel_Regimenes] CHECK CONSTRAINT [FK_Hotel_Regimenes_Regimen]
 GO
 /****** Object:  ForeignKey [FK_Personal_hoteles_Hotel]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Personal_hoteles]  WITH CHECK ADD  CONSTRAINT [FK_Personal_hoteles_Hotel] FOREIGN KEY([Hotel_ID])
-REFERENCES [QWERTY].[Hotel] ([Hotel_ID])
+REFERENCES [QWERTY].[Hotel] ([Hotel_ID]) /* ON DELETE CASCADE */
 GO
 ALTER TABLE [QWERTY].[Personal_hoteles] CHECK CONSTRAINT [FK_Personal_hoteles_Hotel]
 GO
 /****** Object:  ForeignKey [FK_Personal_hoteles_Usuarios]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Personal_hoteles]  WITH CHECK ADD  CONSTRAINT [FK_Personal_hoteles_Usuarios] FOREIGN KEY([Username])
-REFERENCES [QWERTY].[Usuarios] ([Username])
+REFERENCES [QWERTY].[Usuarios] ([Username]) /* ON DELETE CASCADE */
 GO
 ALTER TABLE [QWERTY].[Personal_hoteles] CHECK CONSTRAINT [FK_Personal_hoteles_Usuarios]
 GO
 /****** Object:  ForeignKey [FK_Reservas_Clientes]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Reservas]  WITH CHECK ADD  CONSTRAINT [FK_Reservas_Clientes] FOREIGN KEY([Cliente_ID])
-REFERENCES [QWERTY].[Clientes] ([Cliente_ID])
+REFERENCES [QWERTY].[Clientes] ([Cliente_ID]) /* ON DELETE CASCADE */
 GO
 ALTER TABLE [QWERTY].[Reservas] CHECK CONSTRAINT [FK_Reservas_Clientes]
 GO
@@ -566,43 +601,47 @@ GO
 
 /****** Object:  ForeignKey [FK_Reservas_canceladas_Clientes]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Reservas_canceladas]  WITH CHECK ADD  CONSTRAINT [FK_Reservas_canceladas_Clientes] FOREIGN KEY([Cliente_ID])
-REFERENCES [QWERTY].[Clientes] ([Cliente_ID])
+REFERENCES [QWERTY].[Clientes] ([Cliente_ID]) /* ON DELETE CASCADE */
 GO
 ALTER TABLE [QWERTY].[Reservas_canceladas] CHECK CONSTRAINT [FK_Reservas_canceladas_Clientes]
 GO
 /****** Object:  ForeignKey [FK_Reservas_canceladas_Reservas]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Reservas_canceladas]  WITH CHECK ADD  CONSTRAINT [FK_Reservas_canceladas_Reservas] FOREIGN KEY([Reserva_ID])
-REFERENCES [QWERTY].[Reservas] ([Reserva_ID])
+REFERENCES [QWERTY].[Reservas] ([Reserva_ID])/* ON DELETE CASCADE */
 GO
 ALTER TABLE [QWERTY].[Reservas_canceladas] CHECK CONSTRAINT [FK_Reservas_canceladas_Reservas]
 GO
 /****** Object:  ForeignKey [FK_Reservas_canceladas_Usuarios]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Reservas_canceladas]  WITH CHECK ADD  CONSTRAINT [FK_Reservas_canceladas_Usuarios] FOREIGN KEY([Username])
-REFERENCES [QWERTY].[Usuarios] ([Username])
+REFERENCES [QWERTY].[Usuarios] ([Username])/* ON DELETE CASCADE */
 GO
 ALTER TABLE [QWERTY].[Reservas_canceladas] CHECK CONSTRAINT [FK_Reservas_canceladas_Usuarios]
 GO
 /****** Object:  ForeignKey [FK_Roles_Funcionalidades_Funcionalidades]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Roles_Funcionalidades]  WITH CHECK ADD  CONSTRAINT [FK_Roles_Funcionalidades_Funcionalidades] FOREIGN KEY([Funcionalidad_ID])
 REFERENCES [QWERTY].[Funcionalidades] ([Funcionalidad_ID])
+/* ON DELETE CASCADE */
 GO
 ALTER TABLE [QWERTY].[Roles_Funcionalidades] CHECK CONSTRAINT [FK_Roles_Funcionalidades_Funcionalidades]
 GO
 /****** Object:  ForeignKey [FK_Roles_Funcionalidades_Roles]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Roles_Funcionalidades]  WITH CHECK ADD  CONSTRAINT [FK_Roles_Funcionalidades_Roles] FOREIGN KEY([Rol_ID])
 REFERENCES [QWERTY].[Roles] ([Rol_ID])
+/* ON DELETE CASCADE */
 GO
 ALTER TABLE [QWERTY].[Roles_Funcionalidades] CHECK CONSTRAINT [FK_Roles_Funcionalidades_Roles]
 GO
 /****** Object:  ForeignKey [FK_Usuarios_Roles_Roles]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Usuarios_Roles]  WITH CHECK ADD  CONSTRAINT [FK_Usuarios_Roles_Roles] FOREIGN KEY([Rol_ID])
 REFERENCES [QWERTY].[Roles] ([Rol_ID])
+/* ON DELETE CASCADE */
 GO
 ALTER TABLE [QWERTY].[Usuarios_Roles] CHECK CONSTRAINT [FK_Usuarios_Roles_Roles]
 GO
 /****** Object:  ForeignKey [FK_Usuarios_Roles_Usuarios]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Usuarios_Roles]  WITH CHECK ADD  CONSTRAINT [FK_Usuarios_Roles_Usuarios] FOREIGN KEY([Username])
 REFERENCES [QWERTY].[Usuarios] ([Username])
+/* ON DELETE CASCADE */
 GO
 ALTER TABLE [QWERTY].[Usuarios_Roles] CHECK CONSTRAINT [FK_Usuarios_Roles_Usuarios]
 GO
@@ -610,17 +649,21 @@ GO
 /****** Object:  ForeignKey [FK_Facturacion_Estadia]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE [QWERTY].[Facturacion]  WITH CHECK ADD  CONSTRAINT [FK_Facturacion_Estadia] FOREIGN KEY([Estadia_ID])
 REFERENCES [QWERTY].[Estadia] ([Estadia_ID])
+/* ON DELETE CASCADE */
 GO
 ALTER TABLE [QWERTY].[Facturacion] CHECK CONSTRAINT [FK_Facturacion_Estadia]
 GO
 
+
 /*reserva habitaciones fk*/
 ALTER TABLE [QWERTY].[Reservas_Habitaciones]  WITH CHECK ADD  CONSTRAINT [FK_Reserva_Habitacion_1] FOREIGN KEY([Reserva_ID])
-REFERENCES [QWERTY].[Reservas] ([Reserva_ID]);
+REFERENCES [QWERTY].[Reservas] ([Reserva_ID])
+/* ON DELETE CASCADE */;
 ALTER TABLE [QWERTY].[Reservas_Habitaciones] CHECK CONSTRAINT [FK_Reserva_Habitacion_1];
 
 ALTER TABLE [QWERTY].[Reservas_Habitaciones]  WITH CHECK ADD  CONSTRAINT [FK_Reserva_Habitacion_2] FOREIGN KEY([Habitacion_ID])
-REFERENCES [QWERTY].[Habitaciones] ([Habitacion_ID]);
+REFERENCES [QWERTY].[Habitaciones] ([Habitacion_ID])
+/* ON DELETE CASCADE */;
 ALTER TABLE [QWERTY].[Reservas_Habitaciones] CHECK CONSTRAINT [FK_Reserva_Habitacion_2];
 
 
@@ -807,27 +850,34 @@ UPDATE E
 
 /****** Object:  ForeignKey [FK_Estadia_Reserva]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE QWERTY.Estadia  WITH CHECK ADD  CONSTRAINT [FK_Estadia_Reservas] FOREIGN KEY([Reserva_ID])
-REFERENCES [QWERTY].[Reservas] ([Reserva_ID]);
+REFERENCES [QWERTY].[Reservas] ([Reserva_ID])
+/* ON DELETE CASCADE */;
 ALTER TABLE [QWERTY].[Estadia] CHECK CONSTRAINT [FK_Estadia_Reservas];
 
 /****** Object:  ForeignKey [FK_Reservas_descripcionReservas]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE QWERTY.Reservas WITH CHECK ADD  CONSTRAINT [FK_Reservas_Descripcion_reservas] FOREIGN KEY([Descripcion_ID])
-REFERENCES [QWERTY].[Descripcion_reservas] ([Descripcion_ID]);
+REFERENCES [QWERTY].[Descripcion_reservas] ([Descripcion_ID])
+/* ON DELETE CASCADE */;
 ALTER TABLE [QWERTY].[Reservas] CHECK CONSTRAINT [FK_Reservas_Descripcion_reservas];
+
 
 /****** Object:  ForeignKey [FK_Estadia_Reserva]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE QWERTY.Items_Facturacion  WITH CHECK ADD  CONSTRAINT [FK_Items_Facturas] FOREIGN KEY([Nro_Factura])
-REFERENCES [QWERTY].[Facturacion] ([Nro_Factura]);
+REFERENCES [QWERTY].[Facturacion] ([Nro_Factura])
+/* ON DELETE CASCADE */;
 ALTER TABLE [QWERTY].Items_Facturacion CHECK CONSTRAINT [FK_Items_Facturas];
 
 
-
 /*FALTA TRATAMIENTO CON LOS CLIENTES QUE TIENEN MAIL REPETIDO*/
-select * from QWERTY.Clientes C
- join
+/*	
+update C
+	set C.Repetidos = 1 
+	from QWERTY.Clientes C
+	
+	join	
 (SELECT  top 11782 C.Mail as mail, count(*) as cantidad 
 from QWERTY.Clientes C
 group by C.Mail
 order by cantidad desc)  clientesInvalidos
 on clientesInvalidos.mail = C.Mail 
-
+*/

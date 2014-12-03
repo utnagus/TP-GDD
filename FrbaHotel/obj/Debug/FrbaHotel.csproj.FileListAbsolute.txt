@@ -19,3 +19,28 @@ C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\Fr
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Usuario.confirmUpdateWindow.resources
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Cliente.AddClient.resources
 C:\Documents and Settings\Admin\Desktop\Repository\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Cliente.guestABM.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.exe
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.pdb
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\bin\Debug\FrbaHotel.exe.manifest
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\bin\Debug\FrbaHotel.application
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\bin\Debug\FrbaHotel.exe
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\bin\Debug\FrbaHotel.pdb
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Cliente.AddClient.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Cliente.guestABM.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Hotel.ABMHotel.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Hotel.ABMHotel_Alta.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Hotel.ABMHotel_Listado.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Hotel.ABMHotel_Menu.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Usuario.edition_window.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Usuario.confirmUpdateWindow.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Usuario.edit_window.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Usuario.userABM.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.index_window.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.Login.HotelSelector.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.Login.login_window.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.Login.RolSelector.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.Properties.Resources.resources
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.csproj.GenerateResource.Cache
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.exe.manifest
+C:\Users\Usuario\TP-GDD\repo\TP-GDD\FrbaHotel\obj\Debug\FrbaHotel.application

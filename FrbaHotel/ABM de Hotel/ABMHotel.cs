@@ -35,7 +35,7 @@ namespace FrbaHotel.ABM_de_Hotel
         private void button1_Click(object sender, EventArgs e)
         {
             
-            dt = coneccionHotel.dameListadoHoteles();
+            dt = coneccionHotel.dameListadoHoteles2();
             bsource.DataSource = dt;
             dataGridView1.DataSource = bsource;
 

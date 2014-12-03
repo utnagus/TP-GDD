@@ -36,7 +36,7 @@ namespace FrbaHotel.Home
 
             String rol ="";
             String db_password = "";
-            String query = "select	r.rol, u.password from	qwerty.usuarios u, qwerty.usuarios_roles ur,qwerty.roles r	where ur.rol_id = r.rol_id and	ur.username = '"+user+"';";
+            String query = "select r.rol, u.password from qwerty.usuarios u, qwerty.usuarios_roles ur,qwerty.roles r where ur.rol_id = r.rol_id and u.Username= ur.Username and	ur.username = '" + user + "';";
             DataTable dt = db.select_query(query);
             
             if (dt.Rows.Count != 0){

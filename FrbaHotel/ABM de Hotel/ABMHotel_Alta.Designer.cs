@@ -83,7 +83,6 @@
             this.textBox_telefono.Name = "textBox_telefono";
             this.textBox_telefono.Size = new System.Drawing.Size(145, 20);
             this.textBox_telefono.TabIndex = 4;
-            //this.textBox_telefono.TextChanged += new System.EventHandler(this.textBox_telefono_TextChanged);
             this.textBox_telefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_telefono_TextChanged);
             // 
             // textBox_regimenes
@@ -113,6 +112,8 @@
             this.textBox_estrellas.Name = "textBox_estrellas";
             this.textBox_estrellas.Size = new System.Drawing.Size(142, 20);
             this.textBox_estrellas.TabIndex = 8;
+            //this.textBox_estrellas.TextChanged += new System.EventHandler(this.textBox_estrellas_TextChanged);
+            this.textBox_estrellas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_estrellas_TextChanged);
             // 
             // button1
             // 

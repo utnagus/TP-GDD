@@ -22,7 +22,7 @@ namespace FrbaHotel.ABM_de_Hotel
         {
             hotel.setName(textBox_nombre.Text);
             hotel.setEmail(textBox_mail.Text);
-            hotel.setStars(Convert.ToInt32(textBox_estrellas.Text));
+            hotel.setStars(Convert.ToInt32(estrellas));
             hotel.setCity(textBox_ciudad.Text);
             hotel.setCountry(textBox_pais.Text);
             hotel.setTel(Convert.ToInt64(textBox_telefono.Text));
@@ -34,7 +34,7 @@ namespace FrbaHotel.ABM_de_Hotel
              los tipo de datos qe tienen qe ser*/
 
             /*hotel.inserta_Hotel(hotel.getName, hotel.getEmail, hotel.getTel, hotel.getDir, hotel.getStars, hotel.getCity, hotel.getCountry, hotel.getCreation_date);*/
-            hotel.inserta_Hotel(textBox_nombre.Text, textBox_mail.Text, Convert.ToInt64(textBox_telefono.Text), textBox_direccion.Text, Convert.ToInt32(textBox_estrellas.Text), textBox_ciudad.Text, textBox_pais.Text, Convert.ToDateTime(textBox_fecha.Text));
+            hotel.inserta_Hotel(textBox_nombre.Text, textBox_mail.Text, Convert.ToInt64(textBox_telefono.Text), textBox_direccion.Text, Convert.ToInt32(estrellas), textBox_ciudad.Text, textBox_pais.Text, Convert.ToDateTime(textBox_fecha.Text));
 
 
 
@@ -50,16 +50,61 @@ namespace FrbaHotel.ABM_de_Hotel
             }
         }
 
-        private void textBox_estrellas_TextChanged(object sender, KeyPressEventArgs e)
+        
+        private void textBox_nombre_TextChanged(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            if (!(char.IsLetterOrDigit(e.KeyChar)) && (e.KeyChar != ',') && (e.KeyChar != ' '))
             {
-                MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Solo se permiten letras, digitos y el uso de la coma(,)", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 e.Handled = true;
                 return;
             }
-
         }
+
+        private void textBox_mail_TextChanged(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetterOrDigit(e.KeyChar)) && (e.KeyChar != '@') && (e.KeyChar != '.'))
+            {
+                MessageBox.Show("Solo se permiten numeros, letras y @", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void textBox_direccion_TextChanged(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetterOrDigit(e.KeyChar)) && (e.KeyChar != ',') && (e.KeyChar != ' '))
+            {
+                MessageBox.Show("Solo se permiten letras, digitos y el uso de la coma(,)", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void textBox_ciudad_TextChanged(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetterOrDigit(e.KeyChar))  && (e.KeyChar != ' '))
+            {
+                MessageBox.Show("Solo se permiten letras, digitos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void textBox_pais_TextChanged(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetterOrDigit(e.KeyChar)) && (e.KeyChar != ' '))
+            {
+                MessageBox.Show("Solo se permiten letras, digitos", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+
+
+        
+        
 
         
     }

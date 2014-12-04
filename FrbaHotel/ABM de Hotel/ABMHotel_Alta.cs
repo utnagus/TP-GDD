@@ -19,16 +19,20 @@ namespace FrbaHotel.ABM_de_Hotel
         public bool vacio;
         private void validar(Form form) { 
         foreach (Control cont in form.Controls){
-            if (cont is TextBox && cont.Text == String.Empty) { vacio = true; }
+            if (cont is TextBox && (cont.Text == String.Empty)){ vacio = true; }
         }
         if (vacio == true) { MessageBox.Show("Por favor llene todos los campos"); }
+
+        if (regimenes.CheckedItems.Count < 1) { vacio = true; MessageBox.Show("Por favor complete el/los regimenes deseados"); }
         
         }
+        
         private Hotel hotel = new Hotel();
         private void button1_Click(object sender, EventArgs e)
         {
             vacio = false;
             validar(this);
+            
             if(vacio==false){
             hotel.setName(textBox_nombre.Text);
             hotel.setEmail(textBox_mail.Text);
@@ -53,9 +57,10 @@ namespace FrbaHotel.ABM_de_Hotel
             
             //hotel.inserta_Hotel(textBox_nombre.Text, textBox_mail.Text, Convert.ToInt64(textBox_telefono.Text), textBox_direccion.Text, Convert.ToInt32(estrellas), textBox_ciudad.Text, textBox_pais.Text, Convert.ToDateTime(textBox_fecha.Text));
             hotel.inserta_Hotel();
+            this.Close();
             }
-            
 
+            
         }
 
         private void textBox_telefono_TextChanged(object sender,  KeyPressEventArgs  e)

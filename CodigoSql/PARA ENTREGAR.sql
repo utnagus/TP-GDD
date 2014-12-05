@@ -368,6 +368,7 @@ IF OBJECT_ID(N'qwerty.items_facturacion', N'U') IS NOT NULL
 CREATE TABLE [QWERTY].[Items_Facturacion](
 	[Nro_Item] [int] IDENTITY(1,1) NOT NULL ,
 	[Nro_Factura] [int] ,
+	estadia_id int,
 	Consumible_ID int,
 	cantidad int,
 	valor numeric(18,2)
@@ -668,7 +669,12 @@ CREATE INDEX indexDocCliente
 CREATE INDEX indexReserva
     ON Qwerty.Reservas(Codigo);
     
-    
+/*inserto usuario*/
+insert into QWERTY.Usuarios (Username,Password,Nombre,Apellido,DNI,Mail,Telefono,Direccion,Fecha_nacimiento,status )
+values ('Migracion','Migracion','Migracion','Migracion',1,'Migracion',1,'Migracion',GETDATE(),0)
+
+
+
 /*inserto hoteles*/
 insert into QWERTY.Hotel (Nombre,Mail,Telefono,Direccion,Estrellas,Ciudad,Pais,Fecha_creacion)
 select distinct
@@ -752,6 +758,8 @@ on clientesInvalidos.mail = C.Mail
 insert into QWERTY.Consumibles (Consumible_ID,Producto,Precio)
 values (1,'Estadia', null);
 insert into QWERTY.Consumibles (Consumible_ID,Producto,Precio)
+values (2,'Recupero', null);
+insert into QWERTY.Consumibles (Consumible_ID,Producto,Precio)
 select distinct m.Consumible_Codigo, m.Consumible_Descripcion,m.Consumible_Precio 
 from gd_esquema.Maestra m where m.Consumible_Codigo is not null
 
@@ -820,11 +828,11 @@ M.Reserva_Codigo
  
 
 /*items facturas*/
-
-insert into QWERTY.Items_Facturacion (Nro_Factura, Consumible_ID, cantidad,valor ) 
+insert into QWERTY.Items_Facturacion (Nro_Factura, Consumible_ID,estadia_id, cantidad,valor ) 
 select 
 M.Factura_Nro,
 M.Consumible_Codigo,
+(select top 1 e.Estadia_ID from qwerty.estadia e where e.CodReserva = M.Reserva_Codigo),
 M.Item_Factura_Cantidad,
 M.Item_Factura_Monto
 from gd_esquema.Maestra M
@@ -859,6 +867,11 @@ UPDATE E
 	inner join [GD2C2014].[QWERTY].[Reservas] R
 	on R.Codigo = E.CodReserva;
 
+update it 
+set it.estadia_id = (select estadia_id from qwerty.Facturacion f where f.Nro_Factura = estadia_id)
+from QWERTY.Items_Facturacion it;
+
+
 
 /*reservas canceladas*/	
 insert into QWERTY.Reservas_canceladas (Reserva_ID, Cliente_ID,Motivo,Username,fecha)
@@ -882,8 +895,50 @@ REFERENCES [QWERTY].[Descripcion_reservas] ([Descripcion_ID])
 /* ON DELETE CASCADE */;
 ALTER TABLE [QWERTY].[Reservas] CHECK CONSTRAINT [FK_Reservas_Descripcion_reservas];
 
-/****** Object:  ForeignKey [FK_Estadia_Reserva]    Script Date: 10/11/2014 18:49:09 ******/
+/****** Object:  ForeignKey []    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE QWERTY.Items_Facturacion  WITH CHECK ADD  CONSTRAINT [FK_Items_Facturas] FOREIGN KEY([Nro_Factura])
 REFERENCES [QWERTY].[Facturacion] ([Nro_Factura])
 /* ON DELETE CASCADE */;
 ALTER TABLE [QWERTY].Items_Facturacion CHECK CONSTRAINT [FK_Items_Facturas];
+
+/****** Object:  ForeignKey [fk_items_facturacion_estadia]    Script Date: 10/11/2014 18:49:09 ******/
+ALTER TABLE QWERTY.Items_Facturacion  WITH CHECK ADD  CONSTRAINT [fk_items_facturacion_estadia] FOREIGN KEY([Estadia_id])
+REFERENCES [QWERTY].[estadia] ([estadia_id])
+/* ON DELETE CASCADE */;
+ALTER TABLE [QWERTY].Items_Facturacion CHECK CONSTRAINT [fk_items_facturacion_estadia];
+
+
+go
+CREATE procedure facturar
+@estadiaId int,
+@numero_factura int
+
+as
+ 
+declare @total int;
+declare @totalItems int;
+declare @totalEstadia int;
+declare @numeroItem int;
+declare @recupero int;
+declare @regimen int;
+
+select @regimen = r.CodRegimen from QWERTY.estadia e join QWERTY.Reservas r on r.Reserva_ID = e.Estadia_ID where e.Estadia_ID = @estadiaId;
+select @numeroItem = max(nro_item) from qwerty.items_facturacion;
+select @totalItems = sum(valor) from qwerty.items_facturacion where estadia_id = @estadiaId;
+select @totalEstadia = datediff(day,e.fecha_inicio,e.fecha_fin) *  r.precio from qwerty.estadia e join qwerty.reservas res on res.reserva_id = e.reserva_id join qwerty.regimen r on res.codregimen = r.codigo  where e.estadia_id = @estadiaId;
+
+select @recupero = case @regimen  when 3 then @totalItems * -1 else 0 end ;
+
+select @total = @totalItems + @totalEstadia + @recupero;
+
+insert into QWERTY.Facturacion (Nro_Factura, Estadia_ID, Fecha, Total)
+values (@numero_factura, @estadiaId, GETDATE(), @total);
+
+insert into qwerty.items_facturacion ( nro_factura,estadia_id,consumible_id,cantidad,valor)
+values ( @numero_factura, @estadiaId, 1, (select datediff(day,e.fecha_inicio,e.fecha_fin) from qwerty.estadia e join qwerty.reservas res on res.reserva_id = e.reserva_id join qwerty.regimen r on res.codregimen = r.codigo  where e.estadia_id = @estadiaId), @totalEstadia)
+
+insert into qwerty.items_facturacion ( nro_factura,estadia_id,consumible_id,cantidad,valor)
+values ( @numero_factura, @estadiaId, 2, 1 , @recupero);
+
+
+go

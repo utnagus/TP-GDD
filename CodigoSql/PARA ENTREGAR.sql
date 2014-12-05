@@ -16,6 +16,18 @@ dpto char
 );
 
 
+/****** Object:  Table [QWERTY].[Hotel_Bajas]    Script Date: 10/11/2014 18:49:09 ******/
+IF OBJECT_ID(N'qwerty.Hotel_Bajas', N'U') IS NOT NULL
+	DROP TABLE qwerty.Hotel_Bajas;
+CREATE TABLE  qwerty.Hotel_Bajas (
+Hotel_Bajas_id int identity(1,1) primary key not null ,
+Hotel_ID int not null,
+desde datetime not null,
+hasta datetime not null
+);
+
+
+
 /****** Object:  Table [QWERTY].[Roles]    Script Date: 10/11/2014 18:49:09 ******/
 
 SET ANSI_NULLS ON
@@ -97,7 +109,7 @@ IF OBJECT_ID(N'qwerty.consumibles', N'U') IS NOT NULL
 CREATE TABLE [QWERTY].[Consumibles](
 	[Consumible_ID] [int] NOT NULL,
 	[Producto] [varchar](50) NOT NULL,
-	[Precio] [float] NOT NULL,
+	[Precio] [float] ,
  CONSTRAINT [PK_Consumibles] PRIMARY KEY CLUSTERED 
 (
 	[Consumible_ID] ASC
@@ -171,7 +183,7 @@ CREATE TABLE [QWERTY].[Hotel](
 	[Ciudad] [nvarchar](255),
 	[Pais] [nvarchar](255),
 	[Fecha_creacion] [date],
-	Estado int default 1,
+	Estado int default 1
  CONSTRAINT [PK_Hotel] PRIMARY KEY CLUSTERED 
 (
 	[Hotel_ID] ASC
@@ -312,6 +324,7 @@ CREATE TABLE [QWERTY].[Reservas_canceladas](
 	[Cliente_ID] [int] NOT NULL,
 	[Motivo] [nchar](10) NOT NULL,
 	[Username] [varchar](50) NOT NULL,
+	fecha datetime default getdate(),
  CONSTRAINT [PK_Reservas_canceladas] PRIMARY KEY CLUSTERED 
 (
 	[Reserva_ID] ASC
@@ -354,7 +367,7 @@ IF OBJECT_ID(N'qwerty.items_facturacion', N'U') IS NOT NULL
 	DROP TABLE qwerty.items_facturacion;
 CREATE TABLE [QWERTY].[Items_Facturacion](
 	[Nro_Item] [int] IDENTITY(1,1) NOT NULL ,
-	[Nro_Factura] [int] NOT NULL,
+	[Nro_Factura] [int] ,
 	Consumible_ID int,
 	cantidad int,
 	valor numeric(18,2)
@@ -737,6 +750,8 @@ on clientesInvalidos.mail = C.Mail
 
 /*Cargo tabla Consumibles*/
 insert into QWERTY.Consumibles (Consumible_ID,Producto,Precio)
+values (1,'Estadia', null);
+insert into QWERTY.Consumibles (Consumible_ID,Producto,Precio)
 select distinct m.Consumible_Codigo, m.Consumible_Descripcion,m.Consumible_Precio 
 from gd_esquema.Maestra m where m.Consumible_Codigo is not null
 
@@ -812,10 +827,13 @@ M.Factura_Nro,
 M.Consumible_Codigo,
 M.Item_Factura_Cantidad,
 M.Item_Factura_Monto
-
 from gd_esquema.Maestra M
-
 where M.Factura_Nro is not null;
+
+update it 
+set it.Consumible_ID = 1
+from QWERTY.Items_Facturacion it
+where it.Consumible_ID is null;
 
 /*facturas*/
 INSERT INTO [GD2C2014].[QWERTY].[Facturacion]

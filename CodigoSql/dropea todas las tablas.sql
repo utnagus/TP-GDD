@@ -16,12 +16,12 @@ drop table qwerty.items_facturacion;
 drop table qwerty.facturacion;
 drop table qwerty.tipo_habitacion;
 drop table qwerty.estadia;
-drop table qwerty.domicilio;
+
 drop table qwerty.reservas;
 drop table qwerty.descripcion_reservas;
 drop table qwerty.clientes;
 drop table qwerty.tipo_doc;
-
+drop table qwerty.domicilio;
 
 
 

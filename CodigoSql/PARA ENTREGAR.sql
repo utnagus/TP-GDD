@@ -655,6 +655,16 @@ REFERENCES [QWERTY].[Habitaciones] ([Habitacion_ID])
 ALTER TABLE [QWERTY].[Reservas_Habitaciones] CHECK CONSTRAINT [FK_Reserva_Habitacion_2];
 
 
+/****** Object:  ForeignKey [fk_items_facturacion_estadia]    Script Date: 10/11/2014 18:49:09 ******/
+ALTER TABLE QWERTY.Items_Facturacion  WITH CHECK ADD  CONSTRAINT [fk_items_facturacion_estadia] FOREIGN KEY([Estadia_id])
+REFERENCES [QWERTY].[estadia] ([estadia_id])
+/* ON DELETE CASCADE */;
+ALTER TABLE [QWERTY].Items_Facturacion CHECK CONSTRAINT [fk_items_facturacion_estadia];
+
+
+
+
+
 /* INDICES */
 /*CREATE INDEX indexMaestra
     ON gd_esquema.Maestra(Cliente_Pasaporte_Nro);
@@ -867,11 +877,6 @@ UPDATE E
 	inner join [GD2C2014].[QWERTY].[Reservas] R
 	on R.Codigo = E.CodReserva;
 
-update it 
-set it.estadia_id = (select estadia_id from qwerty.Facturacion f where f.Nro_Factura = estadia_id)
-from QWERTY.Items_Facturacion it;
-
-
 
 /*reservas canceladas*/	
 insert into QWERTY.Reservas_canceladas (Reserva_ID, Cliente_ID,Motivo,Username,fecha)
@@ -900,12 +905,6 @@ ALTER TABLE QWERTY.Items_Facturacion  WITH CHECK ADD  CONSTRAINT [FK_Items_Factu
 REFERENCES [QWERTY].[Facturacion] ([Nro_Factura])
 /* ON DELETE CASCADE */;
 ALTER TABLE [QWERTY].Items_Facturacion CHECK CONSTRAINT [FK_Items_Facturas];
-
-/****** Object:  ForeignKey [fk_items_facturacion_estadia]    Script Date: 10/11/2014 18:49:09 ******/
-ALTER TABLE QWERTY.Items_Facturacion  WITH CHECK ADD  CONSTRAINT [fk_items_facturacion_estadia] FOREIGN KEY([Estadia_id])
-REFERENCES [QWERTY].[estadia] ([estadia_id])
-/* ON DELETE CASCADE */;
-ALTER TABLE [QWERTY].Items_Facturacion CHECK CONSTRAINT [fk_items_facturacion_estadia];
 
 
 go

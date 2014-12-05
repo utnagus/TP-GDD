@@ -148,6 +148,23 @@ GO
 SET ANSI_PADDING OFF
 GO
 
+IF OBJECT_ID(N'qwerty.clientesRepetidos', N'U') IS NOT NULL
+	DROP TABLE qwerty.clientesRepetidos;
+CREATE TABLE [QWERTY].[clientesRepetidos](
+	[Cliente_ID2] [int] ,
+	[Mail] [varchar](50) NOT NULL,
+	
+ CONSTRAINT [PK_Clientes2] PRIMARY KEY CLUSTERED 
+(
+	[Cliente_ID2] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+
+
+
 /****** Object:  Table [QWERTY].[Funcionalidades]    Script Date: 10/11/2014 18:49:09 ******/
 SET ANSI_NULLS ON
 GO
@@ -754,6 +771,7 @@ m.Cliente_Nacionalidad,m.Cliente_Fecha_Nac,1,m.Cliente_Pasaporte_Nro from gd_esq
 	
 update C
 	set C.Repetidos = 1 
+	
 	from QWERTY.Clientes C
 	
 	join	
@@ -762,6 +780,17 @@ from QWERTY.Clientes C
 group by C.Mail
 order by cantidad desc) clientesInvalidos
 on clientesInvalidos.mail = C.Mail 
+
+insert into QWERTY.clientesRepetidos (Cliente_ID2,Mail) 
+select C.Cliente_ID, C.Mail from QWERTY.Clientes C
+where C.Repetidos = 1;
+
+update C
+	set C.Mail = null	
+	from QWERTY.Clientes C
+	where C.Repetidos = 1;
+
+
 
 
 /*Cargo tabla Consumibles*/

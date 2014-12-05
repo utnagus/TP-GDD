@@ -2,6 +2,7 @@
 {
     partial class ABMHotel_Alta
     {
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -33,10 +34,8 @@
             this.textBox_pais = new System.Windows.Forms.TextBox();
             this.textBox_mail = new System.Windows.Forms.TextBox();
             this.textBox_telefono = new System.Windows.Forms.TextBox();
-            this.textBox_regimenes = new System.Windows.Forms.TextBox();
             this.textBox_direccion = new System.Windows.Forms.TextBox();
             this.textBox_fecha = new System.Windows.Forms.TextBox();
-            this.textBox_estrellas = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,6 +46,10 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.estrellas = new System.Windows.Forms.NumericUpDown();
+            this.regimenes = new System.Windows.Forms.CheckedListBox();
+            ((System.ComponentModel.ISupportInitialize)(this.estrellas)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox_nombre
@@ -55,6 +58,7 @@
             this.textBox_nombre.Name = "textBox_nombre";
             this.textBox_nombre.Size = new System.Drawing.Size(146, 20);
             this.textBox_nombre.TabIndex = 0;
+            this.textBox_nombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_nombre_TextChanged);
             // 
             // textBox_ciudad
             // 
@@ -62,6 +66,7 @@
             this.textBox_ciudad.Name = "textBox_ciudad";
             this.textBox_ciudad.Size = new System.Drawing.Size(143, 20);
             this.textBox_ciudad.TabIndex = 1;
+            this.textBox_ciudad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_pais_TextChanged);
             // 
             // textBox_pais
             // 
@@ -69,6 +74,7 @@
             this.textBox_pais.Name = "textBox_pais";
             this.textBox_pais.Size = new System.Drawing.Size(143, 20);
             this.textBox_pais.TabIndex = 2;
+            this.textBox_pais.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_pais_TextChanged);
             // 
             // textBox_mail
             // 
@@ -76,6 +82,7 @@
             this.textBox_mail.Name = "textBox_mail";
             this.textBox_mail.Size = new System.Drawing.Size(146, 20);
             this.textBox_mail.TabIndex = 3;
+            this.textBox_mail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_mail_TextChanged);
             // 
             // textBox_telefono
             // 
@@ -83,15 +90,7 @@
             this.textBox_telefono.Name = "textBox_telefono";
             this.textBox_telefono.Size = new System.Drawing.Size(145, 20);
             this.textBox_telefono.TabIndex = 4;
-            //this.textBox_telefono.TextChanged += new System.EventHandler(this.textBox_telefono_TextChanged);
             this.textBox_telefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_telefono_TextChanged);
-            // 
-            // textBox_regimenes
-            // 
-            this.textBox_regimenes.Location = new System.Drawing.Point(451, 109);
-            this.textBox_regimenes.Name = "textBox_regimenes";
-            this.textBox_regimenes.Size = new System.Drawing.Size(142, 20);
-            this.textBox_regimenes.TabIndex = 5;
             // 
             // textBox_direccion
             // 
@@ -99,24 +98,18 @@
             this.textBox_direccion.Name = "textBox_direccion";
             this.textBox_direccion.Size = new System.Drawing.Size(144, 20);
             this.textBox_direccion.TabIndex = 6;
+            this.textBox_direccion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_direccion_TextChanged);
             // 
             // textBox_fecha
             // 
-            this.textBox_fecha.Location = new System.Drawing.Point(452, 156);
+            this.textBox_fecha.Location = new System.Drawing.Point(450, 200);
             this.textBox_fecha.Name = "textBox_fecha";
             this.textBox_fecha.Size = new System.Drawing.Size(141, 20);
             this.textBox_fecha.TabIndex = 7;
             // 
-            // textBox_estrellas
-            // 
-            this.textBox_estrellas.Location = new System.Drawing.Point(152, 198);
-            this.textBox_estrellas.Name = "textBox_estrellas";
-            this.textBox_estrellas.Size = new System.Drawing.Size(142, 20);
-            this.textBox_estrellas.TabIndex = 8;
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(452, 198);
+            this.button1.Location = new System.Drawing.Point(452, 251);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(141, 29);
             this.button1.TabIndex = 9;
@@ -199,17 +192,65 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(347, 159);
+            this.label9.Location = new System.Drawing.Point(345, 207);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(99, 13);
             this.label9.TabIndex = 18;
             this.label9.Text = "Fecha de creación:";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(228, 279);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(169, 13);
+            this.label10.TabIndex = 19;
+            this.label10.Text = "Todos los campos son obligatorios";
+            // 
+            // estrellas
+            // 
+            this.estrellas.Location = new System.Drawing.Point(149, 200);
+            this.estrellas.Maximum = new decimal(new int[] {
+            6,
+            0,
+            0,
+            0});
+            this.estrellas.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.estrellas.Name = "estrellas";
+            this.estrellas.Size = new System.Drawing.Size(144, 20);
+            this.estrellas.TabIndex = 20;
+            this.estrellas.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // regimenes
+            // 
+            this.regimenes.FormattingEnabled = true;
+            this.regimenes.Items.AddRange(new object[] {
+            "Pensión completa",
+            "Media pensión",
+            "All inclusive moderado",
+            "All inclusive"});
+            this.regimenes.Location = new System.Drawing.Point(452, 109);
+            this.regimenes.Name = "regimenes";
+            this.regimenes.Size = new System.Drawing.Size(139, 64);
+            this.regimenes.TabIndex = 21;
+            this.regimenes.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            // 
             // ABMHotel_Alta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(635, 262);
+            this.ClientSize = new System.Drawing.Size(635, 301);
+            this.Controls.Add(this.regimenes);
+            this.Controls.Add(this.estrellas);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -220,10 +261,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox_estrellas);
             this.Controls.Add(this.textBox_fecha);
             this.Controls.Add(this.textBox_direccion);
-            this.Controls.Add(this.textBox_regimenes);
             this.Controls.Add(this.textBox_telefono);
             this.Controls.Add(this.textBox_mail);
             this.Controls.Add(this.textBox_pais);
@@ -231,6 +270,7 @@
             this.Controls.Add(this.textBox_nombre);
             this.Name = "ABMHotel_Alta";
             this.Text = "Alta";
+            ((System.ComponentModel.ISupportInitialize)(this.estrellas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,10 +283,8 @@
         private System.Windows.Forms.TextBox textBox_pais;
         private System.Windows.Forms.TextBox textBox_mail;
         private System.Windows.Forms.TextBox textBox_telefono;
-        private System.Windows.Forms.TextBox textBox_regimenes;
         private System.Windows.Forms.TextBox textBox_direccion;
         private System.Windows.Forms.TextBox textBox_fecha;
-        private System.Windows.Forms.TextBox textBox_estrellas;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -257,5 +295,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.NumericUpDown estrellas;
+        private System.Windows.Forms.CheckedListBox regimenes;
     }
 }

@@ -16,15 +16,10 @@ namespace FrbaHotel.Model
         private String country;
         private String direccion;
 
-        private DateTime creation_date = new DateTime();
-        private List<String> regimenes = new List<String>();
+        private DateTime creation_date;
+        private List<int> regimenes = new List<int>();
  
-
-        
-        
-        
-
-        
+               
 
         /*setters*/
         public Hotel() { }
@@ -36,6 +31,8 @@ namespace FrbaHotel.Model
         public void setCountry(String country) { this.country = country; }
         public void setTel(Int64 tel) { this.tel = tel; }
         public void setDireccion(String direccion) { this.direccion = direccion; }
+        public void setRegimenes(int reg) { this.regimenes.Add(reg); }
+        public void setFecha(DateTime fecha) { this.creation_date = fecha; }
 
 
         public String getName() { return this.name; }
@@ -43,10 +40,17 @@ namespace FrbaHotel.Model
 
         private DataBase db = new DataBase();
 
-        public void inserta_Hotel(String name, String mail, Int64 tel, String dir, Int32 star, String city, String pais, DateTime fecha)
+        public void inserta_Hotel(/*String name, String mail, Int64 tel, String dir, Int32 star, String city, String pais, DateTime fecha, List<int> reg*/)
         {
-            String query = "insert into QWERTY.Hotel (Nombre,Mail,Telefono,Direccion,Estrellas,Ciudad,Pais,Fecha_creacion) values ('" + name + "','" + mail + "'," + tel + ",'" + dir + "'," + star + ",'" + city + "','" + pais + "','" + fecha + "')";
+            String query = "insert into QWERTY.Hotel (Nombre,Mail,Telefono,Direccion,Estrellas,Ciudad,Pais,Fecha_creacion) values ('" + this.name + "','" + this.email + "'," + this.tel + ",'" + this.direccion + "'," + this.stars + ",'" + this.city + "','" + this.country + "','" + this.creation_date + "')";
             db.insert_query(query);
+
+            foreach (var reg in regimenes) {
+                int i = reg;
+                i++;
+                String query2 = "declare @id int select @id=h.Hotel_ID from QWERTY.Hotel h where h.Nombre='" + this.name + "' insert into QWERTY.Hotel_Regimenes (Hotel_ID,Regimen_ID) values (@id,"+i+")";
+                db.insert_query(query2);
+            }
         }
 
 

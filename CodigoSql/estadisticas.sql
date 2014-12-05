@@ -10,7 +10,7 @@ on h.Habitacion_ID = rh.Habitacion_ID
 join QWERTY.Hotel ho
 on ho.Hotel_ID =  h.Hotel_ID
 
-where rc.fecha between '2010-01-01' and '2014-01-01'
+where rc.fecha between '2000-01-01' and '2016-01-01'
 
 group by h.Hotel_ID, ho.Nombre
 order by cantidad desc;
@@ -34,7 +34,7 @@ on h.Habitacion_ID = rh.Habitacion_ID
 join QWERTY.Hotel ho
 on ho.Hotel_ID =  h.Hotel_ID
 
-where f.Fecha between '2010-01-01' and '2014-01-01'
+where f.Fecha between '2000-01-01' and '2016-01-01'
 
 group by h.Hotel_ID, ho.Nombre
 order by cantidadTotal desc;
@@ -45,9 +45,9 @@ select top 5 h.Nombre ,  sum(DATEDIFF(day,hb.desde,hb.hasta)) as cantidad from Q
 join QWERTY.Hotel h
 on h.Hotel_ID = hb.Hotel_ID
 
-where hb.desde between '2010-01-01' and '2014-01-01'
-or hb.hasta between '2010-01-01' and '2014-01-01'
-or (hb.hasta > '2014-01-01' and hb.desde < '2010-01-01')
+where hb.desde between '2000-01-01' and '2016-01-01'
+or hb.hasta between '2000-01-01' and '2016-01-01'
+or (hb.hasta > '2016-01-01' and hb.desde < '2000-01-01')
 
 group by h.Hotel_ID , h.Nombre
 order by cantidad desc;
@@ -67,9 +67,9 @@ on h.Habitacion_ID = rh.Habitacion_ID
 join QWERTY.Hotel ho
 on ho.Hotel_ID = h.Hotel_ID
 
-where e.Fecha_Inicio between '2010-01-01' and '2014-01-01'
-or e.Fecha_Fin between '2010-01-01' and '2014-01-01'
-or (e.Fecha_Fin > '2014-01-01' and e.Fecha_Inicio < '2010-01-01')
+where e.Fecha_Inicio between '2000-01-01' and '2016-01-01'
+or e.Fecha_Fin between '2000-01-01' and '2016-01-01'
+or (e.Fecha_Fin > '2016-01-01' and e.Fecha_Inicio < '2000-01-01')
 
 
 group by h.Habitacion_ID, ho.Nombre, h.Numero 
@@ -104,7 +104,7 @@ join QWERTY.Items_Facturacion it2
 on f.Nro_Factura = it2.Nro_Factura
 and it2.Consumible_ID != 1
 
-where f.Fecha between '2010-01-01' and '2014-01-01'
+where f.Fecha between '2000-01-01' and '2016-01-01'
 
 group by cl.Cliente_ID, cl.Apellido, cl.Nombre
 order by estadias, items;

@@ -858,7 +858,17 @@ UPDATE E
 	
 	inner join [GD2C2014].[QWERTY].[Reservas] R
 	on R.Codigo = E.CodReserva;
-	
+
+
+/*reservas canceladas*/	
+insert into QWERTY.Reservas_canceladas (Reserva_ID, Cliente_ID,Motivo,Username,fecha)
+select r.Reserva_ID, r.Cliente_ID, 'Migracion','Migracion',GETDATE() from QWERTY.Reservas r
+left join QWERTY.Estadia e
+on e.Reserva_ID = r.Reserva_ID
+where e.Estadia_ID is null
+and r.Fecha_inicio < GETDATE();
+
+
 
 /****** Object:  ForeignKey [FK_Estadia_Reserva]    Script Date: 10/11/2014 18:49:09 ******/
 ALTER TABLE QWERTY.Estadia  WITH CHECK ADD  CONSTRAINT [FK_Estadia_Reservas] FOREIGN KEY([Reserva_ID])

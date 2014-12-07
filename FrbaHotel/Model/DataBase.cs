@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace FrbaHotel.Model
 {
@@ -19,8 +20,10 @@ namespace FrbaHotel.Model
     class DataBase
     {
         private SqlConnection conexion = new SqlConnection("Data Source=localhost\\SQLSERVER2008;Initial Catalog=GD2C2014;Persist Security Info=True;User ID=sa;Password=gestiondedatos");
-      
-        public DataBase() { }
+
+       // private SqlConnection conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["conexionHotel"].ConnectionString);
+        
+       public DataBase() { }
 
         public void openConnection() {
             conexion.Open();

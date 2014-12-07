@@ -136,6 +136,9 @@ namespace FrbaHotel.ABM_de_Hotel
 
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
         {
+            //Dia d = new Dia();
+            //monthCalendar1.SetDate(d.Hoy());
+                
             textBox_fecha.Text = monthCalendar1.SelectionStart.ToLongDateString();
             monthCalendar1.Visible = false;
 
@@ -147,6 +150,8 @@ namespace FrbaHotel.ABM_de_Hotel
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Dia d = new Dia();
+            monthCalendar1.SetDate(d.Hoy());
             monthCalendar1.Show();
         }
 

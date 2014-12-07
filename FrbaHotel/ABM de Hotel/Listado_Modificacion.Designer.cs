@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.ABM_de_Hotel
 {
-    partial class ABMHotel_Alta
+    partial class Listado_Modificacion
     {
 
         /// <summary>
@@ -51,6 +51,9 @@
             this.regimenes = new System.Windows.Forms.CheckedListBox();
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.button2 = new System.Windows.Forms.Button();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.estrellas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,7 +116,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(452, 251);
+            this.button1.Location = new System.Drawing.Point(220, 270);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(141, 29);
             this.button1.TabIndex = 9;
@@ -205,7 +208,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(228, 279);
+            this.label10.Location = new System.Drawing.Point(21, 286);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(169, 13);
             this.label10.TabIndex = 19;
@@ -265,11 +268,47 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // ABMHotel_Alta
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(505, 253);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(55, 17);
+            this.radioButton1.TabIndex = 24;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Activo";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(589, 253);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(89, 17);
+            this.radioButton2.TabIndex = 25;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Dado de baja";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(438, 257);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(43, 13);
+            this.label11.TabIndex = 26;
+            this.label11.Text = "Estado:";
+            // 
+            // Listado_Modificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(769, 301);
+            this.ClientSize = new System.Drawing.Size(769, 327);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.monthCalendar1);
             this.Controls.Add(this.regimenes);
@@ -292,8 +331,8 @@
             this.Controls.Add(this.textBox_pais);
             this.Controls.Add(this.textBox_ciudad);
             this.Controls.Add(this.textBox_nombre);
-            this.Name = "ABMHotel_Alta";
-            this.Text = "Alta";
+            this.Name = "Listado_Modificacion";
+            this.Text = "Modificación";
             this.Load += new System.EventHandler(this.ABMHotel_Alta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.estrellas)).EndInit();
             this.ResumeLayout(false);
@@ -303,27 +342,30 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox_nombre;
-        private System.Windows.Forms.TextBox textBox_ciudad;
-        private System.Windows.Forms.TextBox textBox_pais;
-        private System.Windows.Forms.TextBox textBox_mail;
-        private System.Windows.Forms.TextBox textBox_telefono;
-        private System.Windows.Forms.TextBox textBox_direccion;
-        private System.Windows.Forms.TextBox textBox_fecha;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.NumericUpDown estrellas;
-        private System.Windows.Forms.CheckedListBox regimenes;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
-        private System.Windows.Forms.Button button2;
+        public System.Windows.Forms.TextBox textBox_nombre;
+        public System.Windows.Forms.TextBox textBox_ciudad;
+        public System.Windows.Forms.TextBox textBox_pais;
+        public System.Windows.Forms.TextBox textBox_mail;
+        public System.Windows.Forms.TextBox textBox_telefono;
+        public System.Windows.Forms.TextBox textBox_direccion;
+        public System.Windows.Forms.TextBox textBox_fecha;
+        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.Label label8;
+        public System.Windows.Forms.Label label9;
+        public System.Windows.Forms.NumericUpDown estrellas;
+        public System.Windows.Forms.CheckedListBox regimenes;
+        public System.Windows.Forms.MonthCalendar monthCalendar1;
+        public System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label11;
+        public System.Windows.Forms.RadioButton radioButton1;
+        public System.Windows.Forms.RadioButton radioButton2;
     }
 }

@@ -10,17 +10,20 @@ using FrbaHotel.Model;
 
 namespace FrbaHotel.ABM_de_Hotel
 {
-    public partial class ABMHotel_Alta : Form
+    public partial class Listado_Modificacion : Form
     {
-        public ABMHotel_Alta()
+        public Listado_Modificacion(Int32 id)
         {
             InitializeComponent();
             monthCalendar1.Visible = false;
             monthCalendar1.MaxSelectionCount = 1;
+            this.id = id;
             
             
         }
         public bool vacio;
+        Int32 id;
+        Int32 estado;
         
             
         
@@ -49,13 +52,16 @@ namespace FrbaHotel.ABM_de_Hotel
             hotel.setTel(Convert.ToInt64(textBox_telefono.Text));
             hotel.setDireccion(textBox_direccion.Text);
             hotel.setFecha(Convert.ToDateTime(textBox_fecha.Text));
+            hotel.setEstado(estado);
+            hotel.setId(id);
+
 
             foreach (int i in regimenes.CheckedIndices) {                
                 hotel.setRegimenes(i);          //cargo los regimenes en una lista de int
             }
             
             
-            hotel.inserta_Hotel(); //agrego el hotel a la base
+            hotel.update_Hotel(); //agrego el hotel a la base
             this.Close();
             }
 
@@ -153,6 +159,16 @@ namespace FrbaHotel.ABM_de_Hotel
         private void ABMHotel_Alta_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            estado = 1;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            estado = 0;
         }
 
 

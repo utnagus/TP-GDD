@@ -37,10 +37,13 @@ namespace FrbaHotel.ABM_de_Hotel
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            dt = coneccionHotel.dameListadoHoteles(textBoxname.Text,textBoxestrellas.Text,textBoxciudad.Text,textBoxpais.Text);
+
+            dt = coneccionHotel.dameListadoHotelesEstado01(textBoxname.Text, textBoxestrellas.Text, textBoxciudad.Text, textBoxpais.Text,1);
             bsource.DataSource = dt;
             dataGridView1.DataSource = bsource;
+            this.dataGridView1.Columns[0].Visible = false; //oculto columna id
+            this.dataGridView1.Columns[9].Visible = false; //oculto columna estado
+            this.dataGridView1.AllowUserToAddRows = false;//si no pongo esto me agrega una ultima fila editable
 
         }
 

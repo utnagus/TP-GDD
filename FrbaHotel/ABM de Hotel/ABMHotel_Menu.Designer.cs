@@ -61,6 +61,7 @@
             this.button_Modificacion.TabIndex = 2;
             this.button_Modificacion.Text = "Modificación";
             this.button_Modificacion.UseVisualStyleBackColor = true;
+            this.button_Modificacion.Click += new System.EventHandler(this.button_Modificacion_Click);
             // 
             // button_Listado
             // 

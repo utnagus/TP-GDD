@@ -33,5 +33,10 @@ namespace FrbaHotel.ABM_de_Habitacion
             comboBox1.Items.Add(row[1]);
         }
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

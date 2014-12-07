@@ -477,7 +477,7 @@ IF OBJECT_ID(N'qwerty.habitaciones', N'U') IS NOT NULL
 	DROP TABLE qwerty.habitaciones;
 CREATE TABLE [QWERTY].[Habitaciones](
 	[Habitacion_ID] [int] IDENTITY(1,1) NOT NULL,
-	[Numero] [int] ,
+	[Numero] [nvarchar](10) ,
 	[Piso] [nvarchar](10) ,
 	[Ubicacion] [varchar](250) ,
 	[Tipo_ID] int ,
@@ -707,6 +707,7 @@ insert into QWERTY.Hotel (Nombre,Mail,Telefono,Direccion,Estrellas,Ciudad,Pais,F
 select distinct
 rtrim(Hotel_Ciudad) + ', ' + Hotel_Calle + ' ' + CONVERT(nvarchar,Hotel_Nro_Calle) as nombre,
 'desconocido' as mail,
+'' as telefono,
 Hotel_Calle+ ' ' + CONVERT(nvarchar,Hotel_Nro_Calle) as direccion,
 Hotel_CantEstrella,
 Hotel_Ciudad,   

@@ -229,6 +229,7 @@
     <Compile Include="Model\DataBase.cs" />
     <Compile Include="Model\Dia.cs" />
     <Compile Include="Model\Guest.cs" />
+    <Compile Include="Model\Habitacion.cs" />
     <Compile Include="Model\Hotel.cs" />
     <Compile Include="Model\Rol.cs" />
     <Compile Include="Model\User.cs" />

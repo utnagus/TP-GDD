@@ -83,11 +83,29 @@
     <Compile Include="ABM de Cliente\guestABM.Designer.cs">
       <DependentUpon>guestABM.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM de Habitacion\Form1.cs">
+    <Compile Include="ABM de Habitacion\ABMHabitacion_Alta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM de Habitacion\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ABM de Habitacion\ABMHabitacion_Alta.Designer.cs">
+      <DependentUpon>ABMHabitacion_Alta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Habitacion\ABMHabitacion_Baja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Habitacion\ABMHabitacion_Baja.Designer.cs">
+      <DependentUpon>ABMHabitacion_Baja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Habitacion\ABMHabitacion_Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Habitacion\ABMHabitacion_Menu.Designer.cs">
+      <DependentUpon>ABMHabitacion_Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Habitacion\ABMHabitacion_Modificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Habitacion\ABMHabitacion_Modificacion.Designer.cs">
+      <DependentUpon>ABMHabitacion_Modificacion.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM de Hotel\ABMHotel_Alta.cs">
       <SubType>Form</SubType>
@@ -223,6 +241,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM de Cliente\guestABM.resx">
       <DependentUpon>guestABM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Habitacion\ABMHabitacion_Alta.resx">
+      <DependentUpon>ABMHabitacion_Alta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Habitacion\ABMHabitacion_Menu.resx">
+      <DependentUpon>ABMHabitacion_Menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM de Hotel\ABMHotel_Alta.resx">
       <DependentUpon>ABMHotel_Alta.cs</DependentUpon>

@@ -11,6 +11,7 @@ using FrbaHotel.Login;
 using FrbaHotel.Model;
 using FrbaHotel.ABM_de_Cliente;
 using FrbaHotel.ABM_de_Hotel;
+using FrbaHotel.ABM_de_Habitacion;
 namespace FrbaHotel
 {
     public partial class index_window : Form
@@ -69,6 +70,12 @@ namespace FrbaHotel
         private void button3_Click(object sender, EventArgs e)
         {
             ABMHotel_Menu abm = new ABMHotel_Menu();
+            abm.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ABMHabitacion_Menu abm = new ABMHabitacion_Menu();
             abm.Show();
         }
 

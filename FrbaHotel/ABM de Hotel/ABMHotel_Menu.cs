@@ -38,5 +38,11 @@ namespace FrbaHotel.ABM_de_Hotel
             ABMHotel_Modificacion abm = new ABMHotel_Modificacion();
             abm.Show();
         }
+
+        private void button_Baja_Click(object sender, EventArgs e)
+        {
+            ABMHotel_Baja abm = new ABMHotel_Baja();
+            abm.Show();
+        }
     }
 }

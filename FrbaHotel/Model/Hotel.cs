@@ -99,6 +99,7 @@ namespace FrbaHotel.Model
             DataTable dt = db.select_query(query);
             return dt;
         }
+       
 
     }
 }

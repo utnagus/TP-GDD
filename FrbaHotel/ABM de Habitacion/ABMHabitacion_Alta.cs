@@ -159,5 +159,10 @@ namespace FrbaHotel.ABM_de_Habitacion
                 return;
             }
         }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

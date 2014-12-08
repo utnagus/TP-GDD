@@ -55,6 +55,14 @@ namespace FrbaHotel.Model
              return existe;
          }
 
+         public DataTable dameTodosLasHabitaciones(String nro,String piso,String ubic,String descripcion, String nombre, String hab)
+         {
+             String query = "select ha.Habitacion_ID,th.Tipo_Habitacion_ID,ha.Numero,ha.Piso,ha.Ubicacion,ha.Descripcion,ho.Nombre,th.Descripcion from QWERTY.Habitaciones ha, QWERTY.Hotel ho, QWERTY.Tipo_Habitacion th where ha.Hotel_ID=ho.Hotel_ID and ha.Tipo_ID=th.Tipo_Habitacion_ID and ha.Numero like '%"+nro+"%' and ha.Piso like '%"+piso+"%'and ha.Ubicacion like '%"+ubic+"%' and ha.Descripcion like '%"+descripcion+"%' and ho.Nombre like '%"+nombre+"%' and th.Descripcion like '%"+hab+"%'";
+             DataBase db = new DataBase();
+             DataTable dt = db.select_query(query);
+             return dt;
+         }
+
         
     }
 }

@@ -120,7 +120,6 @@
             this.textBox_desc.Name = "textBox_desc";
             this.textBox_desc.Size = new System.Drawing.Size(100, 20);
             this.textBox_desc.TabIndex = 10;
-            //this.textBox_desc.TextChanged += new System.EventHandler(this.textBox_desc_TextChanged);
             this.textBox_desc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_desc_TextChanged);
             // 
             // button1
@@ -173,6 +172,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(100, 21);
             this.comboBox2.TabIndex = 16;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // ABMHabitacion_Alta
             // 

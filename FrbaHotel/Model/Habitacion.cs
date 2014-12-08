@@ -43,7 +43,17 @@ namespace FrbaHotel.Model
              return dt;             
          }
 
-         
+        //select * from QWERTY.Habitaciones h where h.Hotel_ID='1' and h.Numero='22'
+         public bool existe_Habitacion(int id, int nro)
+         {
+             bool existe = false;
+             DataBase db = new DataBase();
+             String query = "select * from QWERTY.Habitaciones h where h.Hotel_ID='"+id+"' and h.Numero='"+nro+"'";
+             DataTable dt = new DataTable();
+             dt = db.select_query(query);
+             if (dt.Rows.Count > 0) { existe = true; }
+             return existe;
+         }
 
         
     }

@@ -160,6 +160,11 @@ namespace FrbaHotel.ABM_de_Hotel
 
         }
 
+        private void textBox_nombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
 
 
         

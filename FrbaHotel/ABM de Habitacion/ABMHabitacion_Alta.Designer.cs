@@ -104,6 +104,7 @@
             this.textBox_Nro.Name = "textBox_Nro";
             this.textBox_Nro.Size = new System.Drawing.Size(100, 20);
             this.textBox_Nro.TabIndex = 7;
+            this.textBox_Nro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Nro_TextChanged);
             // 
             // textBox_Piso
             // 
@@ -111,6 +112,7 @@
             this.textBox_Piso.Name = "textBox_Piso";
             this.textBox_Piso.Size = new System.Drawing.Size(100, 20);
             this.textBox_Piso.TabIndex = 8;
+            this.textBox_Piso.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Piso_TextChanged);
             // 
             // textBox_desc
             // 
@@ -118,6 +120,8 @@
             this.textBox_desc.Name = "textBox_desc";
             this.textBox_desc.Size = new System.Drawing.Size(100, 20);
             this.textBox_desc.TabIndex = 10;
+            //this.textBox_desc.TextChanged += new System.EventHandler(this.textBox_desc_TextChanged);
+            this.textBox_desc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_desc_TextChanged);
             // 
             // button1
             // 

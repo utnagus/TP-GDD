@@ -60,6 +60,7 @@
             this.textBox_nombre.Name = "textBox_nombre";
             this.textBox_nombre.Size = new System.Drawing.Size(146, 20);
             this.textBox_nombre.TabIndex = 0;
+            this.textBox_nombre.TextChanged += new System.EventHandler(this.textBox_nombre_TextChanged);
             this.textBox_nombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_nombre_TextChanged);
             // 
             // textBox_ciudad
@@ -249,7 +250,7 @@
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(41, 96);
+            this.monthCalendar1.Location = new System.Drawing.Point(504, 28);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 22;
             this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);

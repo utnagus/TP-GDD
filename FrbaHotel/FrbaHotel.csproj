@@ -77,13 +77,35 @@
     <Compile Include="ABM de Cliente\AddClient.Designer.cs">
       <DependentUpon>AddClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM de Cliente\Avaible_Users.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Cliente\Avaible_Users.Designer.cs">
+      <DependentUpon>Avaible_Users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Cliente\EditClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Cliente\EditClient.Designer.cs">
+      <DependentUpon>EditClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM de Cliente\guestABM.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM de Cliente\guestABM.Designer.cs">
       <DependentUpon>guestABM.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+    <Compile Include="ABM de Cliente\Unavaible_users.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Cliente\Unavaible_users.Designer.cs">
+      <DependentUpon>Unavaible_users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Habitacion\Form1.cs">
+=======
     <Compile Include="ABM de Habitacion\ABMHabitacion_Alta.cs">
+>>>>>>> e467366de9b12a2d6c8de53dea8b3ef272a48169
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM de Habitacion\ABMHabitacion_Alta.Designer.cs">
@@ -246,9 +268,19 @@
     <EmbeddedResource Include="ABM de Cliente\AddClient.resx">
       <DependentUpon>AddClient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Cliente\Avaible_Users.resx">
+      <DependentUpon>Avaible_Users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Cliente\EditClient.resx">
+      <DependentUpon>EditClient.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM de Cliente\guestABM.resx">
       <DependentUpon>guestABM.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
+    <EmbeddedResource Include="ABM de Cliente\Unavaible_users.resx">
+      <DependentUpon>Unavaible_users.cs</DependentUpon>
+=======
     <EmbeddedResource Include="ABM de Habitacion\ABMHabitacion_Alta.resx">
       <DependentUpon>ABMHabitacion_Alta.cs</DependentUpon>
     </EmbeddedResource>
@@ -278,6 +310,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM de Hotel\Listado_Modificacion.resx">
       <DependentUpon>Listado_Modificacion.cs</DependentUpon>
+>>>>>>> e467366de9b12a2d6c8de53dea8b3ef272a48169
     </EmbeddedResource>
     <EmbeddedResource Include="ABM de Usuario\addNewUser.resx">
       <DependentUpon>addNewUser.cs</DependentUpon>

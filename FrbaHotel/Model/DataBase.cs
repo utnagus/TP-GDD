@@ -62,6 +62,15 @@ namespace FrbaHotel.Model
                 MessageBox.Show("Fallo al ejectuar la query : " + query);
             }
         }
+        public void insert_select_query(String query) {
+            conexion.Open();
+            SqlCommand cmd = new SqlCommand(query,conexion);
+            cmd.CommandText = query;
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+            conexion.Close();
+        }
+
 
         public void update_query(String query) { this.insert_query(query); }
         public void delete_query(String query) { this.insert_query(query); }

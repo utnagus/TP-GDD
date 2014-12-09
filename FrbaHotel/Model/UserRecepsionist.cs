@@ -15,10 +15,12 @@ namespace FrbaHotel.Model
 
         public UserRecepsionist() { }
 
-        /*override public void  setYouUp(UserRecepsionist user){
+        public void setYouUP(UserRecepsionist user)
+        {
             String query = "insert into qwerty.usuarios values'" + user.getName() + "','" + user.getLastName() + "','" + user.getMail() + "','"+user.getTelephone()+"','" + user.getAddress() + "','" + user.getDate() + "','" + user.getDocument() + "','" + user.getTelephone() + "');";
+            //verificar que no exista el mail 
             db.insert_query(query);
             
-        }*/
+        }
     }
 }

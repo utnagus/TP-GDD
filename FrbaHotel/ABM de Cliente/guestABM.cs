@@ -15,7 +15,7 @@ namespace FrbaHotel.ABM_de_Cliente
     {
         private UserRecepsionist user = new UserRecepsionist();
         private homeClient home_client = new homeClient();
- 
+        private List<Client> clients= new List<Client>();
         public guestABM()
         {
             InitializeComponent();
@@ -29,7 +29,7 @@ namespace FrbaHotel.ABM_de_Cliente
         }
 
         private void fillClientListBoxOnCreate() {
-            List<Client> clients = home_client.getClients();
+            clients = home_client.getClients();
             foreach (Client client in clients) {
                 lb_clients.Items.Add(client.getName());
             }             
@@ -49,6 +49,55 @@ namespace FrbaHotel.ABM_de_Cliente
             
             AddClient wclientAdd = new AddClient();
             wclientAdd.Show();
+        }
+
+        private void btn_avaible_client_Click(object sender, EventArgs e)
+        {
+            //DEBO PODER AGARRAR CLIENTES EN LA TABLA CLIENTES INHABILITADOS Y PODER VOLVER A HABILITARLOS
+            Avaible_Users abm = new Avaible_Users();
+            abm.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Unavaible_users abm = new Unavaible_users();
+            abm.Show();
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            String client = lb_clients.SelectedItem.ToString();
+            Client new_client = new Client();
+            bool founded = false;
+            int i = 0;
+            while (i < clients.Count && !founded)
+            {
+                if (clients[i].getName().Equals(client))
+                {
+                    new_client = clients[i];
+                    founded = true;
+                }
+                i++;
+            }
+
+            new_client.setYouDOWN();
+        }
+
+        private void btn_edit_Click(object sender, EventArgs e)
+        {
+            String client = lb_clients.SelectedItem.ToString();
+            Client new_client = new Client();
+            bool founded = false;
+            int i = 0;
+            while(i < clients.Count && !founded){
+                if (clients[i].getName().Equals(client)) {
+                    new_client = clients[i];
+                    founded = true;
+                }
+                i++;                    
+            }
+            EditClient editW = new EditClient(new_client);
+            editW.Show();
         }
     }
 }

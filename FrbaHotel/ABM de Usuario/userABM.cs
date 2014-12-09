@@ -56,7 +56,7 @@ namespace FrbaHotel.ABM_de_Usuario
         private void lb_users_SelectedIndexChanged(object sender, EventArgs e)
         {
             lb_selected_user.setUsername(lb_users.GetItemText(lb_users.SelectedItem));
-             _selected_name = lb_selected_user.getUserName();
+                _selected_name = lb_selected_user.getUserName();
 
             if (_selected_name != null && !_selected_name.Equals(""))
             {

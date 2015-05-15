@@ -95,7 +95,6 @@
     <Compile Include="ABM de Cliente\guestABM.Designer.cs">
       <DependentUpon>guestABM.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="ABM de Cliente\Unavaible_users.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,9 +102,6 @@
       <DependentUpon>Unavaible_users.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM de Habitacion\Form1.cs">
-=======
-    <Compile Include="ABM de Habitacion\ABMHabitacion_Alta.cs">
->>>>>>> e467366de9b12a2d6c8de53dea8b3ef272a48169
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM de Habitacion\ABMHabitacion_Alta.Designer.cs">
